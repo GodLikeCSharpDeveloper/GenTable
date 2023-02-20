@@ -1,4 +1,6 @@
-﻿namespace BlazorStoreServAppV5.Models.AuthModel
+﻿using GenericTableBlazorAppV4.Models;
+
+namespace BlazorStoreServAppV5.Models.AuthModel
 {
     public class Users
     {
@@ -9,5 +11,10 @@
         public string PasswordHash { get; set; } = string.Empty;
         public List<Roles> Roles { get; set; }
         public List<UserRoles> UserRoles { get; set; }
+        public string Phone { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public int CashbackCount { get; set; }
+        public List<OrderModel> Orders { get; set; }
     }
 }
