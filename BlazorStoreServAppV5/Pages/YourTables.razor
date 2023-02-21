@@ -1,0 +1,91 @@
+﻿@page "/YourTables"
+@using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder
+@using BlazorStoreServAppV5.Models.AuthModel
+@using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder1
+@using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder2
+@using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder3
+@using GenericTableBlazorAppV4.Models
+@inject IDescriptionRepositoryService Description
+@inject IUserRepositoryService User
+@inject IProductRepositoryService Product
+@inject IOrderRepositoryServise Order
+
+<div class="row">
+    <div class="input-group mb-3">
+        <div class="input-group-text">
+            <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with checkbox">
+        <button class="btn btn-success">Search</button>
+    </div>
+</div>
+<table class="table table-@NavMenu.Theme-striped">
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">CashbackCount</th>
+            <th scope="col">City</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Login</th>
+            <th scope="col">Password</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Users != null)
+        {
+            @foreach (var cust in Users)
+            {
+                <tr>
+                    
+                    <td>@cust.FirstName</td>
+                    <td>@cust.LastName</td>
+                    <td>@cust.Address</td>
+                    <td>@cust.CashbackCount</td>
+                    <td>@cust.City</td>
+                    <td>@cust.Phone</td>
+                    <td>@cust.Email</td>
+                  
+
+                </tr>
+            }
+        }
+
+        <tr>
+            @*<th><input type="text" class="" @bind="cust." @onclick="@(() => customer.FirstName="")" /></th>
+            <th><input type="text" class="" @bind="customer.LastName" @onclick="@(() => customer.LastName="")" /></th>
+            <th><input type="text" class="" @bind="customer.Address" @onclick="@(() => customer.Address="")" /></th>
+            <th><input type="text" class="" @bind="customer.CashbackCount" @onclick="@(() => customer.CashbackCount=0)" /></th>
+            <th><input type="text" class="" @bind="customer.City" @onclick="@(() => customer.City="")" /></th>
+            <th><input type="text" class="" @bind="customer.Phone" @onclick="@(() => customer.Phone="")" /></th>
+            <th><input type="text" class="" @bind="customer.Login" @onclick="@(() => customer.Login="")" /></th>
+            <th><input type="text" class="" @bind="customer.Password" @onclick="@(() => customer.Password="")" /></th>
+            <th><input type="button" class="" @onclick="CreateCustomer" value="Save" /></th>*@
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    public List<Users> Users { get; set; }
+    public List<ProductModel> Products { get; set; }
+    public List<OrderModel> Orders { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        Products = await Product.GetAllProductsAsync();
+        Users = await User.GetAllUsersAsync();
+        Orders = await Order.GetAllOrdersAsync();
+    }
+
+    public void OrderMethod()
+    {
+       
+    }
+    
+
+    protected async void CreateCustomer()
+    {
+        
+    }
+}
