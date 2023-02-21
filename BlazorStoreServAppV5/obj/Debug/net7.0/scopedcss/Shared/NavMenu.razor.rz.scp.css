@@ -1,68 +1,142 @@
-.navbar-toggler[b-mbrop61ily] {
-    background-color: rgba(255, 255, 255, 0.1);
+/* Add a black background color to the top navigation */
+.colorBlack[b-mbrop61ily] {
+    background-color: black;
 }
 
-.top-row[b-mbrop61ily] {
-    height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+.colorWhite[b-mbrop61ily] {
+    background-color: #DCDCDC;
 }
 
-.navbar-brand[b-mbrop61ily] {
-    font-size: 1.1rem;
+.colorGreen[b-mbrop61ily] {
+    background-color: #2F4F4F;
+}
+/* Style the links inside the navigation bar */
+.colorBlack a[b-mbrop61ily] {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-.oi[b-mbrop61ily] {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-    top: -2px;
-}
-
-.nav-item[b-mbrop61ily] {
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
-}
-
-    .nav-item:first-of-type[b-mbrop61ily] {
-        padding-top: 1rem;
+    /* Change the color of links on hover */
+    .colorBlack a:hover[b-mbrop61ily] {
+        background-color: #ddd;
+        color: black;
     }
 
-    .nav-item:last-of-type[b-mbrop61ily] {
-        padding-bottom: 1rem;
+    /* Add a color to the active/current link */
+    .colorBlack a.active[b-mbrop61ily] {
+        background-color: black;
+        color: whitesmoke;
     }
 
-    .nav-item[b-mbrop61ily]  a {
-        color: #d7d7d7;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
+/* Right-aligned section inside the top navigation */
+.colorBlack-right[b-mbrop61ily] {
+    float: right;
+}
+
+.colorWhite a[b-mbrop61ily] {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 15px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+    /* Change the color of links on hover */
+    .colorWhite a:hover[b-mbrop61ily] {
+        background-color: #FFFAF0;
+        color: black;
     }
 
-.nav-item[b-mbrop61ily]  a.active {
-    background-color: rgba(255,255,255,0.25);
+    /* Add a color to the active/current link */
+    .colorWhite a.active[b-mbrop61ily] {
+        background-color: #FFFAF0;
+        color: black;
+    }
+
+/* Right-aligned section inside the top navigation */
+.colorWhite-right[b-mbrop61ily] {
+    float: right;
+}
+
+.colorGreen a[b-mbrop61ily] {
+    float: left;
     color: white;
+    text-align: center;
+    padding: 15px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-.nav-item[b-mbrop61ily]  a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
-
-@media (min-width: 641px) {
-    .navbar-toggler[b-mbrop61ily] {
-        display: none;
+    /* Change the color of links on hover */
+    .colorGreen a:hover[b-mbrop61ily] {
+        background-color: #8FBC8F;
+        color: white;
     }
 
-    .collapse[b-mbrop61ily] {
-        /* Never collapse the sidebar for wide screens */
+    /* Add a color to the active/current link */
+    .colorGreen a.active[b-mbrop61ily] {
+        background-color: #8FBC8F;
+        color: white;
+    }
+
+/* Right-aligned section inside the top navigation */
+.colorGreen-right[b-mbrop61ily] {
+    float: right;
+}
+
+.dropbtn[b-mbrop61ily] {
+    background-color: #DCDCDC;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown[b-mbrop61ily] {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content[b-mbrop61ily] {
+    display: none;
+    position:absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content button[b-mbrop61ily] {
+        color: black;
+        padding: 12px 16px;
+        border: none;
+        text-decoration: none;
         display: block;
+        min-width: 160px;
+        text-align: start;
+        z-index: 2;
     }
-    
-    .nav-scrollable[b-mbrop61ily] {
-        /* Allow sidebar to scroll for tall menus */
-        height: calc(100vh - 3.5rem);
-        overflow-y: auto;
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover[b-mbrop61ily] {
+        background-color: #f1f1f1
     }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content[b-mbrop61ily] {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn[b-mbrop61ily] {
+    background-color: #FFFAF0;
 }

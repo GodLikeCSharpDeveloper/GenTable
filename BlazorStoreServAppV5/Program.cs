@@ -1,9 +1,10 @@
-using BlazorStoreServAppV5.Data;
 using BlazorStoreServAppV5.Repository;
 using BlazorStoreServAppV5.Repository.AccountLogic;
+using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder;
+using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder1;
+using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder2;
+using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder3;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<IOrderRepositoryServise, OrderRepository>();
+builder.Services.AddScoped<IDescriptionRepositoryService, DescriptionRepository>();
+builder.Services.AddScoped<IUserRepositoryService, UserRepository>();
+builder.Services.AddScoped<IProductRepositoryService, ProductRepository>();
 builder.Services.AddScoped<IAccountLogic, AccountLogic>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

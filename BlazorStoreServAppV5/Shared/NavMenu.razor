@@ -1,39 +1,51 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorStoreServAppV5</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿@using BlazorStoreServAppV5.Models
+@using BlazorStoreServAppV5.Models.CssModels
+
+<div class="row">
+    <div class="@Theme">
+        <a class="active" href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="YourTables">Table</a>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+                @foreach (var item in ListOfThemes)
+                {
+                    <button @onclick="@(() => ChangeTheme(item.Value))">@item.Theme</button>
+                }
+            </div>
+        </div>
+        <div class="@Theme-right">
+            <a href="#search">Se22arch</a>
+            <a href="#about">About</a>
+        </div>
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-    </nav>
-</div>
+
+
+
+
 
 @code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    protected override void OnInitialized()
     {
-        collapseNavMenu = !collapseNavMenu;
+        Themes();
     }
+
+    [Parameter]
+    public List<ThemeModel> ListOfThemes { get; set; } = new();
+    public static string Theme { get; set; } = "colorBlack";
+
+    void Themes()
+    {
+        ListOfThemes.Add(new ThemeModel() { Theme = "dark", Value = "colorBlack" });
+        ListOfThemes.Add(new ThemeModel() { Theme = "light", Value = "colorWhite" });
+        ListOfThemes.Add(new ThemeModel() { Theme = "green", Value = "colorGreen" });
+    }
+    public void ChangeTheme(string currentTheme)
+    {
+        Theme = currentTheme;
+    }
+
 }

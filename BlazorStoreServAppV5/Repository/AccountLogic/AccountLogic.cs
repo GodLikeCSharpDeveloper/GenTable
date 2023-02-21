@@ -24,7 +24,7 @@ namespace BlazorStoreServAppV5.Repository.AccountLogic
         {
             if (string.IsNullOrEmpty(registerVm.Email))
             {
-                return "Eamil can't be empty";
+                return "Email can't be empty";
             }
 
             string emailRules = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
