@@ -1,4 +1,4 @@
-﻿using GenericTableBlazorAppV4.Models;
+﻿using BlazorStoreServAppV5.Models.BLogicModel;
 
 namespace BlazorStoreServAppV5.Models.AuthModel
 {

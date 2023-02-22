@@ -1,9 +1,7 @@
 ﻿using BlazorStoreServAppV5.Models.AuthModel;
-using BlazorStoreServAppV5.Repository;
-using GenericTableBlazorAppV4.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder3
+namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
 {
     public class UserRepository : IUserRepositoryService
     {

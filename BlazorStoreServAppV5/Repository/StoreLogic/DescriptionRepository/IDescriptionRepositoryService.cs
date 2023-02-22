@@ -1,6 +1,6 @@
 ﻿using BlazorStoreServAppV5.Models.BLogicModel;
 
-namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder
+namespace BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository
 {
     public interface IDescriptionRepositoryService
     {

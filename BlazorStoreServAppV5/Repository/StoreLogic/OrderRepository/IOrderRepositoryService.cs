@@ -1,7 +1,7 @@
 ﻿using BlazorStoreServAppV5.Models.BLogicModel;
-using GenericTableBlazorAppV4.Models;
 
-namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder1
+
+namespace BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository
 {
     public interface IOrderRepositoryServise
     {

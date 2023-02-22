@@ -3,6 +3,7 @@ using System;
 using BlazorStoreServAppV5.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorStoreServAppV5.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20230222121732_8")]
+    partial class _8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
@@ -119,7 +122,49 @@ namespace BlazorStoreServAppV5.Migrations
                     b.ToTable("Descriptions");
                 });
 
-            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.OrderModel", b =>
+            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductOrderModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("OrderModelId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductModelId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderModelId");
+
+                    b.HasIndex("ProductModelId");
+
+                    b.ToTable("ProductOrders");
+                });
+
+            modelBuilder.Entity("DescriptionModelProductModel", b =>
+                {
+                    b.Property<int>("DescriptionModelsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("DescriptionModelsId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("DescriptionModelProductModel");
+                });
+
+            modelBuilder.Entity("GenericTableBlazorAppV4.Models.OrderModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -149,7 +194,7 @@ namespace BlazorStoreServAppV5.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductModel", b =>
+            modelBuilder.Entity("GenericTableBlazorAppV4.Models.ProductModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -176,42 +221,32 @@ namespace BlazorStoreServAppV5.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ProductCharacteristicsName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProductCharacteristicsValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductOrderModel", b =>
+            modelBuilder.Entity("OrderModelProductModel", b =>
                 {
-                    b.Property<int>("ProductModelId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("OrderModelId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ProductModelId", "OrderModelId");
-
-                    b.HasIndex("OrderModelId");
-
-                    b.ToTable("ProductsOrder", (string)null);
-                });
-
-            modelBuilder.Entity("DescriptionModelProductModel", b =>
-                {
-                    b.Property<int>("DescriptionModelsId")
+                    b.Property<int>("OrderModelsId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ProductsId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("DescriptionModelsId", "ProductsId");
+                    b.HasKey("OrderModelsId", "ProductsId");
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("DescriptionModelProductModel");
+                    b.ToTable("OrderModelProductModel");
                 });
 
             modelBuilder.Entity("RolesUsers", b =>
@@ -244,27 +279,16 @@ namespace BlazorStoreServAppV5.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.OrderModel", b =>
-                {
-                    b.HasOne("BlazorStoreServAppV5.Models.AuthModel.Users", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductOrderModel", b =>
                 {
-                    b.HasOne("BlazorStoreServAppV5.Models.BLogicModel.ProductModel", "ProductModel")
-                        .WithMany("ProductOrders")
+                    b.HasOne("GenericTableBlazorAppV4.Models.OrderModel", "OrderModel")
+                        .WithMany("ProductOrderModels")
                         .HasForeignKey("OrderModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlazorStoreServAppV5.Models.BLogicModel.OrderModel", "OrderModel")
-                        .WithMany("ProductOrders")
+                    b.HasOne("GenericTableBlazorAppV4.Models.ProductModel", "ProductModel")
+                        .WithMany("ProductOrderModels")
                         .HasForeignKey("ProductModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -282,7 +306,33 @@ namespace BlazorStoreServAppV5.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlazorStoreServAppV5.Models.BLogicModel.ProductModel", null)
+                    b.HasOne("GenericTableBlazorAppV4.Models.ProductModel", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GenericTableBlazorAppV4.Models.OrderModel", b =>
+                {
+                    b.HasOne("BlazorStoreServAppV5.Models.AuthModel.Users", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("OrderModelProductModel", b =>
+                {
+                    b.HasOne("GenericTableBlazorAppV4.Models.OrderModel", null)
+                        .WithMany()
+                        .HasForeignKey("OrderModelsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GenericTableBlazorAppV4.Models.ProductModel", null)
                         .WithMany()
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -316,14 +366,14 @@ namespace BlazorStoreServAppV5.Migrations
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.OrderModel", b =>
+            modelBuilder.Entity("GenericTableBlazorAppV4.Models.OrderModel", b =>
                 {
-                    b.Navigation("ProductOrders");
+                    b.Navigation("ProductOrderModels");
                 });
 
-            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductModel", b =>
+            modelBuilder.Entity("GenericTableBlazorAppV4.Models.ProductModel", b =>
                 {
-                    b.Navigation("ProductOrders");
+                    b.Navigation("ProductOrderModels");
                 });
 #pragma warning restore 612, 618
         }

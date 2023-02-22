@@ -1,9 +1,9 @@
 using BlazorStoreServAppV5.Repository;
 using BlazorStoreServAppV5.Repository.AccountLogic;
-using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder;
-using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder1;
-using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder2;
-using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder3;
+using BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository;
+using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository;
+using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
+using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +23,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.ExpireTimeSpan = TimeSpan.FromDays(20);
     });
+
 builder.Services.AddDbContext<StoreContext>(option =>
     option.UseSqlite(builder.Configuration.GetConnectionString("myconn")));
 var app = builder.Build();

@@ -1,10 +1,11 @@
 ﻿@page "/YourTables"
-@using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder
 @using BlazorStoreServAppV5.Models.AuthModel
-@using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder1
-@using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder2
-@using BlazorStoreServAppV5.Repository.StoreLogic.NewFolder3
-@using GenericTableBlazorAppV4.Models
+@using BlazorStoreServAppV5.Models.BLogicModel
+@using BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository
+@using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository
+@using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
+@using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
+
 @inject IDescriptionRepositoryService Description
 @inject IUserRepositoryService User
 @inject IProductRepositoryService Product
@@ -47,7 +48,14 @@
                     <td>@cust.City</td>
                     <td>@cust.Phone</td>
                     <td>@cust.Email</td>
-                  
+                  @foreach (var order in cust.Orders)
+                  {
+                      <td>@order.Id</td>
+                      foreach (var prod in order.Products)
+                      {
+                            <td>@prod.Name</td>
+                      }
+                  }
 
                 </tr>
             }
@@ -71,11 +79,14 @@
     public List<Users> Users { get; set; }
     public List<ProductModel> Products { get; set; }
     public List<OrderModel> Orders { get; set; }
+    
     protected override async Task OnInitializedAsync()
     {
         Products = await Product.GetAllProductsAsync();
         Users = await User.GetAllUsersAsync();
         Orders = await Order.GetAllOrdersAsync();
+
+       
     }
 
     public void OrderMethod()

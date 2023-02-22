@@ -1,7 +1,7 @@
 ﻿using BlazorStoreServAppV5.Models.AuthModel;
 using BlazorStoreServAppV5.Models.BLogicModel;
 
-namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder3
+namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
 {
     public interface IUserRepositoryService
     {

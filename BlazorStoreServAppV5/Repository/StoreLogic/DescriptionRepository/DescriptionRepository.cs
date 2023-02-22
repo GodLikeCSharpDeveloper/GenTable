@@ -1,7 +1,7 @@
 ﻿using BlazorStoreServAppV5.Models.BLogicModel;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder
+namespace BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository
 {
     public class DescriptionRepository : IDescriptionRepositoryService
     {
@@ -14,8 +14,8 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder
         public async Task<List<DescriptionModel>> GetProductByDescription(DescriptionModel descr)
         {
             var products = await _storeContext.Descriptions.
-                Where(a => 
-                    a.Name.ToLower().Contains(descr.Name.ToLower()) || 
+                Where(a =>
+                    a.Name.ToLower().Contains(descr.Name.ToLower()) ||
                     a.Description.ToLower().Contains(descr.Description.ToLower())).
                     ToListAsync();
             return products;

@@ -1,5 +1,5 @@
 ﻿//using BlazorStoreServAppV5.Models.AuthModel;
-//using GenericTableBlazorAppV4.Repositories;
+//using GenericTableBlazorAppV5.Repositories;
 
 //namespace BlazorStoreServAppV5.Repository.StoreLogic.DepInjLogic
 //{

@@ -1,7 +1,7 @@
-﻿using GenericTableBlazorAppV4.Models;
+﻿using BlazorStoreServAppV5.Models.BLogicModel;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder2
+namespace BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
 {
     public class ProductRepository : IProductRepositoryService
     {
@@ -42,5 +42,11 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder2
             await _StoreContext.SaveChangesAsync();
             return true;
         }
+        //public async Task<List<OrderModel>> GetProductByOrder()
+        //{
+        //    var products = await _StoreContext.Orders.Include(o=>o.Products).ToListAsync();
+        //    return products;
+        //}
+
     }
 }

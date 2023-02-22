@@ -1,6 +1,4 @@
-﻿using GenericTableBlazorAppV4.Models;
-
-namespace BlazorStoreServAppV5.Models.BLogicModel
+﻿namespace BlazorStoreServAppV5.Models.BLogicModel
 {
     public class DescriptionModel
     {

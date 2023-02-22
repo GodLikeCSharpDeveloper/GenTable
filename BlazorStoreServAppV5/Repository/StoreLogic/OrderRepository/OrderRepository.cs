@@ -1,10 +1,9 @@
 ﻿using BlazorStoreServAppV5.Models.AuthModel;
-using BlazorStoreServAppV5.Repository;
-using GenericTableBlazorAppV4.Models;
+using BlazorStoreServAppV5.Models.BLogicModel;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder1
+namespace BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository
 {
     public class OrderRepository : IOrderRepositoryServise
     {

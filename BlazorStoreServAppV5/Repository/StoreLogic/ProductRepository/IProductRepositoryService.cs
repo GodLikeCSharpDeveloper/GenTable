@@ -1,7 +1,7 @@
 ﻿using BlazorStoreServAppV5.Models.BLogicModel;
-using GenericTableBlazorAppV4.Models;
 
-namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder2
+
+namespace BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
 {
     public interface IProductRepositoryService
     {
@@ -29,6 +29,11 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.NewFolder2
         }
 
         public async Task<bool> DeleteProductAsync(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> GetProductByOrder()
         {
             throw new NotImplementedException();
         }

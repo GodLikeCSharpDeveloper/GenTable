@@ -3,7 +3,7 @@ using BlazorStoreServAppV5.Repository.AccountLogic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Dot6.Bserver.Cookie.Auth.Areas.Identity.Pages.Account;
+namespace BlazorStoreServAppV5.Areas.Identity.Pages.Account;
 
 public class LoginModel : PageModel
 {
