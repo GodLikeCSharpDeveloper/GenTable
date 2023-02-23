@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "EA0vkyOdcqOlkkjYZ74+EqosWG75qsY+tymeSL/8Lf4OJX6JgHSC+d1Nn5RhsUgTy1eWtLevG1uk3pZbDdWfAA==",
+  "dgSpecHash": "PsZggbO4t7MjMLOG6a1IglgIFKRjcItH3d1V65OEXKIjEsRJtvjkK44iplrbMyLfTsgY02V9ccSmvmPpQhNE4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\BlazorStoreServAppV5.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DaunV5.0\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\DaunV5.0\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.3\\microsoft.aspnetcore.authorization.7.0.3.nupkg.sha512",
     "C:\\Users\\DaunV5.0\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.3\\microsoft.aspnetcore.cryptography.internal.7.0.3.nupkg.sha512",
     "C:\\Users\\DaunV5.0\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.3\\microsoft.aspnetcore.cryptography.keyderivation.7.0.3.nupkg.sha512",
     "C:\\Users\\DaunV5.0\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.3\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.3.nupkg.sha512",
+    "C:\\Users\\DaunV5.0\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.3\\microsoft.aspnetcore.metadata.7.0.3.nupkg.sha512",
     "C:\\Users\\DaunV5.0\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.3\\microsoft.data.sqlite.core.7.0.3.nupkg.sha512",
     "C:\\Users\\DaunV5.0\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.3\\microsoft.entityframeworkcore.7.0.3.nupkg.sha512",
     "C:\\Users\\DaunV5.0\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.3\\microsoft.entityframeworkcore.abstractions.7.0.3.nupkg.sha512",

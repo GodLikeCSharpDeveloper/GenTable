@@ -10,7 +10,7 @@ namespace BlazorStoreServAppV5.Models.AuthModel
         public string Email { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
         public List<Roles> Roles { get; set; }
-        public List<UserRoles> UserRoles { get; set; }
+        public List<UserRoles>? UserRoles { get; set; }
         public string Phone { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;

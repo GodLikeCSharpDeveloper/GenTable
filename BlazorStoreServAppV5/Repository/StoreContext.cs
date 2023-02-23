@@ -19,6 +19,7 @@ namespace BlazorStoreServAppV5.Repository
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<DescriptionModel> Descriptions { get; set; }
+        public DbSet<ProductOrderModel> ProductOrder { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,16 +31,31 @@ namespace BlazorStoreServAppV5.Repository
                             j => j
                                   .HasOne(pt => pt.ProductModel)
                                   .WithMany(t => t.ProductOrders)
-                                  .HasForeignKey(pt => pt.OrderModelId),
+                                  .HasForeignKey(pt => pt.ProductModelId),
                             j => j
                                   .HasOne(pt => pt.OrderModel)
                                   .WithMany(p => p.ProductOrders)
-                                 .HasForeignKey(pt => pt.ProductModelId),
+                                 .HasForeignKey(pt => pt.OrderModelId),
             j =>
             {
                 j.HasKey(pt => new { pt.ProductModelId, pt.OrderModelId });
-                j.ToTable("ProductsOrder");
             });
+            modelBuilder.Entity<Users>()
+                        .HasMany(s => s.Roles)
+                        .WithMany(c => c.Users).
+                        UsingEntity<UserRoles>(
+                            j => j
+                                 .HasOne(pt => pt.Roles)
+                                 .WithMany(o=>o.UserRoles)
+                                 .HasForeignKey(pt => pt.RoleId),
+                            j => j
+                                 .HasOne(pt => pt.Users)
+                                 .WithMany(p => p.UserRoles)
+                                 .HasForeignKey(pt => pt.UserId),
+                            j =>
+                            {
+                                j.HasKey(pt => new { pt.UserId, pt.RoleId });
+                            });
         }
     }
 

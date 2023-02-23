@@ -1,0 +1,15 @@
+﻿@using BlazorStoreServAppV5.Models.AuthModel
+@inject TokenProvider _TokenProvider
+<AuthorizeView>
+    <Authorized>
+        <a href="Identity/Account/Manage">Hello, @context.User.Identity?.Name!</a>
+        <form method="post" action="/identity/account/logout">
+            <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken"/>
+            <button type="submit">Logout</button>
+        </form>
+    </Authorized>
+   <NotAuthorized>
+        <a href="Identity/Account/Register">Register</a>
+        <a href="Identity/Account/Login">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>

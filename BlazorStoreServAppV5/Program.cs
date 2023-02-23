@@ -1,3 +1,4 @@
+using BlazorStoreServAppV5.Models.AuthModel;
 using BlazorStoreServAppV5.Repository;
 using BlazorStoreServAppV5.Repository.AccountLogic;
 using BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository;
@@ -5,6 +6,7 @@ using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,12 +19,15 @@ builder.Services.AddScoped<IDescriptionRepositoryService, DescriptionRepository>
 builder.Services.AddScoped<IUserRepositoryService, UserRepository>();
 builder.Services.AddScoped<IProductRepositoryService, ProductRepository>();
 builder.Services.AddScoped<IAccountLogic, AccountLogic>();
+builder.Services.AddScoped<TokenProvider>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.ExpireTimeSpan = TimeSpan.FromDays(20);
+        
+        options.ExpireTimeSpan = TimeSpan.FromDays(20); 
     });
+
 
 builder.Services.AddDbContext<StoreContext>(option =>
     option.UseSqlite(builder.Configuration.GetConnectionString("myconn")));
@@ -39,7 +44,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
-
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseRouting();
 
 app.MapBlazorHub();

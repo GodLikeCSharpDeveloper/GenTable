@@ -35,9 +35,9 @@
     </thead>
     <tbody>
 
-        @if (Users != null)
+        @if (UsersList != null)
         {
-            @foreach (var cust in Users)
+            @foreach (var cust in UsersList)
             {
                 <tr>
                     
@@ -76,15 +76,15 @@
 </table>
 
 @code {
-    public List<Users> Users { get; set; }
-    public List<ProductModel> Products { get; set; }
-    public List<OrderModel> Orders { get; set; }
+    public List<Users> UsersList { get; set; }
+    public List<ProductModel> ProductsList { get; set; }
+    public List<OrderModel> OrdersList { get; set; }
     
     protected override async Task OnInitializedAsync()
     {
-        Products = await Product.GetAllProductsAsync();
-        Users = await User.GetAllUsersAsync();
-        Orders = await Order.GetAllOrdersAsync();
+        ProductsList = await Product.GetAllProductsAsync();
+        UsersList = await User.GetAllUsersAsync();
+        OrdersList = await Order.GetAllOrdersAsync();
 
        
     }

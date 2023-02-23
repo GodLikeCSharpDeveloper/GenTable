@@ -54,7 +54,7 @@ namespace BlazorStoreServAppV5.Repository.AccountLogic
             // atleast one special character
             // atleast one number
             // atleast 8 character length
-            string passwordRules = @"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$";
+            string passwordRules = @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
             if (!Regex.IsMatch(registerVm.Password, passwordRules))
             {
                 return "Not a valid password";
@@ -160,8 +160,7 @@ namespace BlazorStoreServAppV5.Repository.AccountLogic
             var claimsIdentity = new ClaimsIdentity(
                 claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            var authProperties = new AuthenticationProperties
-                { };
+            var authProperties = new AuthenticationProperties{};
 
             await _accessor.HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
