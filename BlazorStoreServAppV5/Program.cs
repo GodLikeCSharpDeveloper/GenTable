@@ -7,6 +7,8 @@ using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,8 +20,8 @@ builder.Services.AddScoped<IOrderRepositoryServise, OrderRepository>();
 builder.Services.AddScoped<IDescriptionRepositoryService, DescriptionRepository>();
 builder.Services.AddScoped<IUserRepositoryService, UserRepository>();
 builder.Services.AddScoped<IProductRepositoryService, ProductRepository>();
-builder.Services.AddScoped<IAccountLogic, AccountLogic>();
 builder.Services.AddScoped<TokenProvider>();
+builder.Services.AddScoped<IAccountLogic, AccountLogic>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

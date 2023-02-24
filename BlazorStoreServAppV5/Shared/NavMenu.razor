@@ -1,7 +1,8 @@
 ﻿@using BlazorStoreServAppV5.Models
 @using BlazorStoreServAppV5.Models.AuthModel
 @using BlazorStoreServAppV5.Models.CssModels
-
+@using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
+@inject IUserRepositoryService UserRepository
 <div class="row">
     <div class="@Theme">
         <a class="active" href="#home">Home</a>
@@ -34,8 +35,10 @@
 
 
 @code {
-    protected override void OnInitialized()
+    public static List<Users> UsersList { get; set; }
+    protected override async Task OnInitializedAsync()
     {
+        UsersList = await UserRepository.GetAllUsersAsync();
         Themes();
     }
 

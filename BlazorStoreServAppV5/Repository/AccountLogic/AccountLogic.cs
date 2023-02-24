@@ -2,11 +2,13 @@
 using BlazorStoreServAppV5.Models.AuthModel;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using BlazorStoreServAppV5.Repository;
+using BlazorStoreServAppV5.Repository.AccountLogic;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorStoreServAppV5.Repository.AccountLogic
+namespace BlazorStoreServAppV5.Repository.AccountLogic 
 {
     public class AccountLogic : IAccountLogic
     {
