@@ -1,5 +1,8 @@
 using BlazorStoreServAppV5.Models.AuthModel;
 using BlazorStoreServAppV5.Repository.AccountLogic;
+using BlazorStoreServAppV5.Shared;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -26,7 +29,7 @@ public class LoginModel : PageModel
         }
         return Page();
     }
-
+   
     public async Task<IActionResult> OnPostAsync()
     {
         ErrorMessage = await _accountLogic.UserLoginAsyn(LoginVm);
@@ -34,6 +37,7 @@ public class LoginModel : PageModel
         {
             return Page();
         }
+        
         return Redirect("/");
     }
 

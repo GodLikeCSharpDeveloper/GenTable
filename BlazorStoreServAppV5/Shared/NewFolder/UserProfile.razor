@@ -1,0 +1,42 @@
+﻿@page "/Account"
+@inherits MainLayout
+@inject NavigationManager NavigationManager
+
+<component type="typeof(MainLayout)" param-InitialState="@Id" render-mode="ServerPrerendered" />
+<div class="row">
+    <div class="col">
+        <select @onchange="OnDropdownChange">
+            <option value="">Select a value</option>
+            <option value="@nameof(UserInfo)">Rocket Lab</option>
+            <option value="@nameof(UserOrders)">SpaceX</option>
+            @*<option value="@typeof()">ULA</option>
+            <option value="@typeof()">Virgin Galactic</option>*@
+        </select>
+        <div class="col">
+            <DynamicComponent Type= "@SelectedType" />
+        </div>
+    </div>
+</div>
+
+@code {
+    
+    public Type? SelectedType { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        SelectedType = typeof(UserInfo);
+        if (IsAuth)
+        {
+            var User = CurrentUser;
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/identity/account/login");
+        }
+    }
+
+    public void OnDropdownChange(ChangeEventArgs e)
+    {
+        SelectedType = Type.GetType($"BlazorStoreServAppV5.Shared.NewFolder.{e.Value}");
+    }
+
+}

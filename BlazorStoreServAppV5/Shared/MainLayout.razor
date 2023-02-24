@@ -1,4 +1,9 @@
-﻿@inherits LayoutComponentBase
+﻿@using BlazorStoreServAppV5.Pages
+@inherits LayoutComponentBase
+@inject IDescriptionRepositoryService Description
+@inject IUserRepositoryService User
+@inject IProductRepositoryService Product
+@inject IOrderRepositoryServise Order
 
 <PageTitle>GenericTableAppV5</PageTitle>
 
@@ -8,3 +13,23 @@
         @Body
     </article>
 </main>
+@code
+{
+    [CascadingParameter] private Task<AuthenticationState> authenticationStateTask { get; set; }
+    public static List<Users> UsersList { get; set; }
+    public List<ProductModel> ProductsList { get; set; }
+    public List<OrderModel> OrdersList { get; set; }
+    public static Users? CurrentUser { get; set; }
+    public static bool IsAuth { get; set; }
+    [Parameter]
+    public int Id { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        ProductsList = await Product.GetAllProductsAsync();
+        UsersList = await User.GetAllUsersAsync();
+        OrdersList = await Order.GetAllOrdersAsync();
+        CurrentUser = await User.GetCurrentUser(authenticationStateTask);
+        var user = (await authenticationStateTask).User;
+        IsAuth = user.Identity.IsAuthenticated;
+    }
+}

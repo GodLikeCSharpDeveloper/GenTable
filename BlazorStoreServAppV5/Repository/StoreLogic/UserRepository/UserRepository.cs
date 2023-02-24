@@ -1,4 +1,5 @@
 ﻿using BlazorStoreServAppV5.Models.AuthModel;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
@@ -58,5 +59,14 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
             await _storeContext.SaveChangesAsync();
             return true;
         }
+        public async Task<Users>? GetCurrentUser(Task<AuthenticationState> authenticationStateTask)
+        {
+            var List = await _storeContext.Users.Include(o => o.Orders).ThenInclude(o => o.Products).ToListAsync();
+            var authState = await authenticationStateTask;
+            var user = authState.User;
+            var currentUser = List.Where(o => (o.FirstName + " " + o.LastName).Equals(user.Identity.Name)).FirstOrDefault();
+            return currentUser;
+        }
+
     }
 }
