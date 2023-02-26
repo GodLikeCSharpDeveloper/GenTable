@@ -1,5 +1,5 @@
-/* _content/BlazorStoreServAppV5/Pages/YourTables.razor.rz.scp.css */
-body[b-93hrspp02z] {
+/* _content/BlazorStoreServAppV5/Pages/AllProductsTable.razor.rz.scp.css */
+body[b-6v7gdwkhox] {
 }
 /* _content/BlazorStoreServAppV5/Shared/MainLayout.razor.rz.scp.css */
 .page[b-pkt278h1wn] {
@@ -87,13 +87,18 @@ main[b-pkt278h1wn] {
     background-color: #2F4F4F;
 }
 /* Style the links inside the navigation bar */
-.colorBlack a[b-mbrop61ily] {
+.colorBlack a[b-mbrop61ily],form[b-mbrop61ily] {
     float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 15px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+.formclass[b-mbrop61ily]  {
+    border: 0;
+    margin-top: 0;
+    padding: 0 0 0 0;
 }
 
     /* Change the color of links on hover */
@@ -113,7 +118,7 @@ main[b-pkt278h1wn] {
     float: right;
 }
 
-.colorWhite a[b-mbrop61ily] {
+.colorWhite a[b-mbrop61ily], form[b-mbrop61ily] {
     float: left;
     color: black;
     text-align: center;
@@ -139,7 +144,7 @@ main[b-pkt278h1wn] {
     float: right;
 }
 
-.colorGreen a[b-mbrop61ily] {
+.colorGreen a[b-mbrop61ily], form[b-mbrop61ily] {
     float: left;
     color: white;
     text-align: center;
@@ -217,8 +222,8 @@ main[b-pkt278h1wn] {
     background-color: #FFFAF0;
 }
 /* _content/BlazorStoreServAppV5/Shared/NewFolder/UserProfile.razor.rz.scp.css */
-body[b-ay3v7o09ya] {
-.btn-group button
+
+.btn-group button[b-ay3v7o09ya]
 
 {
     background-color: #04AA6D; /* Green background */
@@ -238,4 +243,34 @@ body[b-ay3v7o09ya] {
 .btn-group button:hover[b-ay3v7o09ya] {
     background-color: #3e8e41;
 }
+.colorWhite[b-ay3v7o09ya] {
+    background-color: white; /* Green background */
+    border: 1px solid black;
+    color: black;
 }
+.colorBlack[b-ay3v7o09ya] {
+    background-color: black; /* Green background */
+    border: 1px solid green;
+    color: white;
+}
+.colorGreen[b-ay3v7o09ya] {
+    background-color: green; /* Green background */
+    border: 1px solid black;
+    color: white;
+}
+#btn-group button[b-ay3v7o09ya] {
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+#btn-group button:not(:last-child)[b-ay3v7o09ya] {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+#btn-group button:hover[b-ay3v7o09ya] {
+    background-color: #3e8e41;
+}
+

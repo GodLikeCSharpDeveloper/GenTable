@@ -11,13 +11,18 @@
     background-color: #2F4F4F;
 }
 /* Style the links inside the navigation bar */
-.colorBlack a {
+.colorBlack a,form {
     float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 15px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+.formclass  {
+    border: 0;
+    margin-top: 0;
+    padding: 0 0 0 0;
 }
 
     /* Change the color of links on hover */
@@ -37,7 +42,7 @@
     float: right;
 }
 
-.colorWhite a {
+.colorWhite a, form {
     float: left;
     color: black;
     text-align: center;
@@ -63,7 +68,7 @@
     float: right;
 }
 
-.colorGreen a {
+.colorGreen a, form {
     float: left;
     color: white;
     text-align: center;

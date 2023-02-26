@@ -1,5 +1,5 @@
-body[b-ay3v7o09ya] {
-.btn-group button
+
+.btn-group button[b-ay3v7o09ya]
 
 {
     background-color: #04AA6D; /* Green background */
@@ -19,4 +19,34 @@ body[b-ay3v7o09ya] {
 .btn-group button:hover[b-ay3v7o09ya] {
     background-color: #3e8e41;
 }
+.colorWhite[b-ay3v7o09ya] {
+    background-color: white; /* Green background */
+    border: 1px solid black;
+    color: black;
 }
+.colorBlack[b-ay3v7o09ya] {
+    background-color: black; /* Green background */
+    border: 1px solid green;
+    color: white;
+}
+.colorGreen[b-ay3v7o09ya] {
+    background-color: green; /* Green background */
+    border: 1px solid black;
+    color: white;
+}
+#btn-group button[b-ay3v7o09ya] {
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+#btn-group button:not(:last-child)[b-ay3v7o09ya] {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+#btn-group button:hover[b-ay3v7o09ya] {
+    background-color: #3e8e41;
+}
+

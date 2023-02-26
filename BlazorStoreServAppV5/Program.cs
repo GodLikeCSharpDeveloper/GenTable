@@ -1,10 +1,12 @@
 using BlazorStoreServAppV5.Models.AuthModel;
 using BlazorStoreServAppV5.Repository;
 using BlazorStoreServAppV5.Repository.AccountLogic;
+using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
+using BlazorStoreServAppV5.Repository.ThemeRepository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -22,11 +24,12 @@ builder.Services.AddScoped<IUserRepositoryService, UserRepository>();
 builder.Services.AddScoped<IProductRepositoryService, ProductRepository>();
 builder.Services.AddScoped<TokenProvider>();
 builder.Services.AddScoped<IAccountLogic, AccountLogic>();
+builder.Services.AddScoped<ICategoryLogic, CategoryLogic>();
+builder.Services.AddSingleton<IThemeLogic,ThemeLogic>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        
         options.ExpireTimeSpan = TimeSpan.FromDays(20); 
     });
 

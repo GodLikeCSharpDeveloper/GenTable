@@ -1,4 +1,4 @@
-﻿body {
+﻿
 .btn-group button
 
 {
@@ -19,4 +19,34 @@
 .btn-group button:hover {
     background-color: #3e8e41;
 }
+.colorWhite {
+    background-color: white; /* Green background */
+    border: 1px solid black;
+    color: black;
 }
+.colorBlack {
+    background-color: black; /* Green background */
+    border: 1px solid green;
+    color: white;
+}
+.colorGreen {
+    background-color: green; /* Green background */
+    border: 1px solid black;
+    color: white;
+}
+#btn-group button {
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+#btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+#btn-group button:hover {
+    background-color: #3e8e41;
+}
+

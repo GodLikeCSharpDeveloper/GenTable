@@ -1,0 +1,73 @@
+﻿@page "/Products"
+@using BlazorStoreServAppV5.Models.AuthModel
+@using BlazorStoreServAppV5.Models.BLogicModel
+@using BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository
+@using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository
+@using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
+@using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
+@using BlazorStoreServAppV5.Repository.ThemeRepository
+@inherits MainLayout
+@inject IDescriptionRepositoryService Description
+@inject IUserRepositoryService User
+@inject IProductRepositoryService Product
+@inject IOrderRepositoryServise Order
+@inject IThemeLogic ThemesLogic
+<div class="row">
+    <div class="col">
+        <input type="search"/>
+        <ul class="list-group">
+            <li class="list-group-item">
+                @foreach (var category in CategoriesList)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            @category.Name
+                        </label>
+                    </div>
+                }
+            </li>
+        </ul>
+
+
+    </div>
+    @foreach (var prod in ProductsList)
+    {
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+
+    public List<Users> UsersList { get; set; }
+    
+    public List<OrderModel> OrdersList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+      
+
+
+    }
+    protected async void Searcher()
+    {
+     
+    }
+}

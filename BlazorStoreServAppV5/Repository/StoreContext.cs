@@ -19,7 +19,9 @@ namespace BlazorStoreServAppV5.Repository
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<DescriptionModel> Descriptions { get; set; }
-        public DbSet<ProductOrderModel> ProductOrder { get; set; }
+        public DbSet<ProductOrderModel> ProductsOrder { get; set; }
+        public DbSet<CategoryModel> Categories { get; set; }
+        public DbSet<ProductCategoryModel> ProductCategoryModel { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,16 +31,17 @@ namespace BlazorStoreServAppV5.Repository
                         .WithMany(c => c.OrderModels).
                         UsingEntity<ProductOrderModel>(
                             j => j
-                                  .HasOne(pt => pt.ProductModel)
-                                  .WithMany(t => t.ProductOrders)
+                                  .HasOne(pt => pt.Product)
+                                  .WithMany(t => t.ProductsOrder)
                                   .HasForeignKey(pt => pt.ProductModelId),
                             j => j
                                   .HasOne(pt => pt.OrderModel)
-                                  .WithMany(p => p.ProductOrders)
+                                  .WithMany(p => p.ProductsOrder)
                                  .HasForeignKey(pt => pt.OrderModelId),
             j =>
             {
                 j.HasKey(pt => new { pt.ProductModelId, pt.OrderModelId });
+                    j.ToTable("Test");
             });
             modelBuilder.Entity<Users>()
                         .HasMany(s => s.Roles)
@@ -46,7 +49,7 @@ namespace BlazorStoreServAppV5.Repository
                         UsingEntity<UserRoles>(
                             j => j
                                  .HasOne(pt => pt.Roles)
-                                 .WithMany(o=>o.UserRoles)
+                                 .WithMany(o => o.UserRoles)
                                  .HasForeignKey(pt => pt.RoleId),
                             j => j
                                  .HasOne(pt => pt.Users)
@@ -56,6 +59,23 @@ namespace BlazorStoreServAppV5.Repository
                             {
                                 j.HasKey(pt => new { pt.UserId, pt.RoleId });
                             });
+            modelBuilder.Entity<ProductModel>()
+                .HasMany(s => s.CategoryModels)
+                .WithMany(c => c.ProductModels).
+                UsingEntity<ProductCategoryModel>(
+                    j => j
+                        .HasOne(pt => pt.CategoryModel)
+                        .WithMany(o => o.ProductCategoriesModels)
+                        .HasForeignKey(pt => pt.CategoryModelsId),
+                    j => j
+                        .HasOne(pt => pt.Product)
+                        .WithMany(p => p.ProductCategoryModels)
+                        .HasForeignKey(pt => pt.ProductModelsId),
+                    j =>
+                    {
+                        j.HasKey(pt => new { pt.CategoryModelsId, pt.ProductModelsId });
+                    });
+
         }
     }
 

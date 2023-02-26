@@ -153,5 +153,5 @@ C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\b
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Microsoft.AspNetCore.Authorization.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll
-C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Pages\YourTables.razor.rz.scp.css
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\NewFolder\UserProfile.razor.rz.scp.css
+C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Pages\AllProductsTable.razor.rz.scp.css

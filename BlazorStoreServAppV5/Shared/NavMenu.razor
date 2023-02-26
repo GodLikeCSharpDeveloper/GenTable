@@ -2,24 +2,40 @@
 @using BlazorStoreServAppV5.Models.AuthModel
 @using BlazorStoreServAppV5.Models.CssModels
 @using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
+@using BlazorStoreServAppV5.Repository.ThemeRepository
 @inject IUserRepositoryService UserRepository
+@inject TokenProvider _TokenProvider
+@inject IThemeLogic ThemesLogic
+@inject NavigationManager NavManager
 <div class="row">
-    <div class="@Theme">
+    <div class="col @ThemesLogic.CurrentTheme">
         <a class="active" href="#home">Home</a>
         <a href="#news">News</a>
-        <a href="YourTables">Table</a>
-        
+        <a href="Products">Table</a>
+
         <div class="dropdown">
             <button class="dropbtn">Dropdown</button>
             <div class="dropdown-content">
-                @foreach (var item in ListOfThemes)
+                @foreach (var item in ThemeModels)
                 {
                     <button @onclick="@(() => ChangeTheme(item.Value))">@item.Theme</button>
                 }
             </div>
         </div>
-        <div class="@Theme-right">
-            <LoginDisplay></LoginDisplay>
+        <div class="@ThemesLogic.CurrentTheme-right col">
+            <AuthorizeView>
+                <Authorized>
+                    <a href="/Account">Hello, @context.User.Identity?.Name!</a>
+                    <form class="formclass" method="post" action="/identity/account/logout">
+                        <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken" />
+                        <a id="subm" type="submit">Logout</a>
+                    </form>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="Identity/Account/Register">Register</a>
+                    <a href="Identity/Account/Login">Log in</a>
+                </NotAuthorized>
+            </AuthorizeView>
             <AuthorizeView Roles="Admin">
                 <a href="#search">Se22arch</a>
             </AuthorizeView>
@@ -36,25 +52,25 @@
 
 @code {
     public static List<Users> UsersList { get; set; }
+    public List<ThemeModel> ThemeModels { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        UsersList = await UserRepository.GetAllUsersAsync();
-        Themes();
+        if (UsersList == null)
+        {
+            UsersList = await UserRepository.GetAllUsersAsync();
+        }
+        ThemeModels = ThemesLogic.InitializeThemes();
     }
+
 
     [Parameter]
-    public List<ThemeModel> ListOfThemes { get; set; } = new();
-    public static string Theme { get; set; } = "colorBlack";
+    public string Theme { get; set; } = "colorBlack";
 
-    void Themes()
-    {
-        ListOfThemes.Add(new ThemeModel() { Theme = "dark", Value = "colorBlack" });
-        ListOfThemes.Add(new ThemeModel() { Theme = "light", Value = "colorWhite" });
-        ListOfThemes.Add(new ThemeModel() { Theme = "green", Value = "colorGreen" });
-    }
+
     public void ChangeTheme(string currentTheme)
     {
-        Theme = currentTheme;
+        ThemesLogic.CurrentTheme = currentTheme;
+        NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
     }
 
 }

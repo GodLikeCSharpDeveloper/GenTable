@@ -14,10 +14,7 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
         {
             return await _StoreContext.Products.ToListAsync();
         }
-        public async Task<List<ProductModel>> GetProductsByCategoryAsync(string category)
-        {
-            return await _StoreContext.Products.Where(a => a.Category.ToLower().Contains(category.ToLower())).ToListAsync();
-        }
+       
         public async Task<List<ProductModel>> GetOrderByName(string name)
         {
             var product = await _StoreContext.Products.Where(a => a.Name.ToLower().Contains(name))

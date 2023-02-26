@@ -1,42 +1,51 @@
 ﻿@page "/Account"
+@using BlazorStoreServAppV5.Repository.ThemeRepository
 @inherits MainLayout
 @inject NavigationManager NavigationManager
-
+@inject IThemeLogic ThemesLogic
 <component type="typeof(MainLayout)" param-InitialState="@Id" render-mode="ServerPrerendered" />
-<div class="row">
-    <div class="col">
-        <select @onchange="OnDropdownChange">
-            <option value="">Select a value</option>
-            <option value="@nameof(UserInfo)">Rocket Lab</option>
-            <option value="@nameof(UserOrders)">SpaceX</option>
-            @*<option value="@typeof()">ULA</option>
-            <option value="@typeof()">Virgin Galactic</option>*@
-        </select>
-        <div class="col">
-            <DynamicComponent Type= "@SelectedType" />
+<div class="row g-0">
+    <div class="col-2 col-md-3 col-sm-12">
+        <div id="btn-group">
+            <button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserInfo))">Select a value</button>
+            <button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserOrders))">Rocket Lab</button>
+            @*<button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserInfo))">Select a value</button>
+            <button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserOrders))">Rocket Lab</button>*@
         </div>
     </div>
+    <div class="col-10 col-md-8 col-sm-12 ">
+        <DynamicComponent Type="@SelectedType" />
+    </div>
 </div>
-
-@code {
-    
-    public Type? SelectedType { get; set; }
-    protected override async Task OnInitializedAsync()
-    {
-        SelectedType = typeof(UserInfo);
-        if (IsAuth)
+    @code {
+        [Parameter]
+        public string Theme { get; set; }
+        public Type? SelectedType { get; set; }
+        protected override async Task OnInitializedAsync()
         {
-            var User = CurrentUser;
+
+            SelectedType = typeof(UserInfo);
+
+            if (IsAuth)
+            {
+                var User = CurrentUser;
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/identity/account/login");
+            }
         }
-        else
+
+        public void OnDropdownChange(Type type)
         {
-            NavigationManager.NavigateTo("/identity/account/login");
+            SelectedType = type;
         }
-    }
 
-    public void OnDropdownChange(ChangeEventArgs e)
-    {
-        SelectedType = Type.GetType($"BlazorStoreServAppV5.Shared.NewFolder.{e.Value}");
-    }
+        protected override Task OnParametersSetAsync()
+        {
 
-}
+            return Task.CompletedTask;
+
+        }
+
+    }

@@ -13,7 +13,8 @@ namespace BlazorStoreServAppV5.Models.BLogicModel
         public Users User { get; set; }
         public int UserId { get; set; }
         public List<ProductModel>? Products { get; set; }
-        public List<ProductOrderModel>? ProductOrders { get; set; }
+        public List<ProductOrderModel>? ProductsOrder { get; set; }
+        [NotMapped] public bool CssBool { get; set; } = false;
 
     }
 }
