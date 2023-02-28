@@ -58,9 +58,11 @@
     public List<ProductModel> Products { get; set; } = new();
     [Parameter]
     public string Request { get; set; }
+
+    public List<ProductModel> Prods { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        
+        Products = ProductsList;
     }
 
     public List<int> CatIds { get; set; } = new();
@@ -79,39 +81,59 @@
         {
             foreach (var cat in item.CategoryModels)
             {
-                foreach(var a in CatIds)
+                foreach (var a in CatIds)
                 {
-                    if(a.Equals(cat.Id))
+                    if (a.Equals(cat.Id))
                         Products.Add(item);
-                }   
+                }
+
             }
         }
+        if (Products.Count == 0&& (bool)e.Value==false)
+        {
+            Products = ProductsList.ToList();
+        }
+        Prods = Products;
+        if (Request != null)
+            Searcher(Request);
         StateHasChanged();
         return Products;
     }
 
+    List<ProductModel> tempcateg { get; set; } = ProductsList.ToList();
     protected void Searcher(string value)
     {
-        //Products.Clear();
+        if (Prods != null)
+            Products = Prods.ToList();
+
         if (value != null)
         {
-            var currList = Products;
-            foreach (var category in currList.ToList())
+            foreach (var item in Products.ToList())
             {
-                if (category.Name.ToLower().Contains(value.ToLower()))
-                    Products.Add(category);
-                foreach (var cat in category.CategoryModels)
+                
+                foreach (var cat in item.CategoryModels)
                 {
-                    if (cat.Name.ToLower().Contains(value.ToLower()))
-                        Products.Add(category);
+                    if (!cat.Name.ToLower().Contains(value.ToLower()))
+                        Products.Remove(item);
+                    if(item.Name.ToLower().Contains(value.ToLower()))
+                        Products.Add(item);
+
                 }
             }
         }
         else
         {
-            Products = ProductsList;
+            if (Products.Count == 0)
+            {
+                Products = ProductsList.ToList();
+            }
+            else
+            {
+                Products = Prods;
+            }
+
         }
-        StateHasChanged();
+
 
     }
 }
