@@ -28,7 +28,7 @@
                     <a href="/Account">Hello, @context.User.Identity?.Name!</a>
                     <form class="formclass" method="post" action="/identity/account/logout">
                         <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken" />
-                        <a id="subm" type="submit">Logout</a>
+                        <button id="subm" type="submit">Logout</button>
                     </form>
                 </Authorized>
                 <NotAuthorized>

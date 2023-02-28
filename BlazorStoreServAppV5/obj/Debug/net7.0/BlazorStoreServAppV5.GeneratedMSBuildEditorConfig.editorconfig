@@ -9,81 +9,81 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BlazorStoreServAppV5
 build_property.RootNamespace = BlazorStoreServAppV5
-build_property.ProjectDir = C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\
+build_property.ProjectDir = C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5
+build_property.MSBuildProjectDirectory = C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/App.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/AdminPanel.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Shared/AdminPanel.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEFkbWluUGFuZWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/LoginDisplay.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/NewFolder/UserInfo.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Shared/NewFolder/UserInfo.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5ld0ZvbGRlclxVc2VySW5mby5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/NewFolder/UserOrders.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Shared/NewFolder/UserOrders.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5ld0ZvbGRlclxVc2VyT3JkZXJzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/_Imports.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Pages/AllProductsTable.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Pages/AllProductsTable.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxsUHJvZHVjdHNUYWJsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-6v7gdwkhox
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/MainLayout.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-pkt278h1wn
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/NavMenu.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-mbrop61ily
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/NewFolder/UserProfile.razor]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Shared/NewFolder/UserProfile.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5ld0ZvbGRlclxVc2VyUHJvZmlsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-ay3v7o09ya
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Logout.cshtml]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Register.cshtml]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/Shared/_Layout.cshtml]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Areas/Identity/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Pages/Error.cshtml]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Pages/_Host.cshtml]
+[C:/Users/DaunV5.0/Desktop/New folder/BlazorStoreServAppV5/BlazorStoreServAppV5/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

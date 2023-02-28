@@ -11,7 +11,7 @@
     background-color: #2F4F4F;
 }
 /* Style the links inside the navigation bar */
-.colorBlack a,form {
+.colorBlack a,form,button {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -24,25 +24,38 @@
     margin-top: 0;
     padding: 0 0 0 0;
 }
+#subm {
+    background: black;
+    padding: 13px 16px 16px 16px;
+    border: none;
+}
 
     /* Change the color of links on hover */
-    .colorBlack a:hover {
-        background-color: #ddd;
-        color: black;
-    }
+.colorBlack a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.colorBlack button:hover {
+    background-color: #ddd;
+    color: black;
+}
 
     /* Add a color to the active/current link */
-    .colorBlack a.active {
-        background-color: black;
-        color: whitesmoke;
-    }
+.colorBlack a.active, button.active {
+    background-color: black;
+    color: whitesmoke;
+}
+button.active {
+    background-color: black;
+    color: whitesmoke;
+}
 
 /* Right-aligned section inside the top navigation */
 .colorBlack-right {
     float: right;
 }
 
-.colorWhite a, form {
+.colorWhite a, form, button {
     float: left;
     color: black;
     text-align: center;
@@ -52,13 +65,13 @@
 }
 
     /* Change the color of links on hover */
-    .colorWhite a:hover {
+    .colorWhite a:hover, button:hover {
         background-color: #FFFAF0;
         color: black;
     }
 
     /* Add a color to the active/current link */
-    .colorWhite a.active {
+    .colorWhite a.active, buttona.active {
         background-color: #FFFAF0;
         color: black;
     }
@@ -68,7 +81,7 @@
     float: right;
 }
 
-.colorGreen a, form {
+.colorGreen a, form, button {
     float: left;
     color: white;
     text-align: center;
@@ -78,13 +91,13 @@
 }
 
     /* Change the color of links on hover */
-    .colorGreen a:hover {
+    .colorGreen a:hover, button:hover {
         background-color: #8FBC8F;
         color: white;
     }
 
     /* Add a color to the active/current link */
-    .colorGreen a.active {
+    .colorGreen a.active, button.active {
         background-color: #8FBC8F;
         color: white;
     }

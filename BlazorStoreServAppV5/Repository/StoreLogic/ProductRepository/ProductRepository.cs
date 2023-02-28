@@ -12,7 +12,7 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
         }
         public async Task<List<ProductModel>> GetAllProductsAsync()
         {
-            return await _StoreContext.Products.ToListAsync();
+            return await _StoreContext.Products.Include(o=>o.CategoryModels).ToListAsync();
         }
        
         public async Task<List<ProductModel>> GetOrderByName(string name)

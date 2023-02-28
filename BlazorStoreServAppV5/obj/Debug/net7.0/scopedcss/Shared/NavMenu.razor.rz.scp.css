@@ -11,7 +11,7 @@
     background-color: #2F4F4F;
 }
 /* Style the links inside the navigation bar */
-.colorBlack a[b-mbrop61ily],form[b-mbrop61ily] {
+.colorBlack a[b-mbrop61ily],form[b-mbrop61ily],button[b-mbrop61ily] {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -24,25 +24,38 @@
     margin-top: 0;
     padding: 0 0 0 0;
 }
+#subm[b-mbrop61ily] {
+    background: black;
+    padding: 13px 16px 16px 16px;
+    border: none;
+}
 
     /* Change the color of links on hover */
-    .colorBlack a:hover[b-mbrop61ily] {
-        background-color: #ddd;
-        color: black;
-    }
+.colorBlack a:hover[b-mbrop61ily] {
+    background-color: #ddd;
+    color: black;
+}
+.colorBlack button:hover[b-mbrop61ily] {
+    background-color: #ddd;
+    color: black;
+}
 
     /* Add a color to the active/current link */
-    .colorBlack a.active[b-mbrop61ily] {
-        background-color: black;
-        color: whitesmoke;
-    }
+.colorBlack a.active[b-mbrop61ily], button.active[b-mbrop61ily] {
+    background-color: black;
+    color: whitesmoke;
+}
+button.active[b-mbrop61ily] {
+    background-color: black;
+    color: whitesmoke;
+}
 
 /* Right-aligned section inside the top navigation */
 .colorBlack-right[b-mbrop61ily] {
     float: right;
 }
 
-.colorWhite a[b-mbrop61ily], form[b-mbrop61ily] {
+.colorWhite a[b-mbrop61ily], form[b-mbrop61ily], button[b-mbrop61ily] {
     float: left;
     color: black;
     text-align: center;
@@ -52,13 +65,13 @@
 }
 
     /* Change the color of links on hover */
-    .colorWhite a:hover[b-mbrop61ily] {
+    .colorWhite a:hover[b-mbrop61ily], button:hover[b-mbrop61ily] {
         background-color: #FFFAF0;
         color: black;
     }
 
     /* Add a color to the active/current link */
-    .colorWhite a.active[b-mbrop61ily] {
+    .colorWhite a.active[b-mbrop61ily], buttona.active[b-mbrop61ily] {
         background-color: #FFFAF0;
         color: black;
     }
@@ -68,7 +81,7 @@
     float: right;
 }
 
-.colorGreen a[b-mbrop61ily], form[b-mbrop61ily] {
+.colorGreen a[b-mbrop61ily], form[b-mbrop61ily], button[b-mbrop61ily] {
     float: left;
     color: white;
     text-align: center;
@@ -78,13 +91,13 @@
 }
 
     /* Change the color of links on hover */
-    .colorGreen a:hover[b-mbrop61ily] {
+    .colorGreen a:hover[b-mbrop61ily], button:hover[b-mbrop61ily] {
         background-color: #8FBC8F;
         color: white;
     }
 
     /* Add a color to the active/current link */
-    .colorGreen a.active[b-mbrop61ily] {
+    .colorGreen a.active[b-mbrop61ily], button.active[b-mbrop61ily] {
         background-color: #8FBC8F;
         color: white;
     }
