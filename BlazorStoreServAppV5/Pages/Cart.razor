@@ -1,6 +1,7 @@
 ﻿@page "/cart"
 @inherits MainLayout
 @inject IUserRepositoryService UserRepository
+@inject IOrderRepositoryServise OrderRepository
 <div class="container-fluid">
     <div class="row">
 
@@ -23,26 +24,45 @@
                         </div>
                         <div class="col"><label>Price:</label> @item.Price</div>
                         <div class="row">
-                            <div class="col"><button class="btn btn-danger"@onclick="() => DeleteFromCart(item)"><i class="bi-trash"></i>Delete</button></div>
+                            <div class="col"><button class="btn btn-danger" @onclick="() => DeleteFromCart(item)"><i class="bi-trash"></i>Delete</button></div>
                             <div class="col"><a href=""></a></div>
                         </div>
                     </div>
                 </div>
             </div>
         }
-        <div class="row">
-            <div class="col">
-                <AuthorizeView>
-                    <Authorized>
-                        <button href="" class="btn btn-success" @onclick="()=>ConfirmOrder()">Buy</button>
-                    </Authorized>
-                    <NotAuthorized>
-                        <a href="UserInformInput" class="btn btn-success">Buy</a>
-                    </NotAuthorized>
-                </AuthorizeView>
-                
+        @if (!UserInputInfoBool)
+        {
+            <div class="row">
+                <div class="col">
+                    <AuthorizeView>
+                        <Authorized>
+                            <button href="" class="btn btn-success" @onclick="() => ConfirmOrder()">Buy</button>
+                        </Authorized>
+                        <NotAuthorized>
+                            <button class="btn btn-success" @onclick="() => UserInputInfoBool=!UserInputInfoBool">Buy2</button>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="card">
+                <div class="row align-items-lg-start ">
+                    <div class="col-lg-3"><input placeholder="Firse name"/></div>
+                    <div class="col-lg-3"><input placeholder="Last name" /></div>
+                </div>
+                <div class="row align-items-lg-start ">
+                    <div class="col-lg-3"><input placeholder="Email(optional)" /></div>
+                    <div class="col-lg-3"><input placeholder="Phone" /></div>
+                </div>
+                <div class="row align-items-lg-start ">
+                    <div class="col-lg-3"><input placeholder="Firse name" /></div>
+                    <div class="col-lg-3"><input placeholder="Description" /></div>
+                </div>
+            </div>
+        }
     </div>
 </div>
 
@@ -58,20 +78,34 @@
         int price = 0;
         foreach (var product in products)
         {
-            price =+ product.Price;
+            price = +product.Price;
         }
         return price;
     }
 
+    [Parameter]
+    public bool UserInputInfoBool { get; set; } = false;
     public async void ConfirmOrder()
     {
         var order = new OrderModel()
-        {
-            CreateOrderDate = DateTime.Now.ToString("HH:mm"), Products = CartList, CloseOrderDate = string.Empty, FullPrice = fullprice(CartList), User = CurrentUser 
+            {
+                CreateOrderDate = DateTime.Now.ToString("HH:mm"),
+                Products = CartList,
+                CloseOrderDate = string.Empty,
+                FullPrice = fullprice(CartList),
+                User = CurrentUser
 
-        };
-        CurrentUser.Orders.Add(order);
-        
+            };
+        var curOrder = await OrderRepository.InsertOrderAsync(order);
+        if (CurrentUser != null)
+        {
+            CurrentUser.Orders.Add(curOrder);
+        }
+        else
+        {
+            UserInputInfoBool = !UserInputInfoBool;
+            //CurrentUser = notFullRegisteredUser;
+        }
         await UserRepository.UpdateUserAsync(CurrentUser);
 
     }

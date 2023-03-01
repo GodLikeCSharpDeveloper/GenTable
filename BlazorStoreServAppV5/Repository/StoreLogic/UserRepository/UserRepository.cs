@@ -51,18 +51,18 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
             try
             {
                 _storeContext.Entry(user).State = EntityState.Modified;
-                foreach (var order in user.Orders)
-                {
-                    if(order.Id!=0)
-                    _storeContext.Entry(order).State = EntityState.Modified;
-                    else
-                    {
-                        _storeContext.Entry(order).State = EntityState.Added;
-                    }
-                }
-                var IdsofOrders = user.Orders.Select(x=>x.Id).ToList();
-                var orderToDelete = await _storeContext.Orders.Where(x => !IdsofOrders.Contains(x.Id)&& x.UserId == user.Id).ToListAsync();
-                _storeContext.RemoveRange(orderToDelete);
+                //foreach (var order in user.Orders)
+                //{
+                //    if(order.Id!=0)
+                //    _storeContext.Entry(order).State = EntityState.Modified;
+                //    else
+                //    {
+                //        _storeContext.Entry(order).State = EntityState.Added;
+                //    }
+                //}
+                //var IdsofOrders = user.Orders.Select(x=>x.Id).ToList();
+                //var orderToDelete = await _storeContext.Orders.Where(x => !IdsofOrders.Contains(x.Id)&& x.UserId == user.Id).ToListAsync();
+                //_storeContext.RemoveRange(orderToDelete);
                 await _storeContext.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -85,7 +85,8 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
             var user = authState.User;
             var currentUser = List.Where(o => (o.FirstName + " " + o.LastName).Equals(user.Identity.Name)).FirstOrDefault();
             return currentUser;
+            
         }
-
+        
     }
 }

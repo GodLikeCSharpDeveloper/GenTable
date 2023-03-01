@@ -75,7 +75,7 @@ namespace BlazorStoreServAppV5.Repository
                     {
                         j.HasKey(pt => new { pt.CategoryModelsId, pt.ProductModelsId });
                     });
-
+          
         }
     }
 

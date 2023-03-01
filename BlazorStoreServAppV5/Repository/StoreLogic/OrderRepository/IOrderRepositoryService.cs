@@ -9,22 +9,22 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository
         {
             throw new NotImplementedException();
         }
-        public async Task<List<OrderModel>> GetOrderByName(object obj)
+        public async Task<List<OrderModel>> GetOrderByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> InsertOrderAsync(object obj)
+        public async Task<OrderModel> InsertOrderAsync(OrderModel order)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> UpdateOrderAsync(object obj)
+        public async Task<bool> UpdateOrderAsync(OrderModel order)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> DeleteOrderAsync(object obj)
+        public async Task<bool> DeleteOrderAsync(OrderModel order)
         {
             throw new NotImplementedException();
         }

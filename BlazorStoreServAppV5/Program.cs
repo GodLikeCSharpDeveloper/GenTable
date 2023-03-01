@@ -33,10 +33,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromDays(20); 
     });
 
-
+builder.Services.AddLogging();
 builder.Services.AddDbContext<StoreContext>(option =>
-    option.UseSqlite(builder.Configuration.GetConnectionString("myconn")));
-var app = builder.Build();
+    option.EnableSensitiveDataLogging().UseSqlite(builder.Configuration.GetConnectionString("myconn")));
+   
+    var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
