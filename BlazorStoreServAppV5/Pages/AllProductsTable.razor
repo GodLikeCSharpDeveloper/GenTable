@@ -7,33 +7,43 @@
 @inject IOrderRepositoryServise Order
 @inject IThemeLogic ThemesLogic
 <div class="row">
-    <div class="col">
-        <input class="searcher" type="search" placeholder="Type" size="31" @bind-value="Request" />
-        <button @onclick="()=>Searcher(Request)"></button>
-        <ul class="list-group">
-            <li class="list-group-item">
-                @foreach (var category in CategoriesList)
-                {
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e=>CategoryAddRemove(category.Id, e)">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            @category.Name
-                        </label>
-                    </div>
-                }
-            </li>
-        </ul>
+    <div class="CategoriesListStyle col-sm-12 col-md-4 col-lg-2">
+        <div class="input-group mb-3">
+            <input type="search" class="form-control" placeholder="Recipient's username" @bind-value="Request">
+            <button class="input-group-text" @onclick="() => Searcher(Request)">com</button>
+        </div>
+        <div class="">
+            <ul class="list-group">
+                <li class="list-group-item CheckboxListStyle">
+                    @foreach (var category in CategoriesList)
+                    {
+                        <div class="form-check ">
+
+                            <input class="form-check-input " type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoryAddRemove(category.Id, e)">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                @category.Name
+                            </label>
+                        </div>
+                    }
+                </li>
+            </ul>
+        </div>
 
 
     </div>
+
     @foreach (var prod in Products)
     {
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Name: @prod.Name</h5>
-                    <p class="card-text">ID: @prod.Id</p>
+        <div class="col-sm-12 col-md-12 col-lg-2">
+            <div class="card col">
+                <div class="col-sm-4">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                </div>
+                <div class="col-sm-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Name: @prod.Name</h5>
+                        <p class="card-text">ID: @prod.Id</p>
+                    </div>
                 </div>
                 <ul class="list-group list-group-flush">
                     @foreach (var cat in prod.CategoryModels)
@@ -42,30 +52,26 @@
                     }
                 </ul>
                 <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <button class="btn btn-success" @onclick="()=>AddToCart(prod)">Buy</button>
                 </div>
             </div>
         </div>
     }
 </div>
 
+
 @code {
-
     public List<Users> UsersList { get; set; }
-
     public List<OrderModel> OrdersList { get; set; }
-    public List<ProductModel> Products { get; set; } = new();
-    [Parameter]
-    public string Request { get; set; }
 
-    public List<ProductModel> Prods { get; set; }
     protected override async Task OnInitializedAsync()
     {
         Products = ProductsList;
     }
-
+    #region "SearchLogic"
     public List<int> CatIds { get; set; } = new();
+    public List<ProductModel> Prods { get; set; }
+    public List<ProductModel> Products { get; set; } = new();
     public List<ProductModel> CategoryAddRemove(int Id, ChangeEventArgs e)
     {
         Products.Clear();
@@ -85,11 +91,14 @@
                 {
                     if (a.Equals(cat.Id))
                         Products.Add(item);
+                    else
+                    {
+                        Products.Remove(item);
+                    }
                 }
-
             }
         }
-        if (Products.Count == 0&& (bool)e.Value==false)
+        if (Products.Count == 0 && (bool)e.Value == false)
         {
             Products = ProductsList.ToList();
         }
@@ -99,31 +108,35 @@
         StateHasChanged();
         return Products;
     }
-
+    [Parameter]
+    public string Request { get; set; }
     List<ProductModel> tempcateg { get; set; } = ProductsList.ToList();
     protected void Searcher(string value)
     {
         if (Prods != null)
             Products = Prods.ToList();
 
-        if (value != null)
+        if (!string.IsNullOrEmpty(value))
         {
             foreach (var item in Products.ToList())
             {
-                
+
                 foreach (var cat in item.CategoryModels)
                 {
                     if (!cat.Name.ToLower().Contains(value.ToLower()))
                         Products.Remove(item);
-                    if(item.Name.ToLower().Contains(value.ToLower()))
+                    if (item.Name.ToLower().Contains(value.ToLower()))
                         Products.Add(item);
-
                 }
             }
+            Products = Products.Distinct().ToList();
         }
         else
         {
-            if (Products.Count == 0)
+            if (Prods == null)
+
+                Prods = ProductsList;
+            if (Products.Count == 0 || Products.Count > ProductsList.Count || Products == null)
             {
                 Products = ProductsList.ToList();
             }
@@ -136,6 +149,13 @@
 
 
     }
+    #endregion
+
+    public void AddToCart(ProductModel product)
+    {
+        CartList.Add(product);
+    }
+
 }
 
 

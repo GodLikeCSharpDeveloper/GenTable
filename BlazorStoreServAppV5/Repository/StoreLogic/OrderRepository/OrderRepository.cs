@@ -21,11 +21,11 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository
             var order = await _StoreContext.Orders.Where(a => a.UserId.Equals(user)).ToListAsync();
             return order;
         }
-        public async Task<bool> InsertOrderAsync(OrderModel order)
+        public async Task<OrderModel> InsertOrderAsync(OrderModel order)
         {
             await _StoreContext.Orders.AddAsync(order);
             await _StoreContext.SaveChangesAsync();
-            return true;
+            return order;
         }
         public async Task<bool> UpdateOrderAsync(OrderModel order)
         {

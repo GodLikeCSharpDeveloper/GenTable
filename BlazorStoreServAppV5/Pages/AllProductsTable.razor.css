@@ -6,3 +6,18 @@
 }
 
 
+
+.CheckboxListStyle {
+    margin-bottom: 5px;
+}
+
+.searchbutton {
+    border-color: black;
+    background-color: white;
+    margin: 0 5px 5px 0;
+}
+@include media-breakpoint-down(md) {
+    .hided {
+        display: none;
+    }
+}

@@ -8,11 +8,10 @@
 @inject IThemeLogic ThemesLogic
 @inject NavigationManager NavManager
 <div class="row">
-    <div class="col @ThemesLogic.CurrentTheme">
+    <div class="col-sm-12 col-md-12 col-lg-12 @ThemesLogic.CurrentTheme">
         <a class="active" href="#home">Home</a>
         <a href="#news">News</a>
         <a href="Products">Table</a>
-
         <div class="dropdown">
             <button class="dropbtn">Dropdown</button>
             <div class="dropdown-content">
@@ -22,12 +21,13 @@
                 }
             </div>
         </div>
-        <div class="@ThemesLogic.CurrentTheme-right col">
+        <div class="@ThemesLogic.CurrentTheme-right ">
+            <a href="Cart">Cart</a>
             <AuthorizeView>
                 <Authorized>
                     <a href="/Account">Hello, @context.User.Identity?.Name!</a>
                     <form class="formclass" method="post" action="/identity/account/logout">
-                        <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken" />
+                        <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken"/>
                         <button id="subm" type="submit">Logout</button>
                     </form>
                 </Authorized>

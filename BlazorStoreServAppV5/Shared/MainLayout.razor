@@ -27,7 +27,7 @@
     public static List<CategoryModel> CategoriesList { get; set; }
     public static Users? CurrentUser { get; set; }
     public static bool IsAuth { get; set; }
-    
+    public static List<ProductModel> CartList { get; set; } = new();
     [Parameter]
     public int Id { get; set; }
 

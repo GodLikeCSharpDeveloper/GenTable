@@ -1,0 +1,76 @@
+﻿@page "/cart"
+@inherits MainLayout
+@inject IOrderRepositoryServise OrderRepository
+<div class="container-fluid">
+    <div class="row">
+
+        @foreach (var item in CartList)
+        {
+            <div class="col-lg-2">
+
+                <div class="card">
+                    <div class="row">
+                        <div class="col"><img src="favicon.png" /></div>
+                        <div class="col "><label>Name:</label> @item.Name</div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            @if (item.InStock)
+                            {
+                                <label>In stock</label>
+                            }
+                        </div>
+                        <div class="col"><label>Price:</label> @item.Price</div>
+                        <div class="row">
+                            <div class="col"><button class="btn btn-danger"@onclick="() => DeleteFromCart(item)"><i class="bi-trash"></i>Delete</button></div>
+                            <div class="col"><a href=""></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col">
+                <AuthorizeView>
+                    <Authorized>
+                        <button href="" class="btn btn-success" @onclick="()=>ConfirmOrder()">Buy</button>
+                    </Authorized>
+                    <NotAuthorized>
+                        <a href="UserInformInput" class="btn btn-success">Buy</a>
+                    </NotAuthorized>
+                </AuthorizeView>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public void DeleteFromCart(ProductModel product)
+    {
+        CartList.Remove(product);
+    }
+
+    int fullprice(List<ProductModel> products)
+    {
+        int price = 0;
+        foreach (var product in products)
+        {
+            price =+ product.Price;
+        }
+        return price;
+    }
+
+    public async void ConfirmOrder()
+    {
+        var order = new OrderModel()
+        {
+            CreateOrderDate = DateTime.Now.ToString("HH:mm"), Products = CartList, CloseOrderDate = string.Empty, FullPrice = fullprice(CartList), User = CurrentUser 
+
+        };
+        CurrentUser.Orders.Add(order);
+
+    }
+}
