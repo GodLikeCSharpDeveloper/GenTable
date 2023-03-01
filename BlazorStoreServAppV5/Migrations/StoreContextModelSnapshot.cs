@@ -27,7 +27,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.AuthModel.UserRoles", b =>
@@ -42,7 +42,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.AuthModel.Users", b =>
@@ -84,7 +84,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.CategoryModel", b =>
@@ -103,7 +103,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.DescriptionModel", b =>
@@ -122,7 +122,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Descriptions");
+                    b.ToTable("Descriptions", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.OrderModel", b =>
@@ -152,7 +152,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductCategoryModel", b =>
@@ -167,7 +167,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasIndex("ProductModelsId");
 
-                    b.ToTable("ProductCategoryModel");
+                    b.ToTable("ProductCategoryModel", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductModel", b =>
@@ -191,7 +191,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductOrderModel", b =>
@@ -221,7 +221,7 @@ namespace BlazorStoreServAppV5.Migrations
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("DescriptionModelProductModel");
+                    b.ToTable("DescriptionModelProductModel", (string)null);
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.AuthModel.UserRoles", b =>

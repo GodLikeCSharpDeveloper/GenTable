@@ -1,6 +1,6 @@
 ﻿@page "/cart"
 @inherits MainLayout
-@inject IOrderRepositoryServise OrderRepository
+@inject IUserRepositoryService UserRepository
 <div class="container-fluid">
     <div class="row">
 
@@ -71,6 +71,8 @@
 
         };
         CurrentUser.Orders.Add(order);
+        
+        await UserRepository.UpdateUserAsync(CurrentUser);
 
     }
 }

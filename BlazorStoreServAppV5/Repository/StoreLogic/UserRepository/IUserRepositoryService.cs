@@ -1,6 +1,7 @@
 ﻿using BlazorStoreServAppV5.Models.AuthModel;
 using BlazorStoreServAppV5.Models.BLogicModel;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
 {
@@ -28,7 +29,7 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
             throw new NotImplementedException();
         }
 
-        public async Task<bool> UpdateUserAsync(object obj)
+        public async Task<bool> UpdateUserAsync(Users users)
         {
             throw new NotImplementedException();
         }
@@ -43,3 +44,4 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
         }
     }
 }
+

@@ -46,10 +46,29 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
             return true;
         }
 
-        public async Task<bool> UpdateUserAsync(Users users)
+        public async Task<bool> UpdateUserAsync(Users user)
         {
-            _storeContext.Users.Update(users);
-            await _storeContext.SaveChangesAsync();
+            try
+            {
+                _storeContext.Entry(user).State = EntityState.Modified;
+                foreach (var order in user.Orders)
+                {
+                    if(order.Id!=0)
+                    _storeContext.Entry(order).State = EntityState.Modified;
+                    else
+                    {
+                        _storeContext.Entry(order).State = EntityState.Added;
+                    }
+                }
+                var IdsofOrders = user.Orders.Select(x=>x.Id).ToList();
+                var orderToDelete = await _storeContext.Orders.Where(x => !IdsofOrders.Contains(x.Id)&& x.UserId == user.Id).ToListAsync();
+                _storeContext.RemoveRange(orderToDelete);
+                await _storeContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
             return true;
         }
 
