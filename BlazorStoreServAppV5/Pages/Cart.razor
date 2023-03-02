@@ -1,4 +1,5 @@
 ﻿@page "/cart"
+@using System.Linq.Expressions
 @inherits MainLayout
 @inject IUserRepositoryService UserRepository
 @inject IOrderRepositoryServise OrderRepository
@@ -35,7 +36,6 @@
             <div class="col">
                 <AuthorizeView>
                     <Authorized>
-
                     </Authorized>
                     <NotAuthorized>
                         <div class="card">
@@ -65,7 +65,6 @@
 </div>
 
 @code {
-
     public void DeleteFromCart(ProductModel product)
     {
         CartList.Remove(product);
@@ -113,5 +112,9 @@
         }
         await UserRepository.UpdateUserAsync(CurrentUser);
 
+        void ChangeOrder()
+        {
+            OrdersList = OrdersList.OrderBy("Id", false)
     }
+   
 }
