@@ -1,0 +1,53 @@
+﻿@page "/AdminPanel"
+@using BlazorStoreServAppV5.Repository.ThemeRepository
+@using BlazorStoreServAppV5.Shared.NewFolder
+@inherits MainLayout
+@inject NavigationManager NavigationManager
+@inject IThemeLogic ThemesLogic
+@attribute [Authorize(Roles = "Admin")]
+<component type="typeof(MainLayout)" param-InitialState="@Id" render-mode="ServerPrerendered" />
+<div class="row g-0">
+    <div class="col-2 col-md-3 col-sm-12">
+        <div id="btn-group">
+            <button class="@ThemesLogic.CurrentTheme" @onclick="()=>OnDropdownChange(typeof(AdminOrders))">Select a value</button>
+            <button class="@ThemesLogic.CurrentTheme" @onclick="()=>OnDropdownChange(typeof(AdminUsers))">Rocket Lab</button>
+            @*<button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserInfo))">Select a value</button>
+            <button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserOrders))">Rocket Lab</button>*@
+        </div>
+    </div>
+    <div class="col-10 col-md-8 col-sm-12 ">
+        <DynamicComponent Type="@SelectedType" />
+    </div>
+</div>
+@code {
+    [Parameter]
+    public string Theme { get; set; }
+    public Type? SelectedType { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+
+        SelectedType = typeof(AdminOrders);
+
+        if (IsAuth)
+        {
+            var User = CurrentUser;
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/identity/account/login");
+        }
+    }
+
+    public void OnDropdownChange(Type type)
+    {
+        SelectedType = type;
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+
+        return Task.CompletedTask;
+
+    }
+
+}

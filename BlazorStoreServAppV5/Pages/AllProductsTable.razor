@@ -91,10 +91,7 @@
                 {
                     if (a.Equals(cat.Id))
                         Products.Add(item);
-                    else
-                    {
-                        Products.Remove(item);
-                    }
+                  
                 }
             }
         }
@@ -102,7 +99,7 @@
         {
             Products = ProductsList.ToList();
         }
-        Prods = Products;
+       
         if (Request != null)
             Searcher(Request);
         StateHasChanged();
@@ -110,15 +107,13 @@
     }
     [Parameter]
     public string Request { get; set; }
-    List<ProductModel> tempcateg { get; set; } = ProductsList.ToList();
     protected void Searcher(string value)
     {
-        if (Prods != null)
-            Products = Prods.ToList();
+        Prods = Products;
 
         if (!string.IsNullOrEmpty(value))
         {
-            foreach (var item in Products.ToList())
+            foreach (var item in Prods.ToList())
             {
 
                 foreach (var cat in item.CategoryModels)
@@ -134,11 +129,10 @@
         else
         {
             if (Prods == null)
-
-                Prods = ProductsList;
+            Prods = ProductsList;
             if (Products.Count == 0 || Products.Count > ProductsList.Count || Products == null)
             {
-                Products = ProductsList.ToList();
+                Products = ProductsList;
             }
             else
             {
@@ -150,7 +144,6 @@
 
     }
     #endregion
-
     public void AddToCart(ProductModel product)
     {
         CartList.Add(product);

@@ -255,6 +255,59 @@ button.active[b-mbrop61ily] {
 .dropdown:hover .dropbtn[b-mbrop61ily] {
     background-color: #FFFAF0;
 }
+/* _content/BlazorStoreServAppV5/Shared/NewFolder1/AdminPanel.razor.rz.scp.css */
+.btn-group button[b-7q5khgbdvc] {
+    background-color: #04AA6D; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child)[b-7q5khgbdvc] {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover[b-7q5khgbdvc] {
+    background-color: #3e8e41;
+}
+
+.colorWhite[b-7q5khgbdvc] {
+    background-color: white; /* Green background */
+    border: 1px solid black;
+    color: black;
+}
+
+.colorBlack[b-7q5khgbdvc] {
+    background-color: black; /* Green background */
+    border: 1px solid green;
+    color: white;
+}
+
+.colorGreen[b-7q5khgbdvc] {
+    background-color: green; /* Green background */
+    border: 1px solid black;
+    color: white;
+}
+
+#btn-group button[b-7q5khgbdvc] {
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+#btn-group button:not(:last-child)[b-7q5khgbdvc] {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+#btn-group button:hover[b-7q5khgbdvc] {
+    background-color: #3e8e41;
+}
 /* _content/BlazorStoreServAppV5/Shared/NewFolder/UserProfile.razor.rz.scp.css */
 
 .btn-group button[b-ay3v7o09ya]

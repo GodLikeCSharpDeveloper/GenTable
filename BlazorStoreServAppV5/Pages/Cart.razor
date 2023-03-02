@@ -31,38 +31,36 @@
                 </div>
             </div>
         }
-        @if (!UserInputInfoBool)
-        {
-            <div class="row">
-                <div class="col">
-                    <AuthorizeView>
-                        <Authorized>
-                            <button href="" class="btn btn-success" @onclick="() => ConfirmOrder()">Buy</button>
-                        </Authorized>
-                        <NotAuthorized>
-                            <button class="btn btn-success" @onclick="() => UserInputInfoBool=!UserInputInfoBool">Buy2</button>
-                        </NotAuthorized>
-                    </AuthorizeView>
-                </div>
+        <div class="row">
+            <div class="col">
+                <AuthorizeView>
+                    <Authorized>
+
+                    </Authorized>
+                    <NotAuthorized>
+                        <div class="card">
+                            <div class="row align-items-lg-start ">
+                                <div class="col-lg-3"><input placeholder="Firse name" @bind-value="TempUser.FirstName" /></div>
+                                <div class="col-lg-3"><input placeholder="Last name" @bind-value="TempUser.LastName" /></div>
+                            </div>
+                            <div class="row align-items-lg-start ">
+                                <div class="col-lg-3"><input placeholder="Email(optional)" @bind-value="TempUser.Email" /></div>
+                                <div class="col-lg-3"><input placeholder="Phone" @bind-value="TempUser.Phone" /></div>
+                            </div>
+                            <div class="row align-items-lg-start ">
+                                <div class="col-lg-3"><input placeholder="Adress" @bind-value="TempUser.Address" /></div>
+                                <div class="col-lg-3"><input placeholder="WIll be Desctiption, but not know" /></div>
+                            </div>
+                        </div>
+                    </NotAuthorized>
+                </AuthorizeView>
+                <button href="" class="btn btn-success" @onclick="() => ConfirmOrder()">Buy</button>
             </div>
+        </div>
         }
-        else
-        {
-            <div class="card">
-                <div class="row align-items-lg-start ">
-                    <div class="col-lg-3"><input placeholder="Firse name"/></div>
-                    <div class="col-lg-3"><input placeholder="Last name" /></div>
-                </div>
-                <div class="row align-items-lg-start ">
-                    <div class="col-lg-3"><input placeholder="Email(optional)" /></div>
-                    <div class="col-lg-3"><input placeholder="Phone" /></div>
-                </div>
-                <div class="row align-items-lg-start ">
-                    <div class="col-lg-3"><input placeholder="Firse name" /></div>
-                    <div class="col-lg-3"><input placeholder="Description" /></div>
-                </div>
-            </div>
-        }
+
+
+
     </div>
 </div>
 
@@ -85,16 +83,23 @@
 
     [Parameter]
     public bool UserInputInfoBool { get; set; } = false;
+
+    [Parameter]
+    public Users TempUser { get; set; } = new();
     public async void ConfirmOrder()
     {
+        if (CurrentUser == null)
+        {
+            CurrentUser = TempUser;
+            UserRepository.InsertUserAsync(CurrentUser);
+        }
         var order = new OrderModel()
             {
-                CreateOrderDate = DateTime.Now.ToString("HH:mm"),
+                CreateOrderDate = DateTime.Now.ToString("yyyy MMMM dd HH:mm"),
                 Products = CartList,
                 CloseOrderDate = string.Empty,
                 FullPrice = fullprice(CartList),
-                User = CurrentUser
-
+                User = CurrentUser ?? TempUser
             };
         var curOrder = await OrderRepository.InsertOrderAsync(order);
         if (CurrentUser != null)
@@ -104,7 +109,7 @@
         else
         {
             UserInputInfoBool = !UserInputInfoBool;
-            //CurrentUser = notFullRegisteredUser;
+            TempUser.Orders.Add(curOrder);
         }
         await UserRepository.UpdateUserAsync(CurrentUser);
 

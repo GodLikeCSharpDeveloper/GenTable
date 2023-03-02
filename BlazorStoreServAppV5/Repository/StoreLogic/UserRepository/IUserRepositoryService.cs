@@ -11,20 +11,20 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
         {
             throw new NotImplementedException();
         }
-        public async Task<List<Users>> GetUsersByName(object obj)
+        public async Task<List<Users>> GetUsersByName(Users user)
         {
             throw new NotImplementedException();
         }
-        public async Task<List<Users>> GetUsersByEmail(object obj)
+        public async Task<List<Users>> GetUsersByEmail(Users user)
         {
             throw new NotImplementedException();
         }
-        public async Task<List<Users>> GetUsersByPhone(object obj)
+        public async Task<List<Users>> GetUsersByPhone(Users user)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> InsertUserAsync(object obj)
+        public async Task<bool> InsertUserAsync(Users user)
         {
             throw new NotImplementedException();
         }
@@ -34,7 +34,7 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
             throw new NotImplementedException();
         }
 
-        public async Task<bool> DeleteUserAsync(object obj)
+        public async Task<bool> DeleteUserAsync(Users user)
         {
             throw new NotImplementedException();
         }
