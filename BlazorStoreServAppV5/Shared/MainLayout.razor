@@ -2,6 +2,7 @@
 @using BlazorStoreServAppV5.Models.CssModels
 @using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
 @using BlazorStoreServAppV5.Repository.ThemeRepository
+@using System.Reflection
 @inherits LayoutComponentBase
 @inject IDescriptionRepositoryService Description
 @inject IUserRepositoryService User
@@ -30,7 +31,7 @@
     public static List<ProductModel> CartList { get; set; } = new();
     [Parameter]
     public int Id { get; set; }
-
+    public static List<PropertyInfo> OrderPropertyInfos { get; set; }
     protected override async Task OnInitializedAsync()
     {
         CategoriesList = await Category.GetAllCategoriesAsync();
@@ -40,5 +41,27 @@
         CurrentUser = await User.GetCurrentUser(authenticationStateTask);
         var user = (await authenticationStateTask).User;
         IsAuth = user.Identity.IsAuthenticated;
+        FullOrderPrice();
+        OrderPropertyInfos = typeof(OrderModel).GetProperties().ToList();
+      
     }
+    public int FullPrice { get; set; } = 0;
+    int FullPrices(List<ProductModel> prods)
+    {
+        foreach (var order in prods)
+        {
+            FullPrice = +order.Price;
+        }
+        return FullPrice;
+    }
+
+    void FullOrderPrice()
+    {
+        foreach (var price in OrdersList)
+        {
+            price.FullPrice = FullPrices(price.Products);
+        }
+
+    }
+
 }

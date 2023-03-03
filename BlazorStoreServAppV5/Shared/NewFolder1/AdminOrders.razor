@@ -9,12 +9,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col"><button class="btn" @onclick="SortBy">#</button></th>
-                    <th scope="col">Date created</th>
-                    <th scope="col">User's name'</th>
-                    <th scope="col">Is canceled?</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">List of products</th>
+                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[0], PropBool[0])'>#</button></th>
+                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBool[1])'>Date created</button></th>
+                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[2], PropBool[2])'>User's name</button></th>
+                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[3], PropBool[3])'>Is canceled?</button></th>
+                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[4], PropBool[4])'>Price</button></th>
+                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBool[5])'>List of products</button></th>
                 </tr>
 
             </thead>
@@ -27,10 +27,11 @@
                         <td>@order.CreateOrderDate</td>
                         <td><button class="btn">@order.User.FirstName @order.User.LastName</button></td>
                         <td>@order.IsFullfilled</td>
-                        <td>@FullPrices(order.Products)</td>
+                        <td>@order.FullPrice</td>
                         <td>
                             @foreach (var prod in order.Products)
                             {
+
                                 <a href="">@prod.Name, </a>
                             }
                         </td>
@@ -41,39 +42,40 @@
     </div>
 </div>
 @code {
-
-    protected async Task OnInitializedAsync()
-    {
-        OrdersList = OrdersList.OrderBy(x => x.IsFullfilled).ToList();
-    }
     [Parameter]
-    public int FullPrice { get; set; } = 0;
-    int FullPrices(List<ProductModel> prods)
+    public List<OrderModel> AdminsOrders { get; set; }
+    public Dictionary<string, bool> PropsBools { get; set; }
+    public List<string> NamesForHtml { get; set; } = new List<string>
     {
-        foreach (var order in prods)
-        {
-            FullPrice = +order.Price;
-        }
-        return FullPrice;
-    }
-    public static class MissingExtension
-    {
-        public static IOrderedQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> source, string orderByProperty, bool desc)
-        {
-            string command = desc ? "OrderByDescending" : "OrderBy";
-            var type = typeof(TEntity);
-            var property = type.GetProperty(orderByProperty);
-            var parameter = Expression.Parameter(type, "p");
-            var propertyAccess = Expression.MakeMemberAccess(parameter, property);
-            var orderByExpression = Expression.Lambda(propertyAccess, parameter);
-            var resultExpression = Expression.Call(typeof(Queryable), command, new Type[] { type, property.PropertyType },
-                source.Expression, Expression.Quote(orderByExpression));
-            return (IOrderedQueryable<TEntity>)source.Provider.CreateQuery<TEntity>(resultExpression);
-        }
-    }
+        "Id", "CreateOrderDate", "User.FirstName", "IsFullfilled", "FullPrice"
+    };
+    [Parameter]
+    public bool[] PropBool { get; set; } = new bool[5];
+    //List<int> nums1 = new List<int> { 2, 4, 6, 8, 10 };
+    //List<int> nums2 = new List<int> { 1, 3, 6, 9, 12};
 
-    void Change()
+    //if (nums1.Any(x => nums2.Any(y => y == x)))
+    //{
+    //    Console.WriteLine("There are equal elements");
+    //}
+    //else
+    //{
+    //    Console.WriteLine("No Match Found!");
+    //}
+    [Parameter]
+    public int[] MyIds { get; set; } = new int[5];
+    void Change(string prop, bool propbool)
     {
-        OrdersList = OrdersList.OrderBy()
+        int i = 0;
+        foreach (var item in OrderPropertyInfos)
+        {
+            if (item.Name == prop)
+            {
+                PropBool[i] = !PropBool[i];
+            }
+            i++;
+        }
+        IQueryable<OrderModel> OrderedOrder = OrdersList.AsQueryable();
+        OrdersList = OrderedOrder.OrderBy(prop, propbool).ToList();
     }
 }
