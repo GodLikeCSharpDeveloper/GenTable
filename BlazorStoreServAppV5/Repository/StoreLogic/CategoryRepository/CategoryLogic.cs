@@ -15,5 +15,13 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
         {
             return await _storeContext.Categories.ToListAsync();
         }
+
+        public async Task<bool> AddCategoryAsync(CategoryModel category)
+        {
+            await _storeContext.Categories.AddAsync(category);
+            await _storeContext.SaveChangesAsync();
+            return true;
+        }
+
     }
 }

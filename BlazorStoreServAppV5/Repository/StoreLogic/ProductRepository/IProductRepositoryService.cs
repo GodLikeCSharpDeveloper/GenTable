@@ -18,17 +18,17 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
             throw new NotImplementedException();
         }
 
-        public async Task<bool> InsertProductAsync(object obj)
+        public async Task<bool> InsertProductAsync(ProductModel product)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> UpdateProductAsync(object obj)
+        public async Task<bool> UpdateProductAsync(ProductModel product)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> DeleteProductAsync(object obj)
+        public async Task<bool> DeleteProductAsync(ProductModel product)
         {
             throw new NotImplementedException();
         }

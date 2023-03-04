@@ -8,5 +8,9 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
         {
             throw new NotImplementedException();
         }
+        public async Task<bool> AddCategoryAsync(CategoryModel category)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

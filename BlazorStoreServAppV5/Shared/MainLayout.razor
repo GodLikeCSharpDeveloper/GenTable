@@ -12,9 +12,9 @@
 @inject ICategoryLogic Category
 <PageTitle>GenericTableAppV5</PageTitle>
 
-<main>
+<main style="overflow-x: hidden;">
     <NavMenu />
-    <article class="content px-4">
+    <article class="content px-4" style="overflow-x: hidden;">
         @Body
     </article>
 </main>
@@ -45,6 +45,7 @@
         OrderPropertyInfos = typeof(OrderModel).GetProperties().ToList();
       
     }
+
     public int FullPrice { get; set; } = 0;
     int FullPrices(List<ProductModel> prods)
     {

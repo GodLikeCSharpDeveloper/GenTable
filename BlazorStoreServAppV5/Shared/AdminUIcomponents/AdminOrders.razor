@@ -1,0 +1,89 @@
+﻿@using System.Linq.Expressions
+@using System.Reflection
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using System.Runtime.InteropServices
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@inherits AdminPanel
+@inject IOrderRepositoryServise OrderRepository
+@inject IUserRepositoryService UserRepositor
+
+    <AdminUserInfo Visible="@CssClass" MyUser="CurUsers"></AdminUserInfo>
+
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[0], PropBool[0])'>#</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBool[1])'>Date created</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[2], PropBool[2])'>User's name</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[3], PropBool[3])'>Is canceled?</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[4], PropBool[4])'>Price</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBool[5])'>List of products</button></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var order in OrdersList)
+            {
+                <tr>
+                    <th scope="row">@order.Id</th>
+                    <td>@order.CreateOrderDate</td>
+                    <td><button class="btn" @onclick="@(() => changer(order.User))">@order.User.FirstName @order.User.LastName</button></td>
+                    <td>@order.IsFullfilled</td>
+                    <td>@order.FullPrice</td>
+                    <td>
+                        @foreach (var prod in order.Products)
+                        {
+                            <a href="">@prod.Name, </a>
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public List<OrderModel> AdminsOrders { get; set; }
+    public Dictionary<string, bool> PropsBools { get; set; }
+    public List<string> NamesForHtml { get; set; } = new List<string>
+    {
+        "Id", "CreateOrderDate", "User.FirstName", "IsFullfilled", "FullPrice"
+    };
+    [Parameter]
+    public bool[] PropBool { get; set; } = new bool[OrderPropertyInfos.Count];
+    void Change(string prop, bool propbool)
+    {
+        int i = 0;
+        foreach (var item in OrderPropertyInfos)
+        {
+            if (item.Name == prop || "User." + typeof(Users).GetProperty("FirstName").Name == prop)
+            {
+                PropBool[i] = !PropBool[i];
+            }
+            i++;
+        }
+        IQueryable<OrderModel> OrderedOrder = OrdersList.AsQueryable();
+        OrdersList = OrderedOrder.OrderBy(prop, propbool).ToList();
+    }
+
+    [Parameter]
+    public Type SelType { get; set; } = typeof(AdminUserInfo);
+
+    [Parameter]
+    public string CssClass { get; set; } = "nonvisible";
+
+    public Users CurUsers;
+    void changer(Users user)
+    {
+        if (CssClass == "nonvisible")
+            CssClass = "visible";
+        else
+            CssClass = "nonvisible";
+        CurUsers = user;
+        StateHasChanged();
+    }
+
+
+}
