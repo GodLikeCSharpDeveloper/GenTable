@@ -7,6 +7,7 @@ using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
 using BlazorStoreServAppV5.Repository.ThemeRepository;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -32,7 +33,16 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.ExpireTimeSpan = TimeSpan.FromDays(20); 
     });
-
+builder.Services.AddAuthentication().AddGoogle(options =>
+{
+    var clientId = builder.Configuration["Authentication:Google:ClientId"];
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    options.ClaimActions.MapJsonKey("urn:google:profile", "link");
+    options.ClaimActions.MapJsonKey("urn:google:image", "picture");
+});
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<HttpClient>();
 builder.Services.AddLogging();
 builder.Services.AddDbContext<StoreContext>(option =>
     option.EnableSensitiveDataLogging().UseSqlite(builder.Configuration.GetConnectionString("myconn")));
@@ -48,7 +58,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCookiePolicy();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();

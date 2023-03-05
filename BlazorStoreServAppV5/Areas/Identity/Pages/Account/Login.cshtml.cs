@@ -29,7 +29,7 @@ public class LoginModel : PageModel
         }
         return Page();
     }
-   
+
     public async Task<IActionResult> OnPostAsync()
     {
         ErrorMessage = await _accountLogic.UserLoginAsyn(LoginVm);
@@ -37,7 +37,7 @@ public class LoginModel : PageModel
         {
             return Page();
         }
-        
+
         return Redirect("/");
     }
 

@@ -36,8 +36,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEFkbWluVUljb21wb25lbnRzXEFkbWluVXNlcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/LoginControl.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luQ29udHJvbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/UIcomponents/LoginControl.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVJY29tcG9uZW50c1xMb2dpbkNvbnRyb2wucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/UIcomponents/UserInfo.razor]
@@ -51,6 +59,10 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/NewFolder/NavBar.razor]
+build_metadata.AdditionalFiles.TargetPath = TmV3Rm9sZGVyXE5hdkJhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-srsfz9m16k
 
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Pages/AllProductsTable.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxsUHJvZHVjdHNUYWJsZS5yYXpvcg==
@@ -78,6 +90,10 @@ build_metadata.AdditionalFiles.CssScope = b-d1f1hcs2ow
 
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/Account/LoginGoogle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbkdvb2dsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Logout.cshtml]
