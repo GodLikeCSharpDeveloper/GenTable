@@ -1,6 +1,6 @@
-/* _content/BlazorStoreServAppV5/NewFolder/NavBar.razor.rz.scp.css */
-.MainNavBar[b-srsfz9m16k] {
-    background-color: black;
+/* _content/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Login.cshtml.rz.scp.css */
+.container[b-onzz9e6nap] {
+    min-height: 100%;
 }
 /* _content/BlazorStoreServAppV5/Pages/AllProductsTable.razor.rz.scp.css */
 .searcher[b-6v7gdwkhox] {
@@ -90,6 +90,35 @@
     display: none;
     z-index: 2;
 }
+/* _content/BlazorStoreServAppV5/Shared/loginControl.razor.rz.scp.css */
+.btnNav[b-r8m62qrzgg] {
+    color: white;
+    background: none;
+    margin: 0 0px 0 0;
+    padding: 0px 5px 0px 5px;
+    border: none;
+}
+
+a.btnNav[b-r8m62qrzgg] {
+    background: black;
+    top: 50%;
+    text-decoration: none;
+    padding-top: 13px;
+}
+
+img[b-r8m62qrzgg] {
+    max-width: 50px;
+}
+.formbtn[b-r8m62qrzgg] {
+    min-height: 100%;
+}
+
+button:hover[b-r8m62qrzgg], a:hover[b-r8m62qrzgg] {
+    background: fixed;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+}
 /* _content/BlazorStoreServAppV5/Shared/MainLayout.razor.rz.scp.css */
 .page[b-pkt278h1wn] {
     position: relative;
@@ -163,166 +192,233 @@ main[b-pkt278h1wn] {
     }
 }
 /* _content/BlazorStoreServAppV5/Shared/NavMenu.razor.rz.scp.css */
-/* Add a black background color to the top navigation */
-.colorBlack[b-mbrop61ily] {
-    background-color: black;
-}
-
-.colorWhite[b-mbrop61ily] {
-    background-color: #DCDCDC;
-}
-
-.colorGreen[b-mbrop61ily] {
-    background-color: #2F4F4F;
-}
-/* Style the links inside the navigation bar */
-.colorBlack a[b-mbrop61ily],form[b-mbrop61ily],button[b-mbrop61ily] {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 15px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-.formclass[b-mbrop61ily]  {
-    border: 0;
-    margin-top: 0;
-    padding: 0 0 0 0;
-}
-#subm[b-mbrop61ily] {
+.NavBar[b-mbrop61ily] {
     background: black;
-    padding: 13px 16px 16px 16px;
-    border: none;
-}
-
-    /* Change the color of links on hover */
-.colorBlack a:hover[b-mbrop61ily] {
-    background-color: #ddd;
-    color: black;
-}
-.colorBlack button:hover[b-mbrop61ily] {
-    background-color: #ddd;
-    color: black;
-}
-
-    /* Add a color to the active/current link */
-.colorBlack a.active[b-mbrop61ily], button.active[b-mbrop61ily] {
-    background-color: black;
-    color: whitesmoke;
-}
-button.active[b-mbrop61ily] {
-    background-color: black;
-    color: whitesmoke;
-}
-
-/* Right-aligned section inside the top navigation */
-.colorBlack-right[b-mbrop61ily] {
-    float: right;
-}
-
-.colorWhite a[b-mbrop61ily], form[b-mbrop61ily], button[b-mbrop61ily] {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 15px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-    /* Change the color of links on hover */
-    .colorWhite a:hover[b-mbrop61ily], button:hover[b-mbrop61ily] {
-        background-color: #FFFAF0;
-        color: black;
-    }
-
-    /* Add a color to the active/current link */
-    .colorWhite a.active[b-mbrop61ily], buttona.active[b-mbrop61ily] {
-        background-color: #FFFAF0;
-        color: black;
-    }
-
-/* Right-aligned section inside the top navigation */
-.colorWhite-right[b-mbrop61ily] {
-    float: right;
-}
-
-.colorGreen a[b-mbrop61ily], form[b-mbrop61ily], button[b-mbrop61ily] {
-    float: left;
+    justify-content: center;
+    justify-items: center;
     color: white;
-    text-align: center;
-    padding: 15px 16px;
-    text-decoration: none;
-    font-size: 17px;
+    min-height: 50px;
 }
-
-    /* Change the color of links on hover */
-    .colorGreen a:hover[b-mbrop61ily], button:hover[b-mbrop61ily] {
-        background-color: #8FBC8F;
-        color: white;
-    }
-
-    /* Add a color to the active/current link */
-    .colorGreen a.active[b-mbrop61ily], button.active[b-mbrop61ily] {
-        background-color: #8FBC8F;
-        color: white;
-    }
-
-/* Right-aligned section inside the top navigation */
-.colorGreen-right[b-mbrop61ily] {
-    float: right;
+.formbtn[b-mbrop61ily] {
+    min-height: 100%;
 }
-
-.dropbtn[b-mbrop61ily] {
-    background-color: #DCDCDC;
-    color: black;
-    padding: 16px;
-    font-size: 16px;
+.btnNav[b-mbrop61ily] {
+    color: white;
+    background: none;
+    margin: 0 0px 0 0;
+    padding: 0px 5px 0px 5px;
     border: none;
-    cursor: pointer;
+}
+a.btnNav[b-mbrop61ily] {
+    background: black;
+    top: 50%;
+    text-decoration: none;
+    padding-top: 13px;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown[b-mbrop61ily] {
-    position: relative;
-    display: inline-block;
+button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
+    background: fixed;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content[b-mbrop61ily] {
+.NavInput[b-mbrop61ily] {
+    background-color: white;
+    border-color: black;
+    display: block;
+    min-height: 35px;
+    align-self: center;
+}
+
+.NavInput:focus-visible[b-mbrop61ily] {
+    outline: 0;
+}
+
+.MenuClass[b-mbrop61ily] {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border: none;
     display: none;
-    position:absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 2;
+    background: black;
+    color: white;
 }
 
-    /* Links inside the dropdown */
-    .dropdown-content button[b-mbrop61ily] {
-        color: black;
-        padding: 12px 16px;
-        border: none;
-        text-decoration: none;
-        display: block;
-        min-width: 160px;
-        text-align: start;
-        z-index: 2;
-    }
-
-    /* Change color of dropdown links on hover */
-    .dropdown-content a:hover[b-mbrop61ily] {
-        background-color: #f1f1f1
-    }
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content[b-mbrop61ily] {
+.RightSide[b-mbrop61ily] {
+    visibility: hidden;
+    margin: 0 0 0 0;
     display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn[b-mbrop61ily] {
-    background-color: #FFFAF0;
+@media screen and (max-width: 920px) {
+    .toHide[b-mbrop61ily] {
+        display: none;
+    }
+
+    .MenuClass[b-mbrop61ily] {
+        display: block;
+    }
 }
+
+.sidepanel[b-mbrop61ily] {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.35s;
+    padding: 60px 0 0 0;
+}
+
+.sidepanel button[b-mbrop61ily] {
+    padding: 5px 0 0 0;
+    margin: 0 0 0 0;
+    background: #111;
+    border: none;
+    width: 100%;
+    text-align: start;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.5s;
+}
+
+.sidepanel button:hover[b-mbrop61ily] {
+    color: #111;
+    background-color: white;
+}
+
+.sidepanel .closebtn[b-mbrop61ily] {
+    position: absolute;
+    top: 0;
+    left: 85%;
+    max-width: 15%;
+    text-align: center;
+}
+
+.openbtn[b-mbrop61ily] {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover[b-mbrop61ily] {
+    background-color: #444;
+}
+/* _content/BlazorStoreServAppV5/Shared/NewFolder/NavMenu2.razor.rz.scp.css */
+.NavBar[b-t3kf0m5lsm] {
+    background-color: black;
+    color: white;
+    min-height: 40px;
+}
+
+.btnNav[b-t3kf0m5lsm] {
+    color: white;
+    background: none;
+    margin: 0 0px 0 0;
+    padding: 0px 5px 0px 0px;
+    border: none;
+    min-height: 10%;
+}
+
+button:hover[b-t3kf0m5lsm] {
+    background: fixed;
+    background-color: white;
+    color: black;
+}
+
+.NavInput[b-t3kf0m5lsm] {
+    background-color: white;
+    border-color: black;
+    display: block;
+}
+
+    .NavInput:focus-visible[b-t3kf0m5lsm] {
+        outline: 0;
+    }
+
+.MenuClass[b-t3kf0m5lsm] {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border: none;
+    display: none;
+    background: black;
+    color: white;
+}
+
+.RightSide[b-t3kf0m5lsm] {
+    visibility: hidden;
+    margin: 0 0 0 0;
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .toHide[b-t3kf0m5lsm] {
+        display: none;
+    }
+
+    .MenuClass[b-t3kf0m5lsm] {
+        display: block;
+    }
+}
+
+.sidepanel[b-t3kf0m5lsm] {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.35s;
+    padding: 60px 0 0 0;
+}
+
+    .sidepanel button[b-t3kf0m5lsm] {
+        padding: 5px 0 0 0;
+        margin: 0 0 0 0;
+        background: #111;
+        border: none;
+        width: 100%;
+        text-align: start;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.5s;
+    }
+
+        .sidepanel button:hover[b-t3kf0m5lsm] {
+            color: #111;
+            background-color: white;
+        }
+
+    .sidepanel .closebtn[b-t3kf0m5lsm] {
+        position: absolute;
+        top: 0;
+        left: 85%;
+        max-width: 15%;
+        text-align: center;
+    }
+
+.openbtn[b-t3kf0m5lsm] {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+    .openbtn:hover[b-t3kf0m5lsm] {
+        background-color: #444;
+    }
 /* _content/BlazorStoreServAppV5/Shared/UIcomponents/UserProfile.razor.rz.scp.css */
 
 .btn-group button[b-d1f1hcs2ow]

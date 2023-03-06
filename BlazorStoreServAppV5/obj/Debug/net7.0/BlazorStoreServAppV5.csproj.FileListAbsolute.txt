@@ -154,8 +154,6 @@ C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\ne
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Pages\AllProductsTable.razor.rz.scp.css
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Pages\AllProductsTable.razor.rz.scp.css
-C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\NewFolder\UserProfile.razor.rz.scp.css
-C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\NewFolder1\AdminPanel.razor.rz.scp.css
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\bin\Debug\net7.0\System.Linq.Dynamic.Core.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\System.Linq.Dynamic.Core.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminPanel.razor.rz.scp.css
@@ -163,3 +161,10 @@ C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\ne
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\UserProfile.razor.rz.scp.css
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\NewFolder\NavBar.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminPanel.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminUserInfo.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\UserProfile.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\NewFolder\NavMenu2.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Areas\Identity\Pages\Account\Login.cshtml.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\loginControl.razor.rz.scp.css

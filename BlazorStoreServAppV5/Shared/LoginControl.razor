@@ -6,15 +6,15 @@
 {
     <img src="@Avatar" />
     <b>You are logged in as: @GivenName @Surname</b>
-    <a class="ml-md-auto btn btn-primary"
+    <a class="btnNav"
        href="/Identity/account/Logout"
        target="_top">Logout</a>
 }
 else
 {
-    <a class="ml-md-auto btn btn-primary"
+    <a class="btnNav"
        href="/Identity/accoutn/GoogleLogin"
-       target="_top">Login</a>
+       target="_top"><img src="/images.png"/>Login</a>
 }
 @code {
     private ClaimsPrincipal User;

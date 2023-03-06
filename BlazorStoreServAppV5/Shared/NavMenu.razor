@@ -7,49 +7,56 @@
 @inject TokenProvider _TokenProvider
 @inject IThemeLogic ThemesLogic
 @inject NavigationManager NavManager
+
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 @ThemesLogic.CurrentTheme">
-        <a class="active" href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="Products">Table</a>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-                @foreach (var item in ThemeModels)
-                {
-                    <button @onclick="@(() => ChangeTheme(item.Value))">@item.Theme</button>
-                }
-            </div>
-        </div>
-        <div class="@ThemesLogic.CurrentTheme-right ">
-            <a href="Cart">Cart</a>
+    <div class="col">
+        <div class="d-flex bd-highlight flex-wrap NavBar">
+            <button class="MenuClass bi-triangle" @onclick="WidthChanger"></button>
+            <a href="/" class="align-content-center btnNav bi-house-fill"></a>
+            <a href="/Products" unselectable="on" class="btnNav">Flex item</a>
+            <button class="btnNav">smth for future</button>
+            <input type="text" size="25" class="NavInput" placeholder="Search...">
+            <div class="ms-auto" style=""></div>
+            <button class="btnNav toHide">Flex item</button>
+            <button class="btnNav toHide">Flex item</button>
+            <button class="btnNav toHide">Flex item</button>
             <AuthorizeView>
+                <NotAuthorized>
+                    <a href="Identity/Account/Login" class="btnNav toHide">Login</a>
+                    <a href="Identity/Account/Register" class="btnNav toHide">Register</a>
+                    
+                </NotAuthorized>
                 <Authorized>
-                    <a href="/Account">Hello, @context.User.Identity?.Name!</a>
+                    <a href="/Account" unselectable="on" class="btnNav">Hello, @context.User.Identity?.Name!</a>
                     <form class="formclass" method="post" action="/identity/account/logout">
                         <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken"/>
-                        <button id="subm" type="submit">Logout</button>
+                        <button class="btnNav formbtn" id="subm" type="submit">Logout</button>
                     </form>
                 </Authorized>
-                <NotAuthorized>
-                    <a href="Identity/Account/Register">Register</a>
-                    <a href="Identity/Account/Login">Log in</a>
-                </NotAuthorized>
-            </AuthorizeView>
-            <AuthorizeView Roles="Admin">
-                <a href="AdminPanel">AdminPanel</a>
-            </AuthorizeView>
-            <LoginControl></LoginControl>
-            <a href="#search">Se22arch</a>
-            <a href="#about">About</a>
+                </AuthorizeView>
         </div>
+    </div>
+    <div class="sidepanel" style=" width:@SidePanelWidth">
+        <button class="">Flex item</button>
+        <button class="">Flex item</button>
+        <button class="">Flex item</button>
+        <button class="">Third flex item</button>
+        <button class="">Third flex item</button>
+        <button class="closebtn" @onclick="WidthChanger">×</button>
     </div>
 </div>
 
+@code {
+    public string SidePanelWidth { get; set; } = "0%";
 
-
-
-
+    void WidthChanger()
+    {
+        if (SidePanelWidth == "25%")
+            SidePanelWidth = "0%";
+        else
+            SidePanelWidth = "25%";
+    }
+}
 
 @code {
     public static List<Users> UsersList { get; set; }

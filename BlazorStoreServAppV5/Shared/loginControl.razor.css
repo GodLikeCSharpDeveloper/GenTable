@@ -1,0 +1,28 @@
+﻿.btnNav {
+    color: white;
+    background: none;
+    margin: 0 0px 0 0;
+    padding: 0px 5px 0px 5px;
+    border: none;
+}
+
+a.btnNav {
+    background: black;
+    top: 50%;
+    text-decoration: none;
+    padding-top: 13px;
+}
+
+img {
+    max-width: 50px;
+}
+.formbtn {
+    min-height: 100%;
+}
+
+button:hover, a:hover {
+    background: fixed;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+}
