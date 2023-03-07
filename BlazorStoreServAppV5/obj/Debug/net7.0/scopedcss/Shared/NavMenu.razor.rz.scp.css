@@ -1,5 +1,5 @@
 .NavBar[b-mbrop61ily] {
-    background: black;
+    background: #061e36;
     justify-content: center;
     justify-items: center;
     color: white;
@@ -16,7 +16,7 @@
     border: none;
 }
 a.btnNav[b-mbrop61ily] {
-    background: black;
+    background: none;
     top: 50%;
     text-decoration: none;
     padding-top: 13px;
@@ -46,7 +46,7 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
     padding: 0 0 0 0;
     border: none;
     display: none;
-    background: black;
+    background: none;
     color: white;
 }
 
@@ -72,25 +72,25 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #061e36;
     overflow-x: hidden;
     transition: 0.35s;
     padding: 60px 0 0 0;
 }
 
-.sidepanel button[b-mbrop61ily] {
-    padding: 5px 0 0 0;
-    margin: 0 0 0 0;
-    background: #111;
-    border: none;
-    width: 100%;
-    text-align: start;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.5s;
-}
+    .sidepanel button[b-mbrop61ily] {
+        padding: 5px 0 0 0;
+        margin: 0 0 0 0;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: start;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.5s;
+    }
 
 .sidepanel button:hover[b-mbrop61ily] {
     color: #111;
@@ -108,7 +108,7 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
 .openbtn[b-mbrop61ily] {
     font-size: 20px;
     cursor: pointer;
-    background-color: #111;
+    background:none;
     color: white;
     padding: 10px 15px;
     border: none;

@@ -2,34 +2,13 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using BlazorStoreServAppV5.Areas.Identity.Pages.Shared
 @model LoginModel
-@{
-    Layout = null;
-}
-<html>
-<head>
-   
-    <link rel="stylesheet" href="Login.cshtml.css" type="text/css" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="~/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link href="css/site.css" rel="stylesheet" />
-    <link href="BlazorStoreServAppV5.styles.css" rel="stylesheet" />
-    <link href="/css/lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <title>Wehry Home Page</title>
-</head>
+
 <body>
 
     <div class="container  align-items-center justify-content-center">
         <div class="row text-center">
             <div class="col">
-                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-                {
-                    <div class="alert alert-danger" role="alert">
-                        @Model.ErrorMessage
-                    </div>
-                }
+                
             </div>
         </div>
         <div class="row align-self-center" style="margin-top: 20%;">
@@ -39,14 +18,26 @@
                     <div class="mb-3">
                         <label for="txtEmail" class="form-label">Email</label>
                         <input asp-for="LoginVm.Email" type="text" class="form-control" id="txtEmail" />
+                        @if (Model.ErrorMessage == "Incorrect Login")
+                        {
+                            <div class="AlertMessage bi-exclamation-triangle-fill" role="">
+                                @Model.ErrorMessage
+                            </div>
+                        }
                     </div>
                     <div class="mb-3">
                         <label for="txtPassword" class="form-label">Password</label>
                         <input asp-for="LoginVm.Password" type="password" class="form-control" id="txtPassword" />
+                        @if (Model.ErrorMessage == "Incorrect Password")
+                        {
+                            <div class="AlertMessage bi-exclamation-triangle-fill" role="">
+                                @Model.ErrorMessage
+                            </div>
+                        }
                     </div>
-                    <button type="submit" class="btn btn-dark">Login</button>
+                    <button type="submit" class="btn btn-outline-light">Login</button>
                     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-                    <a class="btn btn-dark" href="/identity/account/GoogleLogin"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Sign in using Google</a>
+                    <a class="btn btn-outline-light" href="/identity/account/GoogleLogin"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Sign in with Google</a>
                 </form>
             </div>
         </div>

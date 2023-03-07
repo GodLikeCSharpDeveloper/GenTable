@@ -19,7 +19,7 @@ public class RegisterModel : PageModel
     [BindProperty]
     public RegisterVm RegisterForm { get; set; }
 
-    public string ErrorMessage { get; set; }
+    public List<string> ErrorMessage { get; set; }
 
     public bool IsUserRegistrationSuccessfull { get; set; }
 

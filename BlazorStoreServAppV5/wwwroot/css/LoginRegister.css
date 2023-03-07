@@ -1,0 +1,13 @@
+﻿input[type="text"], input[type="password"], textarea {
+    background-color: transparent;
+    color: white;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea :focus {
+    background-color: transparent;
+    color: white;
+}
+.AlertMessage {
+    margin-top: 5px;
+    color: #f07a1b;
+}

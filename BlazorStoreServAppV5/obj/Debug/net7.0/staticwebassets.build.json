@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nd9/ptkqzqGp8g1SzWxT7/7XbvwGBfbu0OXPEOzpXmQ=",
+  "Hash": "/EZ6HT6szxiYOicYrTBC1TbWQNnHdjqqrQkhQK925EI=",
   "Source": "BlazorStoreServAppV5",
   "BasePath": "_content/BlazorStoreServAppV5",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\lib\\bootstrap-icons\\fonts\\bootstrap-icons.woff2"
+    },
+    {
+      "Identity": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\css\\LoginRegister.css",
+      "SourceId": "BlazorStoreServAppV5",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\",
+      "BasePath": "_content/BlazorStoreServAppV5",
+      "RelativePath": "css/LoginRegister.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\LoginRegister.css"
     },
     {
       "Identity": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
@@ -338,6 +355,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images.png"
+    },
+    {
+      "Identity": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\KeyboardMapping.png",
+      "SourceId": "BlazorStoreServAppV5",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\",
+      "BasePath": "_content/BlazorStoreServAppV5",
+      "RelativePath": "KeyboardMapping.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\KeyboardMapping.png"
+    },
+    {
+      "Identity": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\ReSharper_DefaultKeymap_IDEAscheme.pdf",
+      "SourceId": "BlazorStoreServAppV5",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\",
+      "BasePath": "_content/BlazorStoreServAppV5",
+      "RelativePath": "ReSharper_DefaultKeymap_IDEAscheme.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ReSharper_DefaultKeymap_IDEAscheme.pdf"
     },
     {
       "Identity": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\signin-assets\\google_signin_buttons\\android\\hdpi\\btn_google_dark_disabled_hdpi.9.png",

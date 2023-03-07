@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets\\BlazorStoreServAppV5.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\KeyboardMapping.png",
+      "PackagePath": "staticwebassets\\KeyboardMapping.png"
+    },
+    {
+      "Id": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\ReSharper_DefaultKeymap_IDEAscheme.pdf",
+      "PackagePath": "staticwebassets\\ReSharper_DefaultKeymap_IDEAscheme.pdf"
+    },
+    {
+      "Id": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\css\\LoginRegister.css",
+      "PackagePath": "staticwebassets\\css\\LoginRegister.css"
+    },
+    {
       "Id": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },

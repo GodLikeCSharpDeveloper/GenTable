@@ -22,34 +22,40 @@ namespace BlazorStoreServAppV5.Repository.AccountLogic
             _accessor = accessor;
         }
 
-        private string ResigstrationValidations(RegisterVm registerVm)
+        
+        private List<string> ResigstrationValidations(RegisterVm registerVm)
         {
+            List<string> alerts = new();
+            alerts.Clear();
             if (string.IsNullOrEmpty(registerVm.Email))
             {
-                return "Email can't be empty";
+                alerts.Add("Email can't be empty"); 
             }
 
             string emailRules = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
             if (!Regex.IsMatch(registerVm.Email, emailRules))
             {
-                return "Not a valid email";
+                alerts.Add("Not a valid email");
             }
-
-            if (_storeContext.Users.Any(_ => _.Email.ToLower() == registerVm.Email.ToLower()))
+            
+            if (string.IsNullOrEmpty(registerVm.Password))
             {
-                return "user already exists";
+                alerts.Add("Password password can't be empty");
             }
-
-            if (string.IsNullOrEmpty(registerVm.Password)
-                || string.IsNullOrEmpty(registerVm.ConfirmPassword))
+            if (string.IsNullOrEmpty(registerVm.ConfirmPassword))
             {
-                return "Password Or ConfirmPasswor Can't be empty";
+                alerts.Add("Confirm password can't be empty");
             }
 
             if (registerVm.Password != registerVm.ConfirmPassword)
             {
-                return "Invalid confirm password";
+                alerts.Add("Invalid confirm password");
             }
+            if (_storeContext.Users.Any(_ => _.Email.ToLower() == registerVm.Email.ToLower()))
+            {
+                alerts.Add("Email address is already in use");
+            }
+            
 
             // atleast one lower case letter
             // atleast one upper case letter
@@ -57,11 +63,12 @@ namespace BlazorStoreServAppV5.Repository.AccountLogic
             // atleast one number
             // atleast 8 character length
             string passwordRules = @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
+            if(registerVm.Password!=null)
             if (!Regex.IsMatch(registerVm.Password, passwordRules))
             {
-                return "Not a valid password";
+                alerts.Add("Must contain ...");
             }
-            return string.Empty;
+            return alerts;
         }
         private string PasswordHash(string password)
         {
@@ -77,10 +84,10 @@ namespace BlazorStoreServAppV5.Repository.AccountLogic
 
             return Convert.ToBase64String(hashBytes);
         }
-        public async Task<(bool Success, string Message)> UserRegistrationAsync(RegisterVm register)
+        public async Task<(bool Success, List<string> Message)> UserRegistrationAsync(RegisterVm register)
         {
-            string message = ResigstrationValidations(register);
-            if (!string.IsNullOrEmpty(message))
+            List<string> message = ResigstrationValidations(register);
+            if (message!=null)
             {
                 return (false, message);
             }
@@ -106,8 +113,8 @@ namespace BlazorStoreServAppV5.Repository.AccountLogic
                 _storeContext.UserRoles.Add(userRoles);
                 await _storeContext.SaveChangesAsync();
             }
-
-            return (true, string.Empty);
+            message.Clear();
+            return (true, message);
         }
         private bool ValidatePasswordHash(string password, string dbPassword)
         {
@@ -134,12 +141,12 @@ namespace BlazorStoreServAppV5.Repository.AccountLogic
 
             if (user == null)
             {
-                return "Invalid Credentials";
+                return "Incorrect Login";
             }
 
             if (!ValidatePasswordHash(loginVm.Password, user.PasswordHash))
             {
-                return "Invalid Credentials";
+                return "Incorrect Password";
             }
 
             var claims = new List<Claim>();

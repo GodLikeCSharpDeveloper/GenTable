@@ -6,72 +6,86 @@
 @inject IProductRepositoryService Product
 @inject IOrderRepositoryServise Order
 @inject IThemeLogic ThemesLogic
-<div class="row">
-    <div class="CategoriesListStyle col-sm-12 col-md-4 col-lg-2">
-        <div class="input-group mb-3">
-            <input type="search" class="form-control" placeholder="Recipient's username" @bind-value="Request">
-            <button class="input-group-text" @onclick="() => Searcher(Request)">com</button>
-        </div>
-        <div class="">
-            <ul class="list-group">
-                <li class="list-group-item CheckboxListStyle">
-                    @foreach (var category in CategoriesList)
-                    {
-                        <div class="form-check ">
 
-                            <input class="form-check-input " type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoryAddRemove(category.Id, e)">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                @category.Name
-                            </label>
-                        </div>
-                    }
-                </li>
-            </ul>
-        </div>
-
-
-    </div>
-
-    @foreach (var prod in Products)
-    {
-        <div class="col-sm-12 col-md-12 col-lg-2">
-            <div class="card col">
-                <div class="col-sm-4">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                </div>
-                <div class="col-sm-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Name: @prod.Name</h5>
-                        <p class="card-text">ID: @prod.Id</p>
-                    </div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    @foreach (var cat in prod.CategoryModels)
-                    {
-                        <li class="list-group-item">category name: @cat.Name</li>
-                    }
+<div class="container-fluid">
+    <div class="row flex-row">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+            <div class="input-group mb-3">
+                <input type="search" class="form-control srch" placeholder="Type to search" @bind-value="Request">
+                <button class="input-group-text srchbutton" @onclick="() => Searcher(Request)">Search</button>
+            </div>
+            <div class="">
+                <ul class="list-group">
+                    <li class="list-group-item CheckboxListStyle">
+                        @foreach (var category in CategoriesList)
+                        {
+                            <div class="form-check ">
+                                <input class="form-check-input " type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoryAddRemove(category.Id, e)">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    @category.Name
+                                </label>
+                            </div>
+                        }
+                    </li>
                 </ul>
-                <div class="card-body">
-                    <button class="btn btn-success" @onclick="()=>AddToCart(prod)">Buy</button>
-                </div>
             </div>
         </div>
-    }
+
+
+        @foreach (var prod in Products)
+        {
+            <div class="col-12 col-lg-2 col-md-12 col-sm-12  CardList">
+                <div class="card">
+                    <div class="col-sm-4">
+                        <img class="card-img-top" src="/images.png" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Name: @prod.Name</h5>
+                    </div>
+                    <ul class="list-group ">
+
+                        <li class="list-group-item cardList">
+                            @foreach (var cat in prod.CategoryModels)
+                            {
+                                if (prod.CategoryModels.Last() != cat)
+                                {
+                                    <a>@cat.Name, </a>
+                                }
+                                else
+                                {
+                                    <a> @cat.Name</a>
+                                }
+                            }
+                        </li>
+
+                    </ul>
+                    <div class="card-body">
+                        <button class="btn btn-dark btn-outline-light" @onclick="() => AddToCart(prod)">Buy</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 
 
 @code {
     public List<Users> UsersList { get; set; }
     public List<OrderModel> OrdersList { get; set; }
-
+    public List<ProductModel> tempProds;
     protected override async Task OnInitializedAsync()
     {
         Products = ProductsList;
+         
+        
     }
+
     #region "SearchLogic"
+
     public List<int> CatIds { get; set; } = new();
     public List<ProductModel> Prods { get; set; }
     public List<ProductModel> Products { get; set; } = new();
+
     public List<ProductModel> CategoryAddRemove(int Id, ChangeEventArgs e)
     {
         Products.Clear();
@@ -83,7 +97,7 @@
         {
             CatIds.Remove(Id);
         }
-        foreach (var item in ProductsList)
+        foreach (var item in ProductsList.ToList())
         {
             foreach (var cat in item.CategoryModels)
             {
@@ -91,7 +105,6 @@
                 {
                     if (a.Equals(cat.Id))
                         Products.Add(item);
-                  
                 }
             }
         }
@@ -99,14 +112,16 @@
         {
             Products = ProductsList.ToList();
         }
-       
+
         if (Request != null)
             Searcher(Request);
         StateHasChanged();
         return Products;
     }
+
     [Parameter]
     public string Request { get; set; }
+
     protected void Searcher(string value)
     {
         Prods = Products;
@@ -115,7 +130,6 @@
         {
             foreach (var item in Prods.ToList())
             {
-
                 foreach (var cat in item.CategoryModels)
                 {
                     if (!cat.Name.ToLower().Contains(value.ToLower()))
@@ -129,7 +143,7 @@
         else
         {
             if (Prods == null)
-            Prods = ProductsList;
+                Prods = ProductsList;
             if (Products.Count == 0 || Products.Count > ProductsList.Count || Products == null)
             {
                 Products = ProductsList;
@@ -138,17 +152,15 @@
             {
                 Products = Prods;
             }
-
         }
-
-
     }
+
     #endregion
+
     public void AddToCart(ProductModel product)
     {
         CartList.Add(product);
     }
 
 }
-
 

@@ -2,6 +2,10 @@
 .container[b-onzz9e6nap] {
     min-height: 100%;
 }
+/* _content/BlazorStoreServAppV5/Areas/Identity/Pages/Account/Register.cshtml.rz.scp.css */
+.container[b-gqcblfg5ld] {
+    min-height: 100%;
+}
 /* _content/BlazorStoreServAppV5/Pages/AllProductsTable.razor.rz.scp.css */
 .searcher[b-6v7gdwkhox] {
     margin-bottom: 5px;
@@ -16,15 +20,37 @@
     margin-bottom: 5px;
 }
 
-.searchbutton[b-6v7gdwkhox] {
-    border-color: black;
-    background-color: white;
-    margin: 0 5px 5px 0;
+.srchbutton[b-6v7gdwkhox] {
+    background-color: #061e36;
+    border-color: #061e36;
+    color: white;
+    margin-top: 5px;
+}
+.srch[b-6v7gdwkhox] {
+    margin-top: 5px;
 }
 @include media-breakpoint-down(md) {
     .hided[b-6v7gdwkhox] {
         display: none;
     }
+}
+.CardList[b-6v7gdwkhox] {
+    margin: 0 0 0 0;
+    padding: 5px 5px 0 0;
+    color: black;
+    
+}
+.card[b-6v7gdwkhox] {
+    background-color: #15171e;
+    color: #a29894;
+    border-color: white;
+}
+.cardList[b-6v7gdwkhox]{
+    background-color: #15171e;
+    color: #a29894;
+}
+.btn-outline-light[b-6v7gdwkhox] {
+    border-color: #a29894;
 }
 /* _content/BlazorStoreServAppV5/Shared/AdminUIcomponents/AdminPanel.razor.rz.scp.css */
 .btn-group button[b-ag3sa00bth] {
@@ -191,9 +217,27 @@ main[b-pkt278h1wn] {
         padding-right: 1.5rem !important;
     }
 }
+article[b-pkt278h1wn] {
+    padding: 0 0 0 0 !important;
+}
+input[type="text"][b-pkt278h1wn], input[type="password"][b-pkt278h1wn], textarea[b-pkt278h1wn] {
+    background-color: transparent;
+    color: white;
+}
+
+input[type="text"]:focus[b-pkt278h1wn], input[type="password"]:focus[b-pkt278h1wn], textarea :focus[b-pkt278h1wn] {
+    background-color: transparent;
+    color: white;
+}
+
+.AlertMessage[b-pkt278h1wn] {
+    margin-top: 5px;
+    color: #f07a1b;
+}
+
 /* _content/BlazorStoreServAppV5/Shared/NavMenu.razor.rz.scp.css */
 .NavBar[b-mbrop61ily] {
-    background: black;
+    background: #061e36;
     justify-content: center;
     justify-items: center;
     color: white;
@@ -210,7 +254,7 @@ main[b-pkt278h1wn] {
     border: none;
 }
 a.btnNav[b-mbrop61ily] {
-    background: black;
+    background: none;
     top: 50%;
     text-decoration: none;
     padding-top: 13px;
@@ -240,7 +284,7 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
     padding: 0 0 0 0;
     border: none;
     display: none;
-    background: black;
+    background: none;
     color: white;
 }
 
@@ -266,25 +310,25 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #061e36;
     overflow-x: hidden;
     transition: 0.35s;
     padding: 60px 0 0 0;
 }
 
-.sidepanel button[b-mbrop61ily] {
-    padding: 5px 0 0 0;
-    margin: 0 0 0 0;
-    background: #111;
-    border: none;
-    width: 100%;
-    text-align: start;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.5s;
-}
+    .sidepanel button[b-mbrop61ily] {
+        padding: 5px 0 0 0;
+        margin: 0 0 0 0;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: start;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.5s;
+    }
 
 .sidepanel button:hover[b-mbrop61ily] {
     color: #111;
@@ -302,7 +346,7 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
 .openbtn[b-mbrop61ily] {
     font-size: 20px;
     cursor: pointer;
-    background-color: #111;
+    background:none;
     color: white;
     padding: 10px 15px;
     border: none;

@@ -69,3 +69,21 @@ main[b-pkt278h1wn] {
         padding-right: 1.5rem !important;
     }
 }
+article[b-pkt278h1wn] {
+    padding: 0 0 0 0 !important;
+}
+input[type="text"][b-pkt278h1wn], input[type="password"][b-pkt278h1wn], textarea[b-pkt278h1wn] {
+    background-color: transparent;
+    color: white;
+}
+
+input[type="text"]:focus[b-pkt278h1wn], input[type="password"]:focus[b-pkt278h1wn], textarea :focus[b-pkt278h1wn] {
+    background-color: transparent;
+    color: white;
+}
+
+.AlertMessage[b-pkt278h1wn] {
+    margin-top: 5px;
+    color: #f07a1b;
+}
+

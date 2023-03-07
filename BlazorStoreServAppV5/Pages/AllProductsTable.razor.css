@@ -11,13 +11,35 @@
     margin-bottom: 5px;
 }
 
-.searchbutton {
-    border-color: black;
-    background-color: white;
-    margin: 0 5px 5px 0;
+.srchbutton {
+    background-color: #061e36;
+    border-color: #061e36;
+    color: white;
+    margin-top: 5px;
+}
+.srch {
+    margin-top: 5px;
 }
 @include media-breakpoint-down(md) {
     .hided {
         display: none;
     }
+}
+.CardList {
+    margin: 0 0 0 0;
+    padding: 5px 5px 0 0;
+    color: black;
+    
+}
+.card {
+    background-color: #15171e;
+    color: #a29894;
+    border-color: white;
+}
+.cardList{
+    background-color: #15171e;
+    color: #a29894;
+}
+.btn-outline-light {
+    border-color: #a29894;
 }
