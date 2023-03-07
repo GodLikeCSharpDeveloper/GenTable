@@ -4,7 +4,9 @@
     border-radius: 5px;
     outline: none;
 }
-
+.panel[b-6v7gdwkhox] {
+    height: 100%;
+}
 
 
 .CheckboxListStyle[b-6v7gdwkhox] {
@@ -27,7 +29,7 @@
 }
 .CardList[b-6v7gdwkhox] {
     margin: 0 0 0 0;
-    padding: 5px 5px 0 0;
+    padding: 5px 0px 0 12px;
     color: black;
     
 }
@@ -42,4 +44,7 @@
 }
 .btn-outline-light[b-6v7gdwkhox] {
     border-color: #a29894;
+}
+img[b-6v7gdwkhox] {
+    width: 100%;
 }
