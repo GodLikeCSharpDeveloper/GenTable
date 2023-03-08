@@ -8,3 +8,23 @@
     display: none;
     z-index: 2;
 }
+section {
+    background-color: #15171e;
+    width: 98%;
+
+}
+
+.card-body {
+    background-color: #15171e;
+}
+
+.list-group-item {
+    background-color: #15171e;
+    color: #a29894
+}
+.myButton {
+    color: #a29894;
+    background: none;
+    border: none;
+    
+}

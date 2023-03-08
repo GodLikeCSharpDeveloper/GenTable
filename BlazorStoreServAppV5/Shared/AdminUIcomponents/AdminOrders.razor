@@ -1,25 +1,19 @@
-﻿@using System.Linq.Expressions
-@using System.Reflection
-@using Microsoft.AspNetCore.Mvc.ViewFeatures
-@using System.Runtime.InteropServices
-@using Microsoft.AspNetCore.Mvc.RazorPages
-@inherits AdminPanel
+﻿@inherits AdminPanel
 @inject IOrderRepositoryServise OrderRepository
 @inject IUserRepositoryService UserRepositor
 
-    <AdminUserInfo Visible="@CssClass" MyUser="CurUsers"></AdminUserInfo>
-
+<AdminUserInfo Visible="@CssClass" MyUser="CurUsers"></AdminUserInfo>
 <div class="row">
-    <div class="col">
-        <table class="table">
+    <div class="col-12 component">
+        <table class="table tableAddCss">
             <thead>
             <tr>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[0], PropBool[0])'>#</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBool[1])'>Date created</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[2], PropBool[2])'>User's name</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[3], PropBool[3])'>Is canceled?</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[4], PropBool[4])'>Price</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBool[5])'>List of products</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[0], PropBools[0])'>#</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBools[1])'>Date created</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[2], PropBools[2])'>User's name</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[3], PropBools[3])'>Is canceled?</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[4], PropBools[4])'>Price</button></th>
+                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBools[5])'>List of products</button></th>
             </tr>
             </thead>
             <tbody>
@@ -52,7 +46,7 @@
         "Id", "CreateOrderDate", "User.FirstName", "IsFullfilled", "FullPrice"
     };
     [Parameter]
-    public bool[] PropBool { get; set; } = new bool[OrderPropertyInfos.Count];
+    public bool[] PropBools { get; set; } = new bool[OrderPropertyInfos.Count];
     void Change(string prop, bool propbool)
     {
         int i = 0;
@@ -60,7 +54,7 @@
         {
             if (item.Name == prop || "User." + typeof(Users).GetProperty("FirstName").Name == prop)
             {
-                PropBool[i] = !PropBool[i];
+                PropBools[i] = !PropBools[i];
             }
             i++;
         }

@@ -1,0 +1,26 @@
+﻿.cont {
+    width: 99%;
+}
+.addPanel  {
+    margin: 0 0 5px 0;
+}
+input {
+    margin: 0 0 5px 0;
+}
+label {
+    margin: 0 0 9px 0;
+}
+.checkboxes {
+    margin: 0 0 0 0 !important;
+    border-width: 2px;
+    border-color: #a29894 !important;
+    border-style: solid;
+    padding: 5px 0 5px 5px;
+}
+.labelcheckbox {
+    display: inline;
+}
+.checkboxstyle {
+    padding: 0 0 0 0 !important;
+    border-radius: 5px
+}

@@ -1,0 +1,26 @@
+.tableAddCss th[b-uvt9ktqcw5], td[b-uvt9ktqcw5], thead[b-uvt9ktqcw5], tr[b-uvt9ktqcw5], a[b-uvt9ktqcw5], button[b-uvt9ktqcw5] {
+    color: #a29894;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    vertical-align: center;
+    text-align-all: center;
+    vert-align: middle;
+    alignment: center;
+}
+th[b-uvt9ktqcw5], td[b-uvt9ktqcw5] {
+    border-top: 1px;
+    border-style: solid;
+}
+.brd th[b-uvt9ktqcw5] {
+    border-top: none;
+}
+.cont[b-uvt9ktqcw5] {
+    width: 100%;
+}
+
+

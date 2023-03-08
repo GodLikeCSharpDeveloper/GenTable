@@ -2,38 +2,69 @@
 @inherits MainLayout
 @inject ICategoryLogic CategoryLogic
 @inject IProductRepositoryService ProductRepository
-<div class="row">
-    <div class="card">
-        <div class="row align-items-lg-start ">
-            <div class="col-lg-3"><input placeholder="Name of prod" @bind-value="NewProduct.Name" /></div></div>
-       <div class="row align-items-lg-start ">
+<div class="row align-items-lg-start cont ">
+    <div class="col-lg-5">
+        <label>Enter a name:</label>
+        <input placeholder="Name of prod" @bind-value="NewProduct.Name"/>
+    </div>
+    <div class="col-lg-5">
+        <label>Enter a price:</label>
+        <input placeholder="Name of prod" @bind-value="NewProduct.Price" />
+    </div>
+    <div class="col-lg-2">
+        <label>Is cashback:</label>
+        <input type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback" />
+    </div>
+    <div class="col-lg-5 addPanel">
+        
+        <div class="checkboxes">
+            <label>Add categories</label>
             @foreach (var category in CategoriesList)
             {
-                <div class="form-check ">
-                    <input class="form-check-input " type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoriesAdding(category.Id)">
-                    <label class="form-check-label" for="flexCheckDefault">@category.Name</label>
+                <div class="cont">
+                    <input class="checkboxstyle" type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoriesAdding(category.Id)">
+                    <label class="labelcheckbox" for="flexCheckDefault">@category.Name</label>
                 </div>
+
             }
-           
-            <div class="col-lg-3"><input placeholder="Price" @bind-value="NewProduct.Price" /></div>
         </div>
-      <div class="row align-items-lg-start ">
-            <div class="col-lg-3"><input placeholder="Is cashback" @bind-value="NewProduct.IsCashback" /></div>
-            <button type="button" class="btn" @onclick="SubmitNewProduct">Add Prod</button>
-            <div class="col-lg-3"><input placeholder="WIll be Desctiption, but not know" /></div>
-        </div>
-        <div class="col-lg-3"><input placeholder="Enter new category" @bind-value="NewCategory.Name" /><button type="button" class="btn"></button></div>
-        <div class="col-lg-3"><input placeholder="CategoryDescr" @bind-value="NewCategory.Description" /></div>
-        <button type="button" class="btn" @onclick="SubmitCategory">Add category</button>
     </div>
+
+    <div class="row align-items-lg-start ">
+
+
+        <div class="col-lg-3">
+
+        </div>
+    </div>
+    <div class="row align-items-lg-start ">
+        <div class="col-lg-3">
+
+        </div>
+        <button type="button" class="btn" @onclick="SubmitNewProduct">Add Prod</button>
+        <div class="col-lg-3">
+            <input placeholder="WIll be Desctiption, but not know"/>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <input placeholder="Enter new category" @bind-value="NewCategory.Name"/><button type="button" class="btn"></button>
+    </div>
+    <div class="col-lg-3">
+        <input placeholder="CategoryDescr" @bind-value="NewCategory.Description"/>
+    </div>
+
 </div>
 
+
 @code {
+
     [Parameter]
     public string smth { get; set; }
+
     public ProductModel NewProduct { get; set; } = new();
     public CategoryModel NewCategory { get; set; } = new();
     public List<CategoryModel> ProductCategories { get; set; } = new();
+
     async Task SubmitCategory()
     {
         await CategoryLogic.AddCategoryAsync(NewCategory);
@@ -43,11 +74,13 @@
 
     async Task CategoriesAdding(int Id)
     {
-        ProductCategories.Add(CategoriesList.Where(x=>x.Id==Id).FirstOrDefault());
+        ProductCategories.Add(CategoriesList.Where(x => x.Id == Id).FirstOrDefault());
     }
+
     async Task SubmitNewProduct()
     {
         NewProduct.CategoryModels = ProductCategories;
         await ProductRepository.InsertProductAsync(NewProduct);
     }
+
 }

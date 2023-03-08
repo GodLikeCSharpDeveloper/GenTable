@@ -2,58 +2,90 @@
 @inject IOrderRepositoryServise OrderRepository
 @inject IUserRepositoryService UserRepository
 
-<div class="row">
+<div class="row cont">
     <div class="col">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[0], PropBool[0])'>#</button></th>
-                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBool[1])'>Date created</button></th>
-                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[2], PropBool[2])'>User's name</button></th>
-                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[3], PropBool[3])'>Is canceled?</button></th>
-                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[4], PropBool[4])'>Price</button></th>
-                    <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBool[5])'>List of products</button></th>
-                </tr>
+        <table class=" tableAddCss">
+            <thead class="brd">
+            <tr>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[0], PropBool[0])">User's name'</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[1], PropBool[1])">Address</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[2], PropBool[2])">Phone number</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[3], PropBool[3])">Email</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[4], PropBool[4])">Price</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[1], PropBool[5])">List of orders</button>
+                </th>
+            </tr>
             </thead>
-            <tbody>
-                @foreach (var user in UsersList)
-                {
-                    <tr>
-                        <th scope="row">@user.FirstName @user.LastName</th>
-                        <td>@user.Address</td>
-                        <td><button class="btn">@user.Phone</button></td>
-                        <td>@user.Email</td>
-                        <td>@user.Roles</td>
-                        <td>
-                            @foreach (var order in user.Orders)
+            <tbody >
+            @foreach (var user in UsersList)
+            {
+                <tr>
+                    <th scope="row">@user.FirstName @user.LastName</th>
+                    <td>@user.Address</td>
+                    <td>
+                        <button class="btn">@user.Phone</button>
+                    </td>
+                    <td >@user.Email</td>
+                    <td>@user.Roles</td>
+                    <td style="text-align: start;">
+
+                        <pre>
+                        @foreach (var order in user.Orders)
+                        {
+                            <a  href="">№@order.Id, @order.CreateOrderDate @Space</a>
+                            @foreach (var product in order.Products)
                             {
-                                <a href="">@order.Id, @order.CreateOrderDate </a>
-                                @foreach (var product in order.Products)
+                                if (product != order.Products.Last())
                                 {
-                                    <a href="">@product.Name, </a>
+                                    <a href="">@product.Name,</a>
                                 }
-                                <br/>
+                                else
+                                {
+                                    <a href="">@product.Name</a>
+                                }
                             }
-                        </td>
-                    </tr>
-                }
+
+                            <br/>
+                        }
+                    </pre>
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
     </div>
 </div>
+
 @code {
+    private string Space = " ";
+
     [Parameter]
     public List<OrderModel> AdminsUsersList { get; set; }
+
     public Dictionary<string, bool> PropsBools { get; set; }
-    public List<string> NamesForHtml { get; set; } = new List<string>
+
+    public List<string> NamesForHtml { get; set; } = new()
     {
-        "Id", "CreateOrderDate", "User.FirstName", "IsFullfilled", "FullPrice"
+        "User.FirstName", "Address", "Phone", "Email", "Roles"
     };
+
     [Parameter]
     public bool[] PropBool { get; set; } = new bool[OrderPropertyInfos.Count];
+
     void Change(string prop, bool propbool)
     {
-        int i = 0;
+        var i = 0;
         foreach (var item in OrderPropertyInfos)
         {
             if (item.Name == prop || "User." + typeof(Users).GetProperty("FirstName").Name == prop)
@@ -62,7 +94,7 @@
             }
             i++;
         }
-        IQueryable<Users> AllUsers = UsersList.AsQueryable();
+        var AllUsers = UsersList.AsQueryable();
         UsersList = AllUsers.OrderBy(prop, propbool).ToList();
     }
 
@@ -73,6 +105,7 @@
     public string CssClass { get; set; } = "nonvisible";
 
     public Users CurUsers;
+
     void changer(Users user)
     {
         if (CssClass == "nonvisible")

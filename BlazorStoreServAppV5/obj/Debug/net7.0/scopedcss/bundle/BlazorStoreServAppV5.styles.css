@@ -61,58 +61,71 @@
 img[b-6v7gdwkhox] {
     width: 100%;
 }
+/* _content/BlazorStoreServAppV5/Shared/AdminUIcomponents/AdminAddProd.razor.rz.scp.css */
+.cont[b-399f8ktukx] {
+    width: 99%;
+}
+.addPanel[b-399f8ktukx]  {
+    margin: 0 0 5px 0;
+}
+input[b-399f8ktukx] {
+    margin: 0 0 5px 0;
+}
+label[b-399f8ktukx] {
+    margin: 0 0 9px 0;
+}
+.checkboxes[b-399f8ktukx] {
+    margin: 0 0 0 0 !important;
+    border-width: 2px;
+    border-color: #a29894 !important;
+    border-style: solid;
+    padding: 5px 0 5px 5px;
+}
+.labelcheckbox[b-399f8ktukx] {
+    display: inline;
+}
+.checkboxstyle[b-399f8ktukx] {
+    padding: 0 0 0 0 !important;
+    border-radius: 5px
+}
+/* _content/BlazorStoreServAppV5/Shared/AdminUIcomponents/AdminOrders.razor.rz.scp.css */
+.component[b-ado76pleon] {
+    width: 98%;
+}
+.tableAddCss th[b-ado76pleon],td[b-ado76pleon],thead[b-ado76pleon],tr[b-ado76pleon],a[b-ado76pleon],button[b-ado76pleon] {
+    color: #a29894;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
 /* _content/BlazorStoreServAppV5/Shared/AdminUIcomponents/AdminPanel.razor.rz.scp.css */
-.btn-group button[b-ag3sa00bth] {
-    background-color: #04AA6D; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 50%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
+.groupbtn[b-ag3sa00bth] {
+    display: block;
+    background: none;
+    color: #a29894;
+    border-color: #a29894;
+    border-width: 1px;
+    padding: 5px 5px 5px 15px;
+    min-width: 100%;
+    box-sizing: border-box;
+    margin-top: 3px;
 }
 
-.btn-group button:not(:last-child)[b-ag3sa00bth] {
-    border-bottom: none; /* Prevent double borders */
+.Mygroup[b-ag3sa00bth] {
+    background-color: #15171e;
+    border: white;
+    border-width: 5px;
+    width: 95%;
+    height: 95%;
 }
 
-/* Add a background color on hover */
-.btn-group button:hover[b-ag3sa00bth] {
-    background-color: #3e8e41;
+.component[b-ag3sa00bth] {
+    margin: 10px 0 0 0;
 }
-
-.colorWhite[b-ag3sa00bth] {
-    background-color: white; /* Green background */
-    border: 1px solid black;
-    color: black;
-}
-
-.colorBlack[b-ag3sa00bth] {
-    background-color: black; /* Green background */
-    border: 1px solid green;
-    color: white;
-}
-
-.colorGreen[b-ag3sa00bth] {
-    background-color: green; /* Green background */
-    border: 1px solid black;
-    color: white;
-}
-
-#btn-group button[b-ag3sa00bth] {
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 100%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
-}
-
-#btn-group button:not(:last-child)[b-ag3sa00bth] {
-    border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-#btn-group button:hover[b-ag3sa00bth] {
-    background-color: #3e8e41;
+.btnClass[b-ag3sa00bth] {
+    margin: 10px 0 0 0;
 }
 /* _content/BlazorStoreServAppV5/Shared/AdminUIcomponents/AdminUserInfo.razor.rz.scp.css */
 .visible[b-gfovvwkq4p] {
@@ -125,6 +138,53 @@ img[b-6v7gdwkhox] {
     display: none;
     z-index: 2;
 }
+section[b-gfovvwkq4p] {
+    background-color: #15171e;
+    width: 98%;
+
+}
+
+.card-body[b-gfovvwkq4p] {
+    background-color: #15171e;
+}
+
+.list-group-item[b-gfovvwkq4p] {
+    background-color: #15171e;
+    color: #a29894
+}
+.myButton[b-gfovvwkq4p] {
+    color: #a29894;
+    background: none;
+    border: none;
+    
+}
+/* _content/BlazorStoreServAppV5/Shared/AdminUIcomponents/AdminUsers.razor.rz.scp.css */
+.tableAddCss th[b-uvt9ktqcw5], td[b-uvt9ktqcw5], thead[b-uvt9ktqcw5], tr[b-uvt9ktqcw5], a[b-uvt9ktqcw5], button[b-uvt9ktqcw5] {
+    color: #a29894;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    vertical-align: center;
+    text-align-all: center;
+    vert-align: middle;
+    alignment: center;
+}
+th[b-uvt9ktqcw5], td[b-uvt9ktqcw5] {
+    border-top: 1px;
+    border-style: solid;
+}
+.brd th[b-uvt9ktqcw5] {
+    border-top: none;
+}
+.cont[b-uvt9ktqcw5] {
+    width: 100%;
+}
+
+
 /* _content/BlazorStoreServAppV5/Shared/loginControl.razor.rz.scp.css */
 .btnNav[b-r8m62qrzgg] {
     color: white;

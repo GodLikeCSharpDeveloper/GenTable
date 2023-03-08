@@ -22,12 +22,11 @@
     <div class="col-4 col-lg-5 col-md-6 justify-content-end navheight d-flex toHide">
         <button class="btnNav toHide">Flex item</button>
         <button class="btnNav toHide">Flex item</button>
-        <button class="btnNav toHide">Flex item</button>
+        <a href="/AdminPanel"class="btnNav toHide">Admin Panel</a>
         <AuthorizeView>
             <NotAuthorized>
                 <a href="Identity/Account/Login" class="btnNav toHide">Login</a>
                 <a href="Identity/Account/Register" class="btnNav toHide">Register</a>
-
             </NotAuthorized>
             <Authorized>
                 <a href="/Account" unselectable="on" class="btnNav toHide">Hello, @context.User.Identity?.Name!</a>
@@ -56,7 +55,7 @@
             <Authorized>
                 <a href="/Account" unselectable="on" class=" formA">Hello, @context.User.Identity?.Name!</a>
                 <form class="form" method="post" action="/identity/account/logout">
-                    <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken" />
+                    <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken"/>
                     <button class=" " id="subm" type="submit">Logout</button>
                 </form>
             </Authorized>

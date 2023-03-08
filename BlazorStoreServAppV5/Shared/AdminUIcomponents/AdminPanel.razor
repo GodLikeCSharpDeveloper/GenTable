@@ -7,15 +7,15 @@
 @attribute [Authorize(Roles = "Admin")]
 <component type="typeof(MainLayout)" param-InitialState="@Id" render-mode="ServerPrerendered" />
 <div class="row g-0">
-    <div class="col-2 col-md-3 col-sm-12">
-        <div id="btn-group">
-            <button class="@ThemesLogic.CurrentTheme" @onclick="()=>OnDropdownChange(typeof(AdminOrders))">Select a value</button>
-            <button class="@ThemesLogic.CurrentTheme" @onclick="()=>OnDropdownChange(typeof(AdminUsers))">Rocket Lab</button>
-            <button class="@ThemesLogic.CurrentTheme" @onclick="()=>OnDropdownChange(typeof(AdminAddProd))">Select a value</button>
+    <div class="col-12 col-md-3 col-sm-12 col-lg-4 d-flex btnClass justify-content-center">
+        <div class="Mygroup">
+            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminOrders))">Select a value</button>
+            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminUsers))">Rocket Lab</button>
+            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminAddProd))">Select a value</button>
             @* <button class="@ThemesLogic.CurrentTheme" @onclick="()=>OnDropdownChange(typeof(UserOrders))">Rocket Lab</button>*@
         </div>
     </div>
-    <div class="col-10 col-md-8 col-sm-12 ">
+    <div class="col-12 col-md-9 col-sm-12 col-lg-8 component">
         <DynamicComponent Type="@SelectedType" />
     </div>
 </div>
@@ -26,32 +26,6 @@
 </div>
 
 @code {
-    private Dictionary<string, ComponentProps> componentProps = new()
-          {
-              {
-                  "AdminAddProd",
-                  new ComponentProps()
-                  {
-                      Props = new() {} 
-                  }
-              },
-              {
-                  "AdminUsers",
-                  new ComponentProps()
-                  {
-                      Props = new() {}
-                  }
-              },
-              {"AdminOrders",
-              new ComponentProps()
-              {
-                  Props = new() {}
-              }
-
-          }
-                    };
-
-
     [Parameter]
     public string Theme { get; set; }
     public Type? SelectedType { get; set; }

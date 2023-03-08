@@ -17,9 +17,9 @@
                         </div>
                         <div class="col-2 align-self-center">
                             <label>Full price:</label>
-                            
+
                             @FullPrices(order.orders.Products) USD
-                           </div>
+                        </div>
                         <div class="col-7 d-flex flex-row-reverse align-self-center">
                             <button class="expandButton bi-arrows-expand" @onclick="() => ShowOrHide(order)"></button>
                             <img class="align-self-center" src="qq"/>
@@ -95,7 +95,6 @@
                             <button class="expandButton bi-arrows-collapse" @onclick="() => ShowOrHide(order)"></button>
                             <img class="align-self-center" src="qq"/>
                         </div>
-
                     </div>
                 </div>
             }
