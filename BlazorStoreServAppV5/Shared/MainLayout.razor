@@ -13,15 +13,17 @@
 <PageTitle>GenericTableAppV5</PageTitle>
 
 <main style="overflow-x: hidden;">
-    <NavMenu />
+    <NavMenu/>
     <article class="" style="overflow-x: hidden;">
         @Body
     </article>
 </main>
+
 @code
 {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
+
     public static List<Users> UsersList { get; set; }
     public static List<ProductModel> ProductsList { get; set; }
     public static List<OrderModel> OrdersList { get; set; }
@@ -29,9 +31,14 @@
     public static Users? CurrentUser { get; set; }
     public static bool IsAuth { get; set; }
     public static List<ProductModel> CartList { get; set; } = new();
+
     [Parameter]
     public int Id { get; set; }
+
     public static List<PropertyInfo> OrderPropertyInfos { get; set; }
+    public bool[] ShowItems { get; set; } 
+    public Dictionary<OrderModel,bool> UserDictionary { get; set; } = new();
+    public List<WrapperForOrders> WrapperForOrdersList { get; set; } = new();
     protected override async Task OnInitializedAsync()
     {
         CategoriesList = await Category.GetAllCategoriesAsync();
@@ -43,11 +50,19 @@
         IsAuth = user.Identity.IsAuthenticated;
         FullOrderPrice();
         OrderPropertyInfos = typeof(OrderModel).GetProperties().ToList();
-      
+        if(CurrentUser!=null){
+        ShowItems = new bool[CurrentUser.Orders.Count];
+        foreach (var order in CurrentUser.Orders)
+        {
+            var wrap = new WrapperForOrders(order);
+            WrapperForOrdersList.Add(wrap);
+        }
+        }
     }
 
     public int FullPrice { get; set; } = 0;
-    int FullPrices(List<ProductModel> prods)
+
+    public int FullPrices(List<ProductModel> prods)
     {
         foreach (var order in prods)
         {
@@ -62,7 +77,6 @@
         {
             price.FullPrice = FullPrices(price.Products);
         }
-
     }
 
 }

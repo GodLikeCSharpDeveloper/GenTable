@@ -8,59 +8,79 @@
 @inject IThemeLogic ThemesLogic
 @inject NavigationManager NavManager
 
-<div class="row">
-    <div class="col">
-        <div class="d-flex bd-highlight flex-wrap NavBar">
-            <button class="MenuClass bi-triangle" @onclick="WidthChanger"></button>
-            <a href="/" class="align-content-center btnNav bi-house-fill"></a>
-            <a href="/Products" unselectable="on" class="btnNav">Flex item</a>
-            <button class="btnNav">smth for future</button>
-            <input type="text" size="25" class="NavInput" placeholder="Search...">
-            <div class="ms-auto" style=""></div>
-            <button class="btnNav toHide">Flex item</button>
-            <button class="btnNav toHide">Flex item</button>
-            <button class="btnNav toHide">Flex item</button>
-            <AuthorizeView>
-                <NotAuthorized>
-                    <a href="Identity/Account/Login" class="btnNav toHide">Login</a>
-                    <a href="Identity/Account/Register" class="btnNav toHide">Register</a>
-                    
-                </NotAuthorized>
-                <Authorized>
-                    <a href="/Account" unselectable="on" class="btnNav">Hello, @context.User.Identity?.Name!</a>
-                    <form class="formclass" method="post" action="/identity/account/logout">
-                        <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken"/>
-                        <button class="btnNav formbtn" id="subm" type="submit">Logout</button>
-                    </form>
-                </Authorized>
-                </AuthorizeView>
-        </div>
+<div class="row align-content-center justify-content-start align-items-center NavBar">
+    <div class="col-12 col-sm-12 col-lg-4 col-md-12 navheight d-flex  ">
+        <button class="MenuClass bi-triangle" @onclick="WidthChanger"></button>
+        <a href="/" class="btnNav bi-house-fill"></a>
+        <a href="/Products" unselectable="on" class="btnNav">All products</a>
+        <button class="btnNav">smth for future</button>
     </div>
-    <div class="sidepanel" style=" width:@SidePanelWidth">
-        <button class="">Flex item</button>
-        <button class="">Flex item</button>
-        <button class="">Flex item</button>
-        <button class="">Third flex item</button>
-        <button class="">Third flex item</button>
+    <div class="col-3 col-sm-12 col-md-12 col-lg-3 d-flex justify-content-start toHide">
+        <input type="text" size="25" class="NavInput" placeholder="Search...">
+        <button class="btnNav NavInputButton toHide bi-search"></button>
+    </div>
+    <div class="col-4 col-lg-5 col-md-6 justify-content-end navheight d-flex toHide">
+        <button class="btnNav toHide">Flex item</button>
+        <button class="btnNav toHide">Flex item</button>
+        <button class="btnNav toHide">Flex item</button>
+        <AuthorizeView>
+            <NotAuthorized>
+                <a href="Identity/Account/Login" class="btnNav toHide">Login</a>
+                <a href="Identity/Account/Register" class="btnNav toHide">Register</a>
+
+            </NotAuthorized>
+            <Authorized>
+                <a href="/Account" unselectable="on" class="btnNav toHide">Hello, @context.User.Identity?.Name!</a>
+                <form class="formclass toHide" method="post" action="/identity/account/logout">
+                    <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken"/>
+                    <button class="btnNav formbtn" id="subm" type="submit">Logout</button>
+                </form>
+            </Authorized>
+        </AuthorizeView>
+    </div>
+
+    <div class="sidepanel @SidePanelWidth">
+        <input type="text" size="15" class="sp sidepanelSearch " placeholder="Search...">
+        <button class="sp">Flex item</button>
+        <button class="sp">Flex item</button>
+        <button class="sp">Flex item</button>
+        <button class="sp">Third flex item</button>
+        <button class="sp">Third flex item</button>
         <button class="closebtn" @onclick="WidthChanger">×</button>
+        <AuthorizeView>
+            <NotAuthorized>
+                <a href="Identity/Account/Login" class="btnNav">Login</a>
+                <a href="Identity/Account/Register" class="btnNav">Register</a>
+
+            </NotAuthorized>
+            <Authorized>
+                <a href="/Account" unselectable="on" class=" formA">Hello, @context.User.Identity?.Name!</a>
+                <form class="form" method="post" action="/identity/account/logout">
+                    <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken" />
+                    <button class=" " id="subm" type="submit">Logout</button>
+                </form>
+            </Authorized>
+        </AuthorizeView>
     </div>
 </div>
 
 @code {
-    public string SidePanelWidth { get; set; } = "0%";
+    public string SidePanelWidth { get; set; } = "Hide";
 
     void WidthChanger()
     {
-        if (SidePanelWidth == "25%")
-            SidePanelWidth = "0%";
+        if (SidePanelWidth == "Show")
+            SidePanelWidth = "Hide";
         else
-            SidePanelWidth = "25%";
+            SidePanelWidth = "Show";
     }
+
 }
 
 @code {
     public static List<Users> UsersList { get; set; }
     public List<ThemeModel> ThemeModels { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         if (UsersList == null)
@@ -78,7 +98,7 @@
     public void ChangeTheme(string currentTheme)
     {
         ThemesLogic.CurrentTheme = currentTheme;
-        NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
+        NavManager.NavigateTo(NavManager.Uri, true);
     }
 
 }

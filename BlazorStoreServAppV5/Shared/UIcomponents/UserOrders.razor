@@ -1,100 +1,116 @@
-﻿@inherits MainLayout
+﻿@using BlazorAnimate
+@inherits MainLayout
 
 
-<div class="card" style="border-radius: 10px;">
-    <div class="card-header px-4 py-5">
-        <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">@CurrentUser.FirstName</span>!</h5>
-    </div>
-    <div class="card-body p-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <p class="lead fw-normal mb-0" style="color: #a8729a;">Receipts</p>
-        </div>
-        <div class="card shadow-0 border mb-4">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                        <p class="text-muted mb-0">Order ID</p>
+<div class="container-fluid">
+    <Animate Animation="new FlipDownAnimation()" Duration="TimeSpan.FromSeconds(0.5)">
+        @foreach (var order in WrapperForOrdersList)
+        {
+            @if (!order.OrderBool)
+            {
+                <div class="cont ">
+                    <div class="row">
+                        <div class="col-3 ">
+                            № @order.orders.Id
+                            <br/>
+                            from @order.orders.CreateOrderDate
+                        </div>
+                        <div class="col-2 align-self-center">
+                            <label>Full price:</label>
+                            
+                            @FullPrices(order.orders.Products) USD
+                           </div>
+                        <div class="col-7 d-flex flex-row-reverse align-self-center">
+                            <button class="expandButton bi-arrows-expand" @onclick="() => ShowOrHide(order)"></button>
+                            <img class="align-self-center" src="qq"/>
+                        </div>
                     </div>
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                        <p class="text-muted mb-0 small">Order price</p>
-                    </div>
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                        <p class="text-muted mb-0 small">Open order date</p>
-                    </div>
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                        <p class="text-muted mb-0 small">Close order date</p>
-                    </div>
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                        <p class="text-muted mb-0 small">Open order</p>
-                    </div>
-
                 </div>
-                @foreach (var order in CurrentUser.Orders)
-                {
+            }
+            else
+            {
+                <div class="cont">
                     <div class="row">
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                            <p class="text-muted mb-0">@order.Id</p>
+                        <div class="col-3 ">
+                            Order information:
+                            <br/>
+                            <label>Order Id №</label>
+                            @order.orders.Id
+                            <br/>
+                            <label>Create order date:</label>
+                            @order.orders.CreateOrderDate
+                            <br/>
+
+                            <label>Full name:</label>
+                            @order.orders.User.FirstName @order.orders.User.LastName
+                            <br/>
+                            <label>Email:</label>
+                            @order.orders.User.Email
+                            <br/>
+
+                            @order.orders.User.Address
                         </div>
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                            <p class="text-muted mb-0 small">@order.FullPrice</p>
+                        <div class="col-8">
+                            <table class="allinform ">
+                                @foreach (var product in order.orders.Products)
+                                {
+                                    <tr class="justify-content-center align-content-center">
+                                        <th>
+
+                                        </th>
+                                        <th>
+                                            Products
+                                        </th>
+                                        <th>
+                                            Price
+                                        </th>
+                                        <th>
+                                            Quantity
+                                        </th>
+                                        <th>
+                                            Sum
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="a"/>
+                                        </td>
+                                        <td>
+                                            @product.Name
+                                        </td>
+                                        <td>
+                                            @product.Price USD
+                                        </td>
+                                        <td>
+                                            Add logic for quantity
+                                        </td>
+                                        <td>
+                                            will be logic for price*quantity
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
                         </div>
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                            <p class="text-muted mb-0 small">@order.CloseOrderDate</p>
-                        </div>
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                            <p class="text-muted mb-0 small">@order.CreateOrderDate</p>
-                        </div>
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                            <p class="text-muted mb-0 small">@order.IsCanceled</p>
-                        </div>
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                            <button class="text-muted mb-0 small" @onclick="()=>OpenAllProducts(order.CssBool)">DO SMTH COOL</button>
+                        <div class="col-1 d-flex flex-row-reverse align-self-center">
+                            <button class="expandButton bi-arrows-collapse" @onclick="() => ShowOrHide(order)"></button>
+                            <img class="align-self-center" src="qq"/>
                         </div>
 
                     </div>
-                    <div class="row">
-                    @if (order.CssBool)
-                    {
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item">Name</li>
-                            <li class="list-group-item">Category</li>
-                            <li class="list-group-item">Price</li>
-                            <li class="list-group-item">IsCashback</li>
-                        </ul>
-                        @foreach (var products in order.Products)
-                        {
-                            <ul class="list-group list-group-horizontal">
-                                <li class="list-group-item">@products.Name</li>
-                                <li class="list-group-item"></li>
-                                <li class="list-group-item">@products.Price</li>
-                                <li class="list-group-item">@products.IsCashback</li>
-                            </ul>
-                        }
-                    <div class="card-footer">
-                        Card footer
-                    </div>
-                    
-                    }
-                    </div>
-                }
-
-            </div>
-        </div>
-    </div>
+                </div>
+            }
+        }
+    </Animate>
 </div>
 
-
 @code {
+    public OrderModel[] orders { get; set; } = new OrderModel[CurrentUser.Orders.Count];
 
-    public bool OpenAllProducts(bool toChange)
+    void ShowOrHide(WrapperForOrders wrapper)
     {
-        toChange = !toChange;
-        return toChange;
+        wrapper.OrderBool = !wrapper.OrderBool;
     }
-    //protected override void OnInitialized()
-    //{
 
-     
-    //}
-   
+
+
 }

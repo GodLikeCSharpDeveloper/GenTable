@@ -1,24 +1,4 @@
 
-.btn-group button[b-d1f1hcs2ow]
-
-{
-    background-color: #04AA6D; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 50%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child)[b-d1f1hcs2ow] {
-    border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover[b-d1f1hcs2ow] {
-    background-color: #3e8e41;
-}
 .colorWhite[b-d1f1hcs2ow] {
     background-color: white; /* Green background */
     border: 1px solid black;
@@ -34,19 +14,28 @@
     border: 1px solid black;
     color: white;
 }
-#btn-group button[b-d1f1hcs2ow] {
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 100%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
+.groupbtn[b-d1f1hcs2ow] {
+    display: block;
+    background: none;
+    color: #a29894;
+    border-color: #a29894;
+    border-width: 1px;
+    padding: 5px 5px 5px 15px;
+    min-width: 100%;
+    box-sizing: border-box;
+    margin-top: 3px;
+    
+}
+.Mygroup[b-d1f1hcs2ow] {
+    background-color: #15171e;
+    
+    border: white;
+    border-width:5px;
+    width: 95%;
+    height: 95%;
+}
+.component[b-d1f1hcs2ow] {
+    margin: 10px 0 0 0;
 }
 
-#btn-group button:not(:last-child)[b-d1f1hcs2ow] {
-    border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-#btn-group button:hover[b-d1f1hcs2ow] {
-    background-color: #3e8e41;
-}
 

@@ -20,16 +20,20 @@
 
 .CheckboxListStyle[b-6v7gdwkhox] {
     margin-bottom: 5px;
+    color: #a29894;
+    background-color: #15171e;
+    border-color: #a29894;
 }
 
 .srchbutton[b-6v7gdwkhox] {
     background-color: #061e36;
     border-color: #061e36;
-    color: white;
+    color: #a29894;
     margin-top: 5px;
 }
 .srch[b-6v7gdwkhox] {
     margin-top: 5px;
+    
 }
 @include media-breakpoint-down(md) {
     .hided[b-6v7gdwkhox] {
@@ -38,7 +42,7 @@
 }
 .CardList[b-6v7gdwkhox] {
     margin: 0 0 0 0;
-    padding: 5px 0px 0 12px;
+    padding: 5px 6px 0px 6px;
     color: black;
     
 }
@@ -243,28 +247,41 @@ input[type="text"]:focus[b-pkt278h1wn], input[type="password"]:focus[b-pkt278h1w
 /* _content/BlazorStoreServAppV5/Shared/NavMenu.razor.rz.scp.css */
 .NavBar[b-mbrop61ily] {
     background: #061e36;
-    justify-content: center;
-    justify-items: center;
     color: white;
     min-height: 50px;
-}
-.formbtn[b-mbrop61ily] {
-    min-height: 100%;
-}
+    
+   }
+
+.formbtn[b-mbrop61ily] { min-height: 50px; }
+
 .btnNav[b-mbrop61ily] {
     color: white;
     background: none;
     margin: 0 0px 0 0;
-    padding: 0px 5px 0px 5px;
+    padding: 0 5px 0 5px;
     border: none;
+    height: 100%;
+    
+}
+.formA[b-mbrop61ily]{
+    justify-self: start !important;
+    align-self: start !important;
 }
 a.btnNav[b-mbrop61ily] {
     background: none;
-    top: 50%;
+    height: 100%;
     text-decoration: none;
-    padding-top: 13px;
+    text-align: center;
+    text-align-all: center;
+    justify-self: center;
+    padding: 13px 5px 0 0;
+    
 }
-
+.navheight[b-mbrop61ily] {
+    height: 50px;
+    align-items: center;
+   
+}
 button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
     background: fixed;
     background-color: white;
@@ -275,18 +292,38 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
 .NavInput[b-mbrop61ily] {
     background-color: white;
     border-color: black;
-    display: block;
+    display: inline;
     min-height: 35px;
     align-self: center;
+    border-radius: 5px;
+    padding: 0 0 0 5px;
+    margin: 0 0 0 0;
 }
 
-.NavInput:focus-visible[b-mbrop61ily] {
-    outline: 0;
+.NavInputButton[b-mbrop61ily] {
+    padding: 0 0 0 0 !important;
+    margin: 0 0 0 0 !important;
+    min-height: 35px;
 }
+
+.NavInputButton:hover[b-mbrop61ily] {
+    padding: 0 0 0 0 !important;
+    margin: 0 0 0 0 !important;
+    background: none;
+    color: white;
+}
+
+.NavInputButton:active[b-mbrop61ily] {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+}
+
+.NavInput:focus-visible[b-mbrop61ily] { outline: 0; }
 
 .MenuClass[b-mbrop61ily] {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+    
     border: none;
     display: none;
     background: none;
@@ -296,18 +333,30 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
 .RightSide[b-mbrop61ily] {
     visibility: hidden;
     margin: 0 0 0 0;
-    display: block;
+    display: flow;
 }
 
-@media screen and (max-width: 920px) {
-    .toHide[b-mbrop61ily] {
-        display: none;
-    }
+@media screen and (max-width: 992px) {
+    .toHide[b-mbrop61ily] { display: none !important; }
 
-    .MenuClass[b-mbrop61ily] {
-        display: block;
-    }
+    .Show[b-mbrop61ily] { width: 25%; }
+
+    .MenuClass[b-mbrop61ily] { display: inline; }
 }
+
+@media screen and (max-width: 2000px) { 
+    .Show[b-mbrop61ily] { width: 25%; } 
+}
+
+@media screen and (max-width: 600px) {
+    .Show[b-mbrop61ily] { width: 50%; }
+}
+
+@media screen and (max-width: 400px) {
+    .Show[b-mbrop61ily] { width: 100%; }
+}
+
+.Hide[b-mbrop61ily] { width: 0%; }
 
 .sidepanel[b-mbrop61ily] {
     position: fixed;
@@ -321,19 +370,30 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
     padding: 60px 0 0 0;
 }
 
-    .sidepanel button[b-mbrop61ily] {
-        padding: 5px 0 0 0;
-        margin: 0 0 0 0;
-        background: none;
-        border: none;
-        width: 100%;
-        text-align: start;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-        transition: 0.5s;
-    }
+.sidepanel *[b-mbrop61ily] { padding: 5px 5px 0px 5px; }
+
+.sidepanel input[b-mbrop61ily], a[b-mbrop61ily] {
+    margin-left: 5px;
+    padding: 0 0 0 5px;
+}
+
+.form[b-mbrop61ily] {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.sidepanel *[b-mbrop61ily] {
+    margin: 0 0 0 0;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: start;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.5s;
+}
 
 .sidepanel button:hover[b-mbrop61ily] {
     color: #111;
@@ -351,14 +411,25 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
 .openbtn[b-mbrop61ily] {
     font-size: 20px;
     cursor: pointer;
-    background:none;
+    background: none;
     color: white;
     padding: 10px 15px;
     border: none;
 }
 
-.openbtn:hover[b-mbrop61ily] {
-    background-color: #444;
+.openbtn:hover[b-mbrop61ily] { background-color: #444; }
+
+.sidepanelSearch[b-mbrop61ily] {
+    border: none;
+    border-radius: 2px;
+    background: none;
+    outline-color: #a29894;
+    color: #a29894;
+}
+
+.sidepanelSearch:focus[b-mbrop61ily] {
+    outline: solid;
+    outline-width: 1px;
 }
 /* _content/BlazorStoreServAppV5/Shared/NewFolder/NavMenu2.razor.rz.scp.css */
 .NavBar[b-t3kf0m5lsm] {
@@ -468,28 +539,49 @@ button:hover[b-t3kf0m5lsm] {
     .openbtn:hover[b-t3kf0m5lsm] {
         background-color: #444;
     }
+/* _content/BlazorStoreServAppV5/Shared/UIcomponents/UserInfo.razor.rz.scp.css */
+section[b-r9wsae5wdp] {
+    background-color: #15171e;
+}
+.card-body[b-r9wsae5wdp] {
+    background-color: #15171e;
+}
+.list-group-item[b-r9wsae5wdp]{
+    background-color: #15171e;
+    color:#a29894
+}
+/* _content/BlazorStoreServAppV5/Shared/UIcomponents/UserOrders.razor.rz.scp.css */
+.card[b-rjec8hp5zi] {
+    background-color: #15171e;
+}
+.cont[b-rjec8hp5zi] {
+    border-color: white;
+    border-width: 1px !important;
+    border: solid;
+    width: 98%;
+    margin: 0 0 10px 10px;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    transition: all 1s ease-out;
+}
+.expandButton[b-rjec8hp5zi] {
+    color: white;
+    background: none;
+    border: none;
+    height: 100%;
+}
+.allinform[b-rjec8hp5zi] {
+    color: #a29894;
+    padding: 0px 5px 0px 5px;
+    text-align-all: center;
+}
+th[b-rjec8hp5zi],td[b-rjec8hp5zi] {
+    text-align: center;
+    padding: 0px 5px 0px 5px;
+}
+
 /* _content/BlazorStoreServAppV5/Shared/UIcomponents/UserProfile.razor.rz.scp.css */
 
-.btn-group button[b-d1f1hcs2ow]
-
-{
-    background-color: #04AA6D; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 50%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child)[b-d1f1hcs2ow] {
-    border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover[b-d1f1hcs2ow] {
-    background-color: #3e8e41;
-}
 .colorWhite[b-d1f1hcs2ow] {
     background-color: white; /* Green background */
     border: 1px solid black;
@@ -505,19 +597,28 @@ button:hover[b-t3kf0m5lsm] {
     border: 1px solid black;
     color: white;
 }
-#btn-group button[b-d1f1hcs2ow] {
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 100%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
+.groupbtn[b-d1f1hcs2ow] {
+    display: block;
+    background: none;
+    color: #a29894;
+    border-color: #a29894;
+    border-width: 1px;
+    padding: 5px 5px 5px 15px;
+    min-width: 100%;
+    box-sizing: border-box;
+    margin-top: 3px;
+    
+}
+.Mygroup[b-d1f1hcs2ow] {
+    background-color: #15171e;
+    
+    border: white;
+    border-width:5px;
+    width: 95%;
+    height: 95%;
+}
+.component[b-d1f1hcs2ow] {
+    margin: 10px 0 0 0;
 }
 
-#btn-group button:not(:last-child)[b-d1f1hcs2ow] {
-    border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-#btn-group button:hover[b-d1f1hcs2ow] {
-    background-color: #3e8e41;
-}
 

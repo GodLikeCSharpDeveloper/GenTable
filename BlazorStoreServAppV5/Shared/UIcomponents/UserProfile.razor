@@ -5,15 +5,16 @@
 @inject IThemeLogic ThemesLogic
 <component type="typeof(MainLayout)" param-InitialState="@Id" render-mode="ServerPrerendered" />
 <div class="row g-0">
-    <div class="col-2 col-md-3 col-sm-12">
-        <div id="btn-group">
-            <button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserInfo))">Select a value</button>
-            <button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserOrders))">Rocket Lab</button>
-            @*<button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserInfo))">Select a value</button>
+    <div class="col-12 col-md-3 col-sm-12 col-lg-4 d-flex align-items-center justify-content-center ">
+        <div class="Mygroup">
+        <label>Navigation panel</label>
+        <button class="groupbtn" @onclick="e => OnDropdownChange(typeof(UserInfo))">Select a value</button>
+        <button class="groupbtn" @onclick="e => OnDropdownChange(typeof(UserOrders))">Rocket Lab</button>
+        @*<button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserInfo))">Select a value</button>
             <button class="@ThemesLogic.CurrentTheme" @onclick="e=>OnDropdownChange(typeof(UserOrders))">Rocket Lab</button>*@
         </div>
     </div>
-    <div class="col-10 col-md-8 col-sm-12 ">
+    <div class="col-12 col-md-9 col-sm-12 col-lg-8 component">
         <DynamicComponent Type="@SelectedType" />
     </div>
 </div>

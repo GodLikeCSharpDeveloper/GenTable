@@ -1,0 +1,29 @@
+﻿.card {
+    background-color: #15171e;
+}
+.cont {
+    border-color: white;
+    border-width: 1px !important;
+    border: solid;
+    width: 98%;
+    margin: 0 0 10px 10px;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    transition: all 1s ease-out;
+}
+.expandButton {
+    color: white;
+    background: none;
+    border: none;
+    height: 100%;
+}
+.allinform {
+    color: #a29894;
+    padding: 0px 5px 0px 5px;
+    text-align-all: center;
+}
+th,td {
+    text-align: center;
+    padding: 0px 5px 0px 5px;
+}
+

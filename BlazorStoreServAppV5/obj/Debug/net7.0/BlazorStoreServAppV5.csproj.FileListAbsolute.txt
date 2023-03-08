@@ -172,3 +172,6 @@ C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\ne
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Areas\Identity\Pages\Account\Register.cshtml.rz.scp.css
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\loginControl.razor.rz.scp.css
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\NewFolder\NavMenu2.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\UserInfo.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\UserOrders.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\bin\Debug\net7.0\BlazorAnimate.dll

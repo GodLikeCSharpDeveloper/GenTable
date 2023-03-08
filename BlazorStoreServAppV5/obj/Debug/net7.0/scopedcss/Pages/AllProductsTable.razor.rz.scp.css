@@ -11,16 +11,20 @@
 
 .CheckboxListStyle[b-6v7gdwkhox] {
     margin-bottom: 5px;
+    color: #a29894;
+    background-color: #15171e;
+    border-color: #a29894;
 }
 
 .srchbutton[b-6v7gdwkhox] {
     background-color: #061e36;
     border-color: #061e36;
-    color: white;
+    color: #a29894;
     margin-top: 5px;
 }
 .srch[b-6v7gdwkhox] {
     margin-top: 5px;
+    
 }
 @include media-breakpoint-down(md) {
     .hided[b-6v7gdwkhox] {
@@ -29,7 +33,7 @@
 }
 .CardList[b-6v7gdwkhox] {
     margin: 0 0 0 0;
-    padding: 5px 0px 0 12px;
+    padding: 5px 6px 0px 6px;
     color: black;
     
 }

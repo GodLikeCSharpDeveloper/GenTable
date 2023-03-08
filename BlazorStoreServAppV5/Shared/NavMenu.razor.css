@@ -1,27 +1,40 @@
 .NavBar {
     background: #061e36;
-    justify-content: center;
-    justify-items: center;
     color: white;
     min-height: 50px;
-}
-.formbtn {
-    min-height: 100%;
-}
+    
+   }
+
+.formbtn { min-height: 50px; }
+
 .btnNav {
     color: white;
     background: none;
     margin: 0 0px 0 0;
-    padding: 0px 5px 0px 5px;
+    padding: 0 5px 0 5px;
     border: none;
+    height: 100%;
+    
+}
+.formA{
+    justify-self: start !important;
+    align-self: start !important;
 }
 a.btnNav {
     background: none;
-    top: 50%;
+    height: 100%;
     text-decoration: none;
-    padding-top: 13px;
+    text-align: center;
+    text-align-all: center;
+    justify-self: center;
+    padding: 13px 5px 0 0;
+    
 }
-
+.navheight {
+    height: 50px;
+    align-items: center;
+   
+}
 button:hover, a:hover {
     background: fixed;
     background-color: white;
@@ -32,18 +45,38 @@ button:hover, a:hover {
 .NavInput {
     background-color: white;
     border-color: black;
-    display: block;
+    display: inline;
     min-height: 35px;
     align-self: center;
+    border-radius: 5px;
+    padding: 0 0 0 5px;
+    margin: 0 0 0 0;
 }
 
-.NavInput:focus-visible {
-    outline: 0;
+.NavInputButton {
+    padding: 0 0 0 0 !important;
+    margin: 0 0 0 0 !important;
+    min-height: 35px;
 }
+
+.NavInputButton:hover {
+    padding: 0 0 0 0 !important;
+    margin: 0 0 0 0 !important;
+    background: none;
+    color: white;
+}
+
+.NavInputButton:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+}
+
+.NavInput:focus-visible { outline: 0; }
 
 .MenuClass {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+    
     border: none;
     display: none;
     background: none;
@@ -53,18 +86,30 @@ button:hover, a:hover {
 .RightSide {
     visibility: hidden;
     margin: 0 0 0 0;
-    display: block;
+    display: flow;
 }
 
-@media screen and (max-width: 920px) {
-    .toHide {
-        display: none;
-    }
+@media screen and (max-width: 992px) {
+    .toHide { display: none !important; }
 
-    .MenuClass {
-        display: block;
-    }
+    .Show { width: 25%; }
+
+    .MenuClass { display: inline; }
 }
+
+@media screen and (max-width: 2000px) { 
+    .Show { width: 25%; } 
+}
+
+@media screen and (max-width: 600px) {
+    .Show { width: 50%; }
+}
+
+@media screen and (max-width: 400px) {
+    .Show { width: 100%; }
+}
+
+.Hide { width: 0%; }
 
 .sidepanel {
     position: fixed;
@@ -78,19 +123,30 @@ button:hover, a:hover {
     padding: 60px 0 0 0;
 }
 
-    .sidepanel button {
-        padding: 5px 0 0 0;
-        margin: 0 0 0 0;
-        background: none;
-        border: none;
-        width: 100%;
-        text-align: start;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-        transition: 0.5s;
-    }
+.sidepanel * { padding: 5px 5px 0px 5px; }
+
+.sidepanel input, a {
+    margin-left: 5px;
+    padding: 0 0 0 5px;
+}
+
+.form {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.sidepanel * {
+    margin: 0 0 0 0;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: start;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.5s;
+}
 
 .sidepanel button:hover {
     color: #111;
@@ -108,12 +164,23 @@ button:hover, a:hover {
 .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background:none;
+    background: none;
     color: white;
     padding: 10px 15px;
     border: none;
 }
 
-.openbtn:hover {
-    background-color: #444;
+.openbtn:hover { background-color: #444; }
+
+.sidepanelSearch {
+    border: none;
+    border-radius: 2px;
+    background: none;
+    outline-color: #a29894;
+    color: #a29894;
+}
+
+.sidepanelSearch:focus {
+    outline: solid;
+    outline-width: 1px;
 }
