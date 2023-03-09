@@ -8,22 +8,22 @@
             <thead class="brd">
             <tr>
                 <th scope="col">
-                    <button class="btn" @onclick="() => Change(NamesForHtml[0], PropBool[0])">User's name'</button>
+                    <button class="btn" @onclick="() => Change(NamesForHtml[0])">User's name'</button>
                 </th>
                 <th scope="col">
-                    <button class="btn" @onclick="() => Change(NamesForHtml[1], PropBool[1])">Address</button>
+                    <button class="btn" @onclick="() => Change(NamesForHtml[1])">Address</button>
                 </th>
                 <th scope="col">
-                    <button class="btn" @onclick="() => Change(NamesForHtml[2], PropBool[2])">Phone number</button>
+                    <button class="btn" @onclick="() => Change(NamesForHtml[2])">Phone number</button>
                 </th>
                 <th scope="col">
-                    <button class="btn" @onclick="() => Change(NamesForHtml[3], PropBool[3])">Email</button>
+                    <button class="btn" @onclick="() => Change(NamesForHtml[3])">Email</button>
                 </th>
                 <th scope="col">
-                    <button class="btn" @onclick="() => Change(NamesForHtml[4], PropBool[4])">Price</button>
+                    <button class="btn" @onclick="() => Change(NamesForHtml[4])">Price</button>
                 </th>
                 <th scope="col">
-                    <button class="btn" @onclick="() => Change(NamesForHtml[1], PropBool[5])">List of orders</button>
+                    <button class="btn" @onclick="() => Change(NamesForHtml[1])">List of orders</button>
                 </th>
             </tr>
             </thead>
@@ -55,7 +55,6 @@
                                     <a href="">@product.Name</a>
                                 }
                             }
-
                             <br/>
                         }
                     </pre>
@@ -72,30 +71,24 @@
 
     [Parameter]
     public List<OrderModel> AdminsUsersList { get; set; }
-
-    public Dictionary<string, bool> PropsBools { get; set; }
-
     public List<string> NamesForHtml { get; set; } = new()
     {
-        "User.FirstName", "Address", "Phone", "Email", "Roles"
+        "FirstName", "Address", "Phone", "Email", "Roles"
     };
 
     [Parameter]
-    public bool[] PropBool { get; set; } = new bool[OrderPropertyInfos.Count];
+    public bool[] PropBool { get; set; } = new bool[UsersPropertyInfos.Count];
 
-    void Change(string prop, bool propbool)
+    void Change(string prop)
     {
-        var i = 0;
-        foreach (var item in OrderPropertyInfos)
+        IQueryable<Users> AllUsers = UsersList.AsQueryable();
+        if (UsersList.SequenceEqual(AllUsers.OrderBy(prop, true).ToList()))
         {
-            if (item.Name == prop || "User." + typeof(Users).GetProperty("FirstName").Name == prop)
-            {
-                PropBool[i] = !PropBool[i];
-            }
-            i++;
+            UsersList = AllUsers.OrderBy(prop, false).ToList();
         }
-        var AllUsers = UsersList.AsQueryable();
-        UsersList = AllUsers.OrderBy(prop, propbool).ToList();
+        else
+            UsersList = AllUsers.OrderBy(prop, true).ToList();
+
     }
 
     [Parameter]

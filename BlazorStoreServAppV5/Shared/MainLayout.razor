@@ -36,9 +36,11 @@
     public int Id { get; set; }
 
     public static List<PropertyInfo> OrderPropertyInfos { get; set; }
+    public static List<PropertyInfo> UsersPropertyInfos { get; set; }
     public bool[] ShowItems { get; set; } 
     public Dictionary<OrderModel,bool> UserDictionary { get; set; } = new();
-    public List<WrapperForOrders> WrapperForOrdersList { get; set; } = new();
+    public List<Wrapper<OrderModel>> WrapperForOrdersList { get; set; } = new();
+    public List<Wrapper<Users>> WrapperForUsersList { get; set; } = new();
     protected override async Task OnInitializedAsync()
     {
         CategoriesList = await Category.GetAllCategoriesAsync();
@@ -50,13 +52,19 @@
         IsAuth = user.Identity.IsAuthenticated;
         FullOrderPrice();
         OrderPropertyInfos = typeof(OrderModel).GetProperties().ToList();
+        UsersPropertyInfos = typeof(Users).GetProperties().ToList();
         if(CurrentUser!=null){
         ShowItems = new bool[CurrentUser.Orders.Count];
         foreach (var order in CurrentUser.Orders)
         {
-            var wrap = new WrapperForOrders(order);
+            var wrap = new Wrapper<OrderModel>(order);
             WrapperForOrdersList.Add(wrap);
         }
+        }
+        foreach (var _user in UsersList)
+        {
+            var wrap = new Wrapper<Users>(_user);
+            WrapperForUsersList.Add(wrap);
         }
     }
 

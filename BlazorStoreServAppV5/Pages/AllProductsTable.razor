@@ -80,7 +80,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Products = ProductsList;
+        foreach (var item in ProductsList)
+        {
+            ProductModel prod = new Clone(item).getProds();
+            Products.Add(prod);
+        }
+       
     }
 
     #region "SearchLogic"
@@ -128,6 +133,8 @@
 
     protected void Searcher(string value)
     {
+        if (Products.Count < ProductsList.Count && CatIds.Count == 0)
+            Products = ProductsList.ToList();
         Prods = Products;
 
         if (!string.IsNullOrEmpty(value))
@@ -148,9 +155,9 @@
         {
             if (Prods == null)
                 Prods = ProductsList;
-            if (Products.Count == 0 || Products.Count > ProductsList.Count || Products == null)
+            if (Products.Count == 0 || Products.Count > ProductsList.Count || Products == null || CatIds.Count==0)
             {
-                Products = ProductsList;
+                Products = ProductsList.ToList();
             }
             else
             {

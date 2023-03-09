@@ -7,6 +7,8 @@
 @inject TokenProvider _TokenProvider
 @inject IThemeLogic ThemesLogic
 @inject NavigationManager NavManager
+@inject HttpClient http
+@inherits MainLayout
 
 <div class="row align-content-center justify-content-start align-items-center NavBar">
     <div class="col-12 col-sm-12 col-lg-4 col-md-12 navheight d-flex  ">
@@ -15,8 +17,26 @@
         <a href="/Products" unselectable="on" class="btnNav">All products</a>
         <button class="btnNav">smth for future</button>
     </div>
-    <div class="col-3 col-sm-12 col-md-12 col-lg-3 d-flex justify-content-start toHide">
-        <input type="text" size="25" class="NavInput" placeholder="Search...">
+    <div class="col-3 col-sm-12 col-md-12 col-lg-3 d-flex justify-content-start toHide autocomplete">
+        <input type="text" size="25" class="NavInput" placeholder="Search..." @bind=selectedProductName @oninput=HandleInput>
+        @if (products is not null)
+        {
+            <ul class="options">
+                @if (products.Any())
+                {
+                    @foreach (var customer in products)
+                    {
+                        <li class="option" @onclick=@(_ => SelectCustomer(customer.Id.ToString()))>
+                            <span class="option-text">@customer.Name</span>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="disabled option">No results</li>
+                }
+            </ul>
+        }
         <button class="btnNav NavInputButton toHide bi-search"></button>
     </div>
     <div class="col-4 col-lg-5 col-md-6 justify-content-end navheight d-flex toHide">
@@ -77,6 +97,31 @@
 }
 
 @code {
+    List<ProductModel>? products;
+    string? selectedProductId;
+    string? selectedProductName;
+    string? filter;
+ 
+    async Task HandleInput(ChangeEventArgs e)
+    {
+        filter = e.Value?.ToString();
+        if (filter?.Length > 2)
+        {
+            products = ProductsList.Where(x => x.Name.ToLower().Contains(filter.ToLower())).ToList();
+        }
+        else
+        {
+            products = null;
+            selectedProductName = selectedProductId = null;
+        }
+    }
+ 
+    void SelectCustomer(string id)
+    {
+        selectedProductId = id;
+        selectedProductName = products!.First(c => c.Id.Equals(selectedProductId)).Name;
+        products = null;
+    }
     public static List<Users> UsersList { get; set; }
     public List<ThemeModel> ThemeModels { get; set; }
 
@@ -87,6 +132,7 @@
             UsersList = await UserRepository.GetAllUsersAsync();
         }
         ThemeModels = ThemesLogic.InitializeThemes();
+        
     }
 
 

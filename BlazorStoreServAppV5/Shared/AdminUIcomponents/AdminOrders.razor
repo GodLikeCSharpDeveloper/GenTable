@@ -8,12 +8,24 @@
         <table class="table tableAddCss">
             <thead>
             <tr>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[0], PropBools[0])'>#</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBools[1])'>Date created</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[2], PropBools[2])'>User's name</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[3], PropBools[3])'>Is canceled?</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[4], PropBools[4])'>Price</button></th>
-                <th scope="col"><button class="btn" @onclick='() => Change(NamesForHtml[1], PropBools[5])'>List of products</button></th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[0])">#</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[1])">Date created</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[2])">User's name</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[3])">Is canceled?</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[4])">Price</button>
+                </th>
+                <th scope="col">
+                    <button class="btn" @onclick="() => Change(NamesForHtml[1])">List of products</button>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -22,7 +34,9 @@
                 <tr>
                     <th scope="row">@order.Id</th>
                     <td>@order.CreateOrderDate</td>
-                    <td><button class="btn" @onclick="@(() => changer(order.User))">@order.User.FirstName @order.User.LastName</button></td>
+                    <td>
+                        <button class="btn" @onclick="@(() => changer(order.User))">@order.User.FirstName @order.User.LastName</button>
+                    </td>
                     <td>@order.IsFullfilled</td>
                     <td>@order.FullPrice</td>
                     <td>
@@ -37,29 +51,27 @@
         </table>
     </div>
 </div>
+
 @code {
+
     [Parameter]
     public List<OrderModel> AdminsOrders { get; set; }
+
     public Dictionary<string, bool> PropsBools { get; set; }
-    public List<string> NamesForHtml { get; set; } = new List<string>
+
+    public List<string> NamesForHtml { get; set; } = new()
     {
         "Id", "CreateOrderDate", "User.FirstName", "IsFullfilled", "FullPrice"
     };
-    [Parameter]
-    public bool[] PropBools { get; set; } = new bool[OrderPropertyInfos.Count];
-    void Change(string prop, bool propbool)
+    void Change(string prop)
     {
-        int i = 0;
-        foreach (var item in OrderPropertyInfos)
+        var OrderedOrder = OrdersList.AsQueryable();
+        if (OrdersList.SequenceEqual(OrderedOrder.OrderBy(prop, true).ToList()))
         {
-            if (item.Name == prop || "User." + typeof(Users).GetProperty("FirstName").Name == prop)
-            {
-                PropBools[i] = !PropBools[i];
-            }
-            i++;
+            OrdersList = OrderedOrder.OrderBy(prop, false).ToList();
         }
-        IQueryable<OrderModel> OrderedOrder = OrdersList.AsQueryable();
-        OrdersList = OrderedOrder.OrderBy(prop, propbool).ToList();
+        else
+            OrdersList = OrderedOrder.OrderBy(prop, true).ToList();
     }
 
     [Parameter]
@@ -69,6 +81,7 @@
     public string CssClass { get; set; } = "nonvisible";
 
     public Users CurUsers;
+
     void changer(Users user)
     {
         if (CssClass == "nonvisible")
@@ -78,6 +91,4 @@
         CurUsers = user;
         StateHasChanged();
     }
-
-
-}
+    } 

@@ -11,14 +11,14 @@
                 <div class="cont ">
                     <div class="row">
                         <div class="col-3 ">
-                            № @order.orders.Id
+                            № @order.t.Id
                             <br/>
-                            from @order.orders.CreateOrderDate
+                            from @order.t.CreateOrderDate
                         </div>
                         <div class="col-2 align-self-center">
                             <label>Full price:</label>
 
-                            @FullPrices(order.orders.Products) USD
+                            @FullPrices(order.t.Products) USD
                         </div>
                         <div class="col-7 d-flex flex-row-reverse align-self-center">
                             <button class="expandButton bi-arrows-expand" @onclick="() => ShowOrHide(order)"></button>
@@ -35,24 +35,24 @@
                             Order information:
                             <br/>
                             <label>Order Id №</label>
-                            @order.orders.Id
+                            @order.t.Id
                             <br/>
                             <label>Create order date:</label>
-                            @order.orders.CreateOrderDate
+                            @order.t.CreateOrderDate
                             <br/>
 
                             <label>Full name:</label>
-                            @order.orders.User.FirstName @order.orders.User.LastName
+                            @order.t.User.FirstName @order.t.User.LastName
                             <br/>
                             <label>Email:</label>
-                            @order.orders.User.Email
+                            @order.t.User.Email
                             <br/>
 
-                            @order.orders.User.Address
+                            @order.t.User.Address
                         </div>
                         <div class="col-8">
                             <table class="allinform ">
-                                @foreach (var product in order.orders.Products)
+                                @foreach (var product in order.t.Products)
                                 {
                                     <tr class="justify-content-center align-content-center">
                                         <th>
@@ -105,7 +105,7 @@
 @code {
     public OrderModel[] orders { get; set; } = new OrderModel[CurrentUser.Orders.Count];
 
-    void ShowOrHide(WrapperForOrders wrapper)
+    void ShowOrHide<T>(Wrapper<T> wrapper)
     {
         wrapper.OrderBool = !wrapper.OrderBool;
     }

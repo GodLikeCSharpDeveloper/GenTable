@@ -9,14 +9,13 @@
     </div>
     <div class="col-lg-5">
         <label>Enter a price:</label>
-        <input placeholder="Name of prod" @bind-value="NewProduct.Price" />
+        <input placeholder="Name of prod" @bind-value="NewProduct.Price"/>
     </div>
     <div class="col-lg-2">
         <label>Is cashback:</label>
-        <input type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback" />
+        <input type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback"/>
     </div>
     <div class="col-lg-5 addPanel">
-        
         <div class="checkboxes">
             <label>Add categories</label>
             @foreach (var category in CategoriesList)
@@ -25,33 +24,28 @@
                     <input class="checkboxstyle" type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoriesAdding(category.Id)">
                     <label class="labelcheckbox" for="flexCheckDefault">@category.Name</label>
                 </div>
-
             }
         </div>
-    </div>
-
-    <div class="row align-items-lg-start ">
-
-
-        <div class="col-lg-3">
-
-        </div>
+        <button type="button" class="btn btn-outline-light" @onclick="SubmitNewProduct">Add Prod</button>
     </div>
     <div class="row align-items-lg-start ">
         <div class="col-lg-3">
-
+            <label>Enter category name</label>
+            <input placeholder="Enter new category" @bind-value="NewCategory.Name"/><button type="button" class="btn"></button>
+            <button type="button" class="btn btn-outline-light" @onclick="SubmitCategory">Add Prod</button>
         </div>
-        <button type="button" class="btn" @onclick="SubmitNewProduct">Add Prod</button>
         <div class="col-lg-3">
+            <label>Enter category description</label>
+            <input placeholder="CategoryDescr" @bind-value="NewCategory.Description"/>
+        </div>
+        <div class="col-lg-3">
+            <label>Enter category smth</label>
             <input placeholder="WIll be Desctiption, but not know"/>
+            
         </div>
+
     </div>
-    <div class="col-lg-3">
-        <input placeholder="Enter new category" @bind-value="NewCategory.Name"/><button type="button" class="btn"></button>
-    </div>
-    <div class="col-lg-3">
-        <input placeholder="CategoryDescr" @bind-value="NewCategory.Description"/>
-    </div>
+
 
 </div>
 

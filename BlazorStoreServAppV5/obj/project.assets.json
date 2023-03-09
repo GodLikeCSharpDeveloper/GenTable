@@ -1871,23 +1871,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KAYAYASHA\\.nuget\\packages\\": {},
+    "C:\\Users\\DaunV5.0\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\BlazorStoreServAppV5.csproj",
+      "projectUniqueName": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\BlazorStoreServAppV5.csproj",
       "projectName": "BlazorStoreServAppV5",
-      "projectPath": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\BlazorStoreServAppV5.csproj",
-      "packagesPath": "C:\\Users\\KAYAYASHA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\obj\\",
+      "projectPath": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\BlazorStoreServAppV5.csproj",
+      "packagesPath": "C:\\Users\\DaunV5.0\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\KAYAYASHA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DaunV5.0\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1896,6 +1896,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1968,7 +1969,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

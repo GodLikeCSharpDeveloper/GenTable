@@ -181,3 +181,6 @@ C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\ne
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminOrders.razor.rz.scp.css
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminUsers.razor.rz.scp.css
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminAddProd.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminAddProd.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminOrders.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminUsers.razor.rz.scp.css

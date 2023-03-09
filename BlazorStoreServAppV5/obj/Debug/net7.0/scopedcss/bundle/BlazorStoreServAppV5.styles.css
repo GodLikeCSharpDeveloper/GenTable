@@ -70,6 +70,7 @@ img[b-6v7gdwkhox] {
 }
 input[b-399f8ktukx] {
     margin: 0 0 5px 0;
+    border-radius: 5px;
 }
 label[b-399f8ktukx] {
     margin: 0 0 9px 0;
@@ -490,6 +491,47 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
 .sidepanelSearch:focus[b-mbrop61ily] {
     outline: solid;
     outline-width: 1px;
+}
+.autocomplete[b-mbrop61ily] {
+    position: relative;
+}
+
+.autocomplete .options[b-mbrop61ily]{
+    color: black;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: white;
+    width: 100%;
+    padding: 0;
+    z-index: 10;
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+    box-shadow: 0 30px 25px 8px rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete .option[b-mbrop61ily] {
+    display: block;
+    padding: 0.25rem;
+}
+
+.autocomplete .option .option-text[b-mbrop61ily] {
+    padding: 0.25rem 0.5rem;
+}
+
+.autocomplete .option:hover[b-mbrop61ily] {
+    background: #1E90FF;
+    color: black;
+}
+
+.autocomplete .option.disabled[b-mbrop61ily] {
+    background-color: lightgrey;
+    cursor: not-allowed;
+}
+
+.autocomplete .option.disabled:hover[b-mbrop61ily] {
+    background: lightgrey;
+    color: var(--bs-body);
 }
 /* _content/BlazorStoreServAppV5/Shared/NewFolder/NavMenu2.razor.rz.scp.css */
 .NavBar[b-t3kf0m5lsm] {
