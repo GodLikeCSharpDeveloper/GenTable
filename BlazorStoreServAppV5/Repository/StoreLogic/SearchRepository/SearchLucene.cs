@@ -38,10 +38,11 @@ public class SearchLucene : ISearchLucene, IDisposable
         writer.Commit();
     }
 
-    public List<Document> Search(string searchTerm)
+    public List<string> Search(string searchTerm)
     {
         if (!string.IsNullOrEmpty(searchTerm))
         {
+            
             var indexReader = DirectoryReader.Open(indexDir);
             var searcher = new IndexSearcher(indexReader);
             var queryParser = new QueryParser(Lucene.Net.Util.LuceneVersion.LUCENE_48, "name", analyzer);
@@ -50,12 +51,15 @@ public class SearchLucene : ISearchLucene, IDisposable
             andQuery.Add(query, Occur.MUST);
             var hits = searcher.Search(andQuery, 100).ScoreDocs;
             var hc = hits.Length;
-            var searchResults = new List<Document>();
-            foreach (var hit in hits) 
-                searchResults.Add(searcher.Doc(hit.Doc));
+            var searchResults = new List<string>();
+            foreach (var hit in hits) {
+               var doc = searcher.Doc(hit.Doc);
+               var content = doc.Get("name");
+               searchResults.Add(content);
+            }
             return searchResults;
         }
-        return new List<Document>();    
+        return new List<string>();    
     }
     public void Dispose()
     {

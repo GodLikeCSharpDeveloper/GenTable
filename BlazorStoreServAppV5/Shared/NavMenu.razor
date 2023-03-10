@@ -10,6 +10,7 @@
 @using Lucene.Net.Search
 @using Lucene.Net.Store
 @using Blazored.Typeahead
+@using System.Text
 @inject IUserRepositoryService UserRepository
 @inject TokenProvider _TokenProvider
 @inject IThemeLogic ThemesLogic
@@ -26,7 +27,7 @@
         <button class="btnNav">smth for future</button>
     </div>
     <div class="col-3 col-sm-12 col-md-12 col-lg-3 d-flex justify-content-start toHide autocomplete">
-        <input type="text" size="25" class="NavInput" placeholder="Search..." @bind="@searchTerm"  @oninput="e=>PerformSearch(e)">
+        <input type="text" size="25" class="NavInput" placeholder="Search..." @bind="@searchTerm">
         @if (searchResults is not null)
         {
             <ul class="options">
@@ -34,7 +35,7 @@
                 {
                     @foreach (var prod in searchResults)
                     {
-                        <li class="option")>
+                        <li class="option">
                             <span class="option-text">@prod</span>
                         </li>
                     }
@@ -59,7 +60,7 @@
                 Sorry, there weren't any baseball players found.
             </NotFoundTemplate>
         </BlazoredTypeahead>*@
-        <button class="btnNav NavInputButton toHide bi-search"></button>
+        <button class="btnNav NavInputButton toHide bi-search" @onclick="()=>PerformSearch(searchTerm)"></button>
     </div>
     <div class="col-4 col-lg-5 col-md-6 justify-content-end navheight d-flex toHide">
         <button class="btnNav toHide">Flex item</button>
@@ -120,7 +121,7 @@
 
 @code {
     private string searchTerm;
-    private List<Document> searchResults;
+    private List<string> searchResults;
 
     protected override void OnInitialized()
     {
@@ -138,9 +139,23 @@
         SearchService.Commiting();
     }
 
-    private void PerformSearch(ChangeEventArgs e)
+    public List<string> DocumentToString(List<Document> docs)
     {
-        searchResults = SearchService.Search(e.Value.ToString());
+        List<string> list = new();
+        var sb = new StringBuilder();
+        foreach (var item in docs)
+        {
+            foreach (var field in item.Fields)
+            {
+                sb.AppendFormat("{0}:{1}", field.Name, field.GetStringValue());
+            }
+            list.Add(sb.ToString());
+        }
+        return list;
+    }
+    private void PerformSearch(string e)
+    {
+        searchResults = SearchService.Search(e);
         
     }
 
