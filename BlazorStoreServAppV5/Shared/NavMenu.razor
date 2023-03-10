@@ -1,13 +1,21 @@
 ﻿@using BlazorStoreServAppV5.Models
 @using BlazorStoreServAppV5.Models.AuthModel
 @using BlazorStoreServAppV5.Models.CssModels
+@using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository
 @using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
 @using BlazorStoreServAppV5.Repository.ThemeRepository
+@using Lucene.Net.Analysis.Standard
+@using Lucene.Net.Documents
+@using Lucene.Net.QueryParsers
+@using Lucene.Net.Search
+@using Lucene.Net.Store
+@using Blazored.Typeahead
 @inject IUserRepositoryService UserRepository
 @inject TokenProvider _TokenProvider
 @inject IThemeLogic ThemesLogic
 @inject NavigationManager NavManager
 @inject HttpClient http
+@inject ISearchLucene SearchService
 @inherits MainLayout
 
 <div class="row align-content-center justify-content-start align-items-center NavBar">
@@ -18,16 +26,16 @@
         <button class="btnNav">smth for future</button>
     </div>
     <div class="col-3 col-sm-12 col-md-12 col-lg-3 d-flex justify-content-start toHide autocomplete">
-        <input type="text" size="25" class="NavInput" placeholder="Search..." @bind=selectedProductName @oninput=HandleInput>
-        @if (products is not null)
+        <input type="text" size="25" class="NavInput" placeholder="Search..." @bind="@searchTerm"  @oninput="e=>PerformSearch(e)">
+        @if (searchResults is not null)
         {
             <ul class="options">
-                @if (products.Any())
+                @if (searchResults.Any())
                 {
-                    @foreach (var customer in products)
+                    @foreach (var prod in searchResults)
                     {
-                        <li class="option" @onclick=@(_ => SelectCustomer(customer.Id.ToString()))>
-                            <span class="option-text">@customer.Name</span>
+                        <li class="option")>
+                            <span class="option-text">@prod</span>
                         </li>
                     }
                 }
@@ -37,6 +45,20 @@
                 }
             </ul>
         }
+    @*    <BlazoredTypeahead SearchMethod="(ChangeEventArgs e)=>@PerformSearch(ChangeEventArgs)"
+                           @bind-Value="@searchResults"
+                           Debounce="150" MaximumSuggestions="50"
+                           EnableDropDown="true" ShowDropDownOnFocus="true">
+            <SelectedTemplate>
+                <b>@context.FullPlayerName - &nbsp;</b> (Years Played: @context., Last Season Played: @context.LastYearPlayed-@(context.LastYearPlayed + 1))
+            </SelectedTemplate>
+            <ResultTemplate>
+                <b>@context.FullPlayerName - &nbsp;</b> (Years Played: @context.YearsPlayed, Last Season Played: @context.LastYearPlayed-@(context.LastYearPlayed + 1))
+            </ResultTemplate>
+            <NotFoundTemplate>
+                Sorry, there weren't any baseball players found.
+            </NotFoundTemplate>
+        </BlazoredTypeahead>*@
         <button class="btnNav NavInputButton toHide bi-search"></button>
     </div>
     <div class="col-4 col-lg-5 col-md-6 justify-content-end navheight d-flex toHide">
@@ -97,43 +119,78 @@
 }
 
 @code {
-    List<ProductModel>? products;
-    string? selectedProductId;
-    string? selectedProductName;
-    string? filter;
- 
-    async Task HandleInput(ChangeEventArgs e)
-    {
-        filter = e.Value?.ToString();
-        if (filter?.Length > 2)
-        {
-            products = ProductsList.Where(x => x.Name.ToLower().Contains(filter.ToLower())).ToList();
-        }
-        else
-        {
-            products = null;
-            selectedProductName = selectedProductId = null;
-        }
-    }
- 
-    void SelectCustomer(string id)
-    {
-        selectedProductId = id;
-        selectedProductName = products!.First(c => c.Id.Equals(selectedProductId)).Name;
-        products = null;
-    }
-    public static List<Users> UsersList { get; set; }
-    public List<ThemeModel> ThemeModels { get; set; }
+    private string searchTerm;
+    private List<Document> searchResults;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        if (UsersList == null)
+        Document doc = new();
+        foreach (var item in ProductsList)
         {
-            UsersList = await UserRepository.GetAllUsersAsync();
+            doc.Add(new StringField("name", item.Name, Field.Store.YES));
+            foreach (var cat in item.CategoryModels)
+            {
+                doc.Add(new StringField("name", cat.Name, Field.Store.YES));
+            }
+            SearchService.AddDocument(doc);
         }
-        ThemeModels = ThemesLogic.InitializeThemes();
+    
+        SearchService.Commiting();
+    }
+
+    private void PerformSearch(ChangeEventArgs e)
+    {
+        searchResults = SearchService.Search(e.Value.ToString());
         
     }
+
+    //List<ProductModel>? products;
+    //List<CategoryModel>? categories;
+    //List<string>? prodsCatsList = new();
+    //CategoryModel? selectedCatName;
+    //ProductModel? selectedProdName;
+    //string? filter;
+
+    //async Task HandleInput(ChangeEventArgs e)
+    //{
+    //    filter = e.Value?.ToString();
+    //    if (filter?.Length > 2)
+    //    {
+    //        products = ProductsList.Where(x => x.Name.ToLower().Contains(filter.ToLower())).ToList();
+    //        categories = CategoriesList.Where((x => x.Name.ToLower().Contains(filter.ToLower()))).ToList();
+    //        foreach(var name in products)
+    //            prodsCatsList.Add(name.Name);
+    //        foreach(var name in categories)
+    //            prodsCatsList.Add(name.Name);
+    //    }
+    //    else
+    //    {
+    //        products = null;
+    //        categories = null;
+    //        selectedCatName = null;
+    //        selectedProdName = null;
+    //    }
+    //}
+
+    //void SelectResult(string name)
+    //{
+
+    //    selectedProdName = ProductsList.Where(x => x.Name == name).FirstOrDefault();
+    //    selectedCatName = CategoriesList.Where(x => x.Name == name).FirstOrDefault();
+    //    products = null;
+    //}
+    //public static List<Users> UsersList { get; set; }
+    //public List<ThemeModel> ThemeModels { get; set; }
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    if (UsersList == null)
+    //    {
+    //        UsersList = await UserRepository.GetAllUsersAsync();
+    //    }
+    //    ThemeModels = ThemesLogic.InitializeThemes();
+
+    //}
 
 
     [Parameter]

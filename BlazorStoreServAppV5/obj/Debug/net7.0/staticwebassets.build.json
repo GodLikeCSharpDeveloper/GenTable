@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LdNmwsDpBj9TjmnXHHCLL1ZmjMCI67MGU2d64rhgmzk=",
+  "Hash": "Gf9jbwNrk0pDkAthrFxykztnCiLuulHGG/W63+1pCWw=",
   "Source": "BlazorStoreServAppV5",
   "BasePath": "_content/BlazorStoreServAppV5",
   "Mode": "Default",
@@ -49,6 +49,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\DaunV5.0\\.nuget\\packages\\blazoranimate\\3.0.0\\staticwebassets\\blazorAnimateInterop.js"
+    },
+    {
+      "Identity": "C:\\Users\\DaunV5.0\\.nuget\\packages\\blazored.typeahead\\4.7.0\\staticwebassets\\blazored-typeahead.css",
+      "SourceId": "Blazored.Typeahead",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\DaunV5.0\\.nuget\\packages\\blazored.typeahead\\4.7.0\\staticwebassets\\",
+      "BasePath": "_content/Blazored.Typeahead",
+      "RelativePath": "blazored-typeahead.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\DaunV5.0\\.nuget\\packages\\blazored.typeahead\\4.7.0\\staticwebassets\\blazored-typeahead.css"
+    },
+    {
+      "Identity": "C:\\Users\\DaunV5.0\\.nuget\\packages\\blazored.typeahead\\4.7.0\\staticwebassets\\blazored-typeahead.js",
+      "SourceId": "Blazored.Typeahead",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\DaunV5.0\\.nuget\\packages\\blazored.typeahead\\4.7.0\\staticwebassets\\",
+      "BasePath": "_content/Blazored.Typeahead",
+      "RelativePath": "blazored-typeahead.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\DaunV5.0\\.nuget\\packages\\blazored.typeahead\\4.7.0\\staticwebassets\\blazored-typeahead.js"
     },
     {
       "Identity": "C:\\Users\\DaunV5.0\\Desktop\\New folder\\BlazorStoreServAppV5\\BlazorStoreServAppV5\\obj\\Debug\\net7.0\\scopedcss\\bundle\\BlazorStoreServAppV5.styles.css",
