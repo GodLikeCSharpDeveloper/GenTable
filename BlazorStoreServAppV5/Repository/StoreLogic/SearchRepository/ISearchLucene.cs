@@ -6,7 +6,6 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository
     {
         public void AddDocument(Document doc);
         public List<string> Search(string searchTerm);
-        public void Commiting();
         public void Dispose();
     }
 }

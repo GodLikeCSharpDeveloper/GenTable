@@ -25,16 +25,13 @@ public class SearchLucene : ISearchLucene, IDisposable
         indexDir = FSDirectory.Open(path);
         analyzer = new StandardAnalyzer(Lucene.Net.Util.LuceneVersion.LUCENE_48);
         var config = new IndexWriterConfig(Lucene.Net.Util.LuceneVersion.LUCENE_48, analyzer);
+        config.OpenMode = OpenMode.CREATE;
         writer = new IndexWriter(indexDir, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer));
     }
 
     public void AddDocument(Document doc)
     {
         writer.AddDocument(doc);
-    }
-
-    public void Commiting()
-    {
         writer.Commit();
     }
 
@@ -47,16 +44,18 @@ public class SearchLucene : ISearchLucene, IDisposable
             var searcher = new IndexSearcher(indexReader);
             var queryParser = new QueryParser(Lucene.Net.Util.LuceneVersion.LUCENE_48, "name", analyzer);
             var query = queryParser.Parse(searchTerm+"*");
-            BooleanQuery andQuery = new BooleanQuery();
-            andQuery.Add(query, Occur.MUST);
-            var hits = searcher.Search(andQuery, 100).ScoreDocs;
-            var hc = hits.Length;
+            var hits = searcher.Search(query, 10);
+            var hc = hits;
             var searchResults = new List<string>();
-            foreach (var hit in hits) {
-               var doc = searcher.Doc(hit.Doc);
-               var content = doc.Get("name");
-               searchResults.Add(content);
+            for (int i = 0; i < hits.TotalHits; i++)
+            {
+                //read back a doc from results
+                Document resultDoc = searcher.Doc(hits.ScoreDocs[i].Doc);
+
+                string content = resultDoc.Get("name");
+                searchResults.Add(content);
             }
+          
             return searchResults;
         }
         return new List<string>();    
@@ -64,7 +63,7 @@ public class SearchLucene : ISearchLucene, IDisposable
     public void Dispose()
     {
         writer.Dispose();
-        analyzer.Dispose();
-        indexDir.Dispose();
+        //analyzer.Dispose();
+        //indexDir.Dispose();
     }
 }
