@@ -16,5 +16,6 @@ namespace BlazorStoreServAppV5.Models.AuthModel
         public string City { get; set; } = string.Empty;
         public int CashbackCount { get; set; }
         public List<OrderModel> Orders { get; set; }
+        public string? ImgSrcString { get; set; }
     }
 }

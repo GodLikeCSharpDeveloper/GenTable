@@ -1,7 +1,10 @@
 ﻿@using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
+@using BlazorStoreServAppV5.Repository.StoreLogic.FileOploading
 @inherits MainLayout
 @inject ICategoryLogic CategoryLogic
 @inject IProductRepositoryService ProductRepository
+@inject NavigationManager NavManager
+
 <div class="row align-items-lg-start cont ">
     <div class="col-lg-5">
         <label>Enter a name:</label>
@@ -14,6 +17,10 @@
     <div class="col-lg-2">
         <label>Is cashback:</label>
         <input type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback"/>
+        <form method="post" enctype="multipart/form-data">
+            <InputFile id="file" OnChange="HandleSelection" accept=".jpg,.jpeg,.png,.gif" />
+            <button @onclick="UploadFile">Upload</button>
+        </form>
     </div>
     <div class="col-lg-5 addPanel">
         <div class="checkboxes">
@@ -41,7 +48,7 @@
         <div class="col-lg-3">
             <label>Enter category smth</label>
             <input placeholder="WIll be Desctiption, but not know"/>
-            
+
         </div>
 
     </div>
@@ -58,6 +65,23 @@
     public ProductModel NewProduct { get; set; } = new();
     public CategoryModel NewCategory { get; set; } = new();
     public List<CategoryModel> ProductCategories { get; set; } = new();
+    FileUploadService upload = new();
+    private IBrowserFile selectedFile;
+
+    private async Task HandleSelection(InputFileChangeEventArgs e)
+    {
+        selectedFile = null;
+        selectedFile = e.File;
+    }
+
+    private async Task UploadFile()
+    {
+        var fileUploadService = new FileUploadService();
+
+        NewProduct.ImgSrcString = await fileUploadService.UploadFileAsync(selectedFile);
+
+        NavManager.NavigateTo(NavManager.Uri, true);
+    }
 
     async Task SubmitCategory()
     {

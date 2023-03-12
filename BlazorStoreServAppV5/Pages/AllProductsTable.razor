@@ -82,8 +82,7 @@
     {
         foreach (var item in ProductsList)
         {
-            ProductModel prod = new Clone(item).getProds();
-            Products.Add(prod);
+            Products = ProductsList.ToList();
         }
        
     }
