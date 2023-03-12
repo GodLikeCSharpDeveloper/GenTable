@@ -3,6 +3,7 @@ using BlazorStoreServAppV5.Repository;
 using BlazorStoreServAppV5.Repository.AccountLogic;
 using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository;
+using BlazorStoreServAppV5.Repository.StoreLogic.FileOploading;
 using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository;
@@ -27,6 +28,7 @@ builder.Services.AddScoped<IDescriptionRepositoryService, DescriptionRepository>
 builder.Services.AddScoped<IUserRepositoryService, UserRepository>();
 builder.Services.AddScoped<IProductRepositoryService, ProductRepository>();
 builder.Services.AddScoped<TokenProvider>();
+builder.Services.AddScoped<FileUploadService>();
 builder.Services.AddTransient<ISearchLucene, SearchLucene>(_ => new SearchLucene("Data"));
 builder.Services.AddScoped<IAccountLogic, AccountLogic>();
 builder.Services.AddScoped<ICategoryLogic, CategoryLogic>();

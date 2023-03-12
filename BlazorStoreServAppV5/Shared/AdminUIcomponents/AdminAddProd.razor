@@ -4,7 +4,7 @@
 @inject ICategoryLogic CategoryLogic
 @inject IProductRepositoryService ProductRepository
 @inject NavigationManager NavManager
-
+@inject FileUploadService UploadService
 <div class="row align-items-lg-start cont ">
     <div class="col-lg-5">
         <label>Enter a name:</label>
@@ -17,10 +17,10 @@
     <div class="col-lg-2">
         <label>Is cashback:</label>
         <input type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback"/>
-        <form method="post" enctype="multipart/form-data">
+       
             <InputFile id="file" OnChange="HandleSelection" accept=".jpg,.jpeg,.png,.gif" />
-            <button @onclick="UploadFile">Upload</button>
-        </form>
+            
+        
     </div>
     <div class="col-lg-5 addPanel">
         <div class="checkboxes">
@@ -70,17 +70,18 @@
 
     private async Task HandleSelection(InputFileChangeEventArgs e)
     {
-        selectedFile = null;
         selectedFile = e.File;
     }
 
     private async Task UploadFile()
     {
-        var fileUploadService = new FileUploadService();
+        
+        if (selectedFile != null)
+            await UploadService.UploadFileAsync(selectedFile);
+        
 
-        NewProduct.ImgSrcString = await fileUploadService.UploadFileAsync(selectedFile);
+    ////TODO add smth to give 
 
-        NavManager.NavigateTo(NavManager.Uri, true);
     }
 
     async Task SubmitCategory()
@@ -97,8 +98,11 @@
 
     async Task SubmitNewProduct()
     {
+        UploadFile();
         NewProduct.CategoryModels = ProductCategories;
+        NewProduct.ImgSrcString = UploadService.filePath;
         await ProductRepository.InsertProductAsync(NewProduct);
+        StateHasChanged();
     }
 
 }
