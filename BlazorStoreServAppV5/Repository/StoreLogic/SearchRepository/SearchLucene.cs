@@ -1,5 +1,7 @@
-﻿using Lucene.Net.Analysis.Standard;
+﻿using System.Security.Policy;
+using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Analysis;
+using Lucene.Net.Analysis.Core;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.QueryParsers;
@@ -9,61 +11,81 @@ using Lucene.Net.Store;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Directory = Lucene.Net.Store.Directory;
 using Lucene.Net.Index.Extensions;
+using Lucene.Net.Search.Spell;
 using Lucene.Net.Util;
 
 namespace BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository;
 
-public class SearchLucene : ISearchLucene, IDisposable
+public class SearchLucene : ISearchLucene,IDisposable
 {
-    private FSDirectory indexDir;
-    private Analyzer analyzer;
-    private IndexWriter writer;
-
-    public SearchLucene(string indexPath)
+    private string path;
+    private IndexWriter indexWritter;
+    private FSDirectory indexDirectory;
+    private StandardAnalyzer analyzer;
+    private IndexWriterConfig indexConfig;
+    private SpellChecker spellChecker;
+    public SearchLucene(string path)
     {
-        var path = Path.Combine(Environment.CurrentDirectory, indexPath);
-        indexDir = FSDirectory.Open(path);
-        analyzer = new StandardAnalyzer(Lucene.Net.Util.LuceneVersion.LUCENE_48);
-        var config = new IndexWriterConfig(Lucene.Net.Util.LuceneVersion.LUCENE_48, analyzer);
-        config.OpenMode = OpenMode.CREATE;
-        writer = new IndexWriter(indexDir, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer));
+        this.path = path;
     }
 
-    public void AddDocument(Document doc)
+    public void IndexWriterCreating()
     {
-        writer.AddDocument(doc);
-        writer.Commit();
+        var idDirectory = Path.Combine(Environment.CurrentDirectory, path);
+        indexDirectory = FSDirectory.Open(idDirectory);
+        analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_48);
+        indexConfig = new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer)
+        {
+            OpenMode = OpenMode.CREATE
+        };
+        indexWritter = new IndexWriter(indexDirectory, indexConfig);
     }
 
     public List<string> Search(string searchTerm)
     {
-        if (!string.IsNullOrEmpty(searchTerm))
+        if (string.IsNullOrEmpty(searchTerm)) return new List<string>();
+        var spellDir = Path.Combine(Environment.CurrentDirectory, "/data/spell");
+        var spellcheckerDirectory = FSDirectory.Open(spellDir);
+        spellChecker = new SpellChecker(spellcheckerDirectory);
+        var indexReader = DirectoryReader.Open(indexDirectory);
+        spellChecker.IndexDictionary(new LuceneDictionary(indexReader,"name"), new IndexWriterConfig(LuceneVersion.LUCENE_48, new StandardAnalyzer(LuceneVersion.LUCENE_48)), true);
+        string[] queryWords = searchTerm.Split(' ');
+        for (int i = 0; i < queryWords.Length; i++)
         {
-            
-            var indexReader = DirectoryReader.Open(indexDir);
-            var searcher = new IndexSearcher(indexReader);
-            var queryParser = new QueryParser(Lucene.Net.Util.LuceneVersion.LUCENE_48, "name", analyzer);
-            var query = queryParser.Parse(searchTerm+"*");
-            var hits = searcher.Search(query, 10);
-            var hc = hits;
-            var searchResults = new List<string>();
-            for (int i = 0; i < hits.TotalHits; i++)
+            string[] suggestions = spellChecker.SuggestSimilar(queryWords[i], 1);
+            if (suggestions.Length > 0)
             {
-                //read back a doc from results
-                Document resultDoc = searcher.Doc(hits.ScoreDocs[i].Doc);
-
-                string content = resultDoc.Get("name");
-                searchResults.Add(content);
+                queryWords[i] = suggestions[0];
             }
-          
-            return searchResults;
         }
-        return new List<string>();    
+        spellcheckerDirectory.Dispose();
+        string correctedSearchTerm = string.Join(" ", queryWords);
+        var resultsList = new List<string>();
+        
+        var indexSearcher = new IndexSearcher(indexReader);
+        var queryParser = new MultiFieldQueryParser(LuceneVersion.LUCENE_48, new string[]{"name", "cat"}, analyzer);
+        var query = queryParser.Parse(string.Join(" ", queryWords)+"*");
+        var topDocs = indexSearcher.Search(query,null, 10);
+        foreach (var topDoc in topDocs.ScoreDocs)
+        {
+            var doc = indexSearcher.Doc(topDoc.Doc);
+            resultsList.Add(doc.Get("name","cat"));
+        }
+        indexReader.Dispose();
+        return resultsList;
     }
+    public void AddDocument(Document doc)
+    {
+        
+        indexWritter.AddDocument(doc);
+        indexWritter.ForceMerge(1);
+        indexWritter.Commit();
+        
+    }
+
     public void Dispose()
     {
-        writer.Dispose();
-        //analyzer.Dispose();
-        //indexDir.Dispose();
+        indexWritter.Dispose();
+
     }
 }

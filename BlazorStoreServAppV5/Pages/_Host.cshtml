@@ -25,7 +25,7 @@
         AntiForgeryToken = _xsrf.GetAndStoreTokens(HttpContext).RequestToken
     };
 }
-<component type="typeof(App)" param-InitialState="@appInitialState" render-mode="ServerPrerendered"/>
+<component type="typeof(App)" param-InitialState="@appInitialState" render-mode="Server"/>
 
 <div id="blazor-error-ui">
     <environment include="Staging,Production">

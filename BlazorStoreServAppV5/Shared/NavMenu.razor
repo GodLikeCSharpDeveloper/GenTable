@@ -27,7 +27,7 @@
         <button class="btnNav">smth for future</button>
     </div>
     <div class="col-3 col-sm-12 col-md-12 col-lg-3 d-flex justify-content-start toHide autocomplete">
-        <input type="text" size="25" class="NavInput" placeholder="Search..." @oninput="(e)=>PerformSearch(e.Value.ToString())">
+        <input type="text" size="25" class="NavInput" placeholder="Search..." @oninput="(e) => PerformSearch(e.Value.ToString())">
         @if (searchResults is not null)
         {
             <ul class="options">
@@ -46,7 +46,7 @@
                 }
             </ul>
         }
-    @*    <BlazoredTypeahead SearchMethod="(ChangeEventArgs e)=>@PerformSearch(ChangeEventArgs)"
+        @*    <BlazoredTypeahead SearchMethod="(ChangeEventArgs e)=>@PerformSearch(ChangeEventArgs)"
                            @bind-Value="@searchResults"
                            Debounce="150" MaximumSuggestions="50"
                            EnableDropDown="true" ShowDropDownOnFocus="true">
@@ -125,28 +125,28 @@
 
     protected override void OnInitialized()
     {
-       
+        SearchService.IndexWriterCreating();
         foreach (var item in ProductsList)
         {
             Document doc = new();
-            doc.Add(new StringField("name", item.Name, Field.Store.YES));
+            doc.Add(new TextField("name", item.Name, Field.Store.YES));
             foreach (var cat in item.CategoryModels)
             {
+               
                 doc.Add(new StringField("cat", cat.Name, Field.Store.YES));
+                
             }
             SearchService.AddDocument(doc);
         }
-        SearchService.Dispose();
-
+        
+         SearchService.Dispose();
     }
 
-    
+
     private void PerformSearch(string e)
     {
         searchResults = SearchService.Search(e);
-        SearchService.Dispose();
         
-
     }
 
     //List<ProductModel>? products;

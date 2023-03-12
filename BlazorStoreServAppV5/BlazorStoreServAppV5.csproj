@@ -19,6 +19,7 @@
     <PackageReference Include="Blazored.Typeahead" Version="4.7.0" />
     <PackageReference Include="Lucene.Net" Version="4.8.0-beta00016" />
     <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00016" />
+    <PackageReference Include="Lucene.Net.Suggest" Version="4.8.0-beta00016" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.3" />
@@ -32,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Folder Include="Data\spell\" />
   </ItemGroup>
 
 </Project>
