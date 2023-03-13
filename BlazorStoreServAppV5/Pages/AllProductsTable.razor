@@ -1,12 +1,14 @@
 ﻿@page "/Products"
 @using BlazorStoreServAppV5.Repository.ThemeRepository
+@using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository
 @inherits MainLayout
 @inject IDescriptionRepositoryService Description
 @inject IUserRepositoryService User
 @inject IProductRepositoryService Product
 @inject IOrderRepositoryServise Order
 @inject IThemeLogic ThemesLogic
-
+@inject ISearchLucene SearchService
+@inject NavigationManager NavigationManager
 <div class="container-fluid" style="margin-top: 10px;">
     <div class="row flex-row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-4">
@@ -36,8 +38,8 @@
             <div class="row">
                 @foreach (var prod in Products)
                 {
-                    <div class="col-lg-3 col-sm-12 col-md-6 CardList">
-                        <div class="card">
+                    <div class="col-lg-3 col-sm-12 col-md-6 CardList" >
+                        <div class="card" @onclick="() => RedirectToProdPage(prod)">
                             <div class="">
                                 <img class="" src="/Untitled.png" alt="Card image cap">
                             </div>
@@ -80,13 +82,19 @@
 
     protected override async Task OnInitializedAsync()
     {
+        SearchService.IndexWriterCreating();
         foreach (var item in ProductsList)
         {
-            Products = ProductsList.ToList();
+            Products = tempProds = ProductsList.ToList();
         }
-       
     }
 
+    public void RedirectToProdPage(ProductModel product)
+    {
+        SearchService.Dispose();
+        NavigationManager.NavigateTo($"{product.Id.ToString()+product.Name}");
+        
+    }
     #region "SearchLogic"
 
     public List<int> CatIds { get; set; } = new();
@@ -124,6 +132,7 @@
             Searcher(Request);
         StateHasChanged();
         Products = Products.Distinct().ToList();
+        tempProds = Products;
         return Products;
     }
 
@@ -132,37 +141,21 @@
 
     protected void Searcher(string value)
     {
-        if (Products.Count < ProductsList.Count && CatIds.Count == 0)
+        if (string.IsNullOrEmpty(value)) Products = tempProds;
+        if (CatIds.Count.Equals(0))
             Products = ProductsList.ToList();
-        Prods = Products;
-
-        if (!string.IsNullOrEmpty(value))
+        var names = SearchService.Search(value);
+        foreach (var name in names)
         {
-            foreach (var item in Prods.ToList())
+            foreach (var prod in Products.ToList())
             {
-                foreach (var cat in item.CategoryModels)
-                {
-                    if (!cat.Name.ToLower().Contains(value.ToLower()))
-                        Products.Remove(item);
-                    if (item.Name.ToLower().Contains(value.ToLower()))
-                        Products.Add(item);
-                }
-            }
-            Products = Products.Distinct().ToList();
-        }
-        else
-        {
-            if (Prods == null)
-                Prods = ProductsList;
-            if (Products.Count == 0 || Products.Count > ProductsList.Count || Products == null || CatIds.Count==0)
-            {
-                Products = ProductsList.ToList();
-            }
-            else
-            {
-                Products = Prods;
+                if (prod.Name.Equals(name))
+                    Products.Add(prod);
+                else
+                    Products.Remove(prod);
             }
         }
+        Products = Products.Distinct().ToList();
     }
 
     #endregion

@@ -1,16 +1,14 @@
-﻿.cont {
-    width: 99%;
-}
-.addPanel  {
-    margin: 0 0 5px 0;
-}
+﻿.cont { width: 99%; }
+
+.addPanel { margin: 0 0 5px 0; }
+
 input {
     margin: 0 0 5px 0;
     border-radius: 5px;
 }
-label {
-    margin: 0 0 9px 0;
-}
+
+label { margin: 0 0 9px 0; }
+
 .checkboxes {
     margin: 0 0 0 0 !important;
     border-width: 2px;
@@ -18,10 +16,20 @@ label {
     border-style: solid;
     padding: 5px 0 5px 5px;
 }
-.labelcheckbox {
-    display: inline;
-}
+
+.labelcheckbox { display: inline; }
+
 .checkboxstyle {
     padding: 0 0 0 0 !important;
     border-radius: 5px
 }
+
+.preview {
+    width: 100%;
+    height: 100%;
+    padding: 5px 0 0 0;
+}
+
+.mainAdd { width: 100% }
+
+.input { padding: 5px 0 0 0 }

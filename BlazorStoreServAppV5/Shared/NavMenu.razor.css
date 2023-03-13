@@ -216,7 +216,11 @@ button:hover, a:hover {
     color: black;
 }
 
-.autocomplete .option.disabled {
+    .autocomplete .option.disabled:focus {
+        background-color: lightgrey;
+        cursor: not-allowed;
+    }
+.autocomplete .option.disabled:active {
     background-color: lightgrey;
     cursor: not-allowed;
 }

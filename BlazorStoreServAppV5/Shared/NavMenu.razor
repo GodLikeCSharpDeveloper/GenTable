@@ -19,7 +19,7 @@
 @inject ISearchLucene SearchService
 @inherits MainLayout
 
-<div class="row align-content-center justify-content-start align-items-center NavBar">
+<div class="row align-content-center justify-content-start align-items-center NavBar" @onclick="()=>searchResults=null">
     <div class="col-12 col-sm-12 col-lg-4 col-md-12 navheight d-flex  ">
         <button class="MenuClass bi-triangle" @onclick="WidthChanger"></button>
         <a href="/" class="btnNav bi-house-fill"></a>
@@ -42,24 +42,10 @@
                 }
                 else
                 {
-                    <li class="disabled option">No results</li>
+                    
                 }
             </ul>
         }
-        @*    <BlazoredTypeahead SearchMethod="(ChangeEventArgs e)=>@PerformSearch(ChangeEventArgs)"
-                           @bind-Value="@searchResults"
-                           Debounce="150" MaximumSuggestions="50"
-                           EnableDropDown="true" ShowDropDownOnFocus="true">
-            <SelectedTemplate>
-                <b>@context.FullPlayerName - &nbsp;</b> (Years Played: @context., Last Season Played: @context.LastYearPlayed-@(context.LastYearPlayed + 1))
-            </SelectedTemplate>
-            <ResultTemplate>
-                <b>@context.FullPlayerName - &nbsp;</b> (Years Played: @context.YearsPlayed, Last Season Played: @context.LastYearPlayed-@(context.LastYearPlayed + 1))
-            </ResultTemplate>
-            <NotFoundTemplate>
-                Sorry, there weren't any baseball players found.
-            </NotFoundTemplate>
-        </BlazoredTypeahead>*@
         <button class="btnNav NavInputButton toHide bi-search"></button>
     </div>
     <div class="col-4 col-lg-5 col-md-6 justify-content-end navheight d-flex toHide">

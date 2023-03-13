@@ -216,7 +216,11 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
     color: black;
 }
 
-.autocomplete .option.disabled[b-mbrop61ily] {
+    .autocomplete .option.disabled:focus[b-mbrop61ily] {
+        background-color: lightgrey;
+        cursor: not-allowed;
+    }
+.autocomplete .option.disabled:active[b-mbrop61ily] {
     background-color: lightgrey;
     cursor: not-allowed;
 }

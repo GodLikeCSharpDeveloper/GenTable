@@ -6,67 +6,62 @@
 @inject NavigationManager NavManager
 @inject FileUploadService UploadService
 <div class="row align-items-lg-start cont ">
-    <div class="col-lg-5">
+    <div class="col-lg-6 d-flex flex-column ">
         <label>Enter a name:</label>
         <input placeholder="Name of prod" @bind-value="NewProduct.Name"/>
-    </div>
-    <div class="col-lg-5">
         <label>Enter a price:</label>
         <input placeholder="Name of prod" @bind-value="NewProduct.Price"/>
+        <label>Is cashback:<input class="align-self-center" type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback" /></label>
+        <div class="addPanel">
+            <div class="checkboxes">
+                <label>Add categories</label>
+                @foreach (var category in CategoriesList)
+                {
+                    <div class="cont">
+                        <input class="checkboxstyle" type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoriesAdding(category.Id)">
+                        <label class="labelcheckbox" for="flexCheckDefault">@category.Name</label>
+                    </div>
+                }
+            </div>
     </div>
-    <div class="col-lg-2">
-        <label>Is cashback:</label>
-        <input type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback"/>
-       
-            <InputFile id="file" OnChange="HandleSelection" accept=".jpg,.jpeg,.png,.gif" />
-            
-        
-    </div>
-    <div class="col-lg-5 addPanel">
-        <div class="checkboxes">
-            <label>Add categories</label>
-            @foreach (var category in CategoriesList)
-            {
-                <div class="cont">
-                    <input class="checkboxstyle" type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoriesAdding(category.Id)">
-                    <label class="labelcheckbox" for="flexCheckDefault">@category.Name</label>
-                </div>
-            }
-        </div>
-        <button type="button" class="btn btn-outline-light" @onclick="SubmitNewProduct">Add Prod</button>
-    </div>
-    <div class="row align-items-lg-start ">
-        <div class="col-lg-3">
+        <div class="col d-flex flex-column justify-content-between ">
             <label>Enter category name</label>
-            <input placeholder="Enter new category" @bind-value="NewCategory.Name"/><button type="button" class="btn"></button>
-            <button type="button" class="btn btn-outline-light" @onclick="SubmitCategory">Add Prod</button>
-        </div>
-        <div class="col-lg-3">
+            <input placeholder="Enter new category" @bind-value="NewCategory.Name" />
             <label>Enter category description</label>
-            <input placeholder="CategoryDescr" @bind-value="NewCategory.Description"/>
-        </div>
-        <div class="col-lg-3">
+            <input placeholder="CategoryDescr" @bind-value="NewCategory.Description" />
             <label>Enter category smth</label>
-            <input placeholder="WIll be Desctiption, but not know"/>
-
+            <input placeholder="WIll be Desctiption, but not know" />
+            <button type="button" class="btn btn-outline-light" @onclick="SubmitCategory">Add new category</button>
         </div>
-
     </div>
-
-
+    <div class="col-sm-12 col-lg-6">
+        <img class="preview" src="@ImgUri" />
+        <InputFile class="input" id="file" OnChange="((e) =>{HandleSelection(e); LoadImage(e);})" accept=".jpg,.jpeg,.png,.gif"/>
+        <button type="button" class="btn btn-outline-light mainAdd" @onclick="SubmitNewProduct">Add Prod</button>
+    </div>
 </div>
 
 
 @code {
-
     [Parameter]
     public string smth { get; set; }
-
+    public string ImgUri { get; set; }
     public ProductModel NewProduct { get; set; } = new();
     public CategoryModel NewCategory { get; set; } = new();
     public List<CategoryModel> ProductCategories { get; set; } = new();
-    FileUploadService upload = new();
     private IBrowserFile selectedFile;
+
+    public async Task LoadImage(InputFileChangeEventArgs inputFileChangeEventArgs)
+    {
+        var image = await inputFileChangeEventArgs.File.RequestImageFileAsync("image/png", 600, 600);
+        using Stream imageStream = image.OpenReadStream(1024 * 1024 * 10);
+        using MemoryStream ms = new();
+    //copy imageStream to Memory stream
+        await imageStream.CopyToAsync(ms);
+    //convert stream to base64
+        ImgUri = $"data:image/png;base64,{Convert.ToBase64String(ms.ToArray())}";
+        StateHasChanged();
+    }
 
     private async Task HandleSelection(InputFileChangeEventArgs e)
     {
@@ -75,13 +70,9 @@
 
     private async Task UploadFile()
     {
-        
         if (selectedFile != null)
             await UploadService.UploadFileAsync(selectedFile);
-        
-
     ////TODO add smth to give 
-
     }
 
     async Task SubmitCategory()

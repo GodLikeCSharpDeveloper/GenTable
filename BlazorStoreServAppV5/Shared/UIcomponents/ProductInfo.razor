@@ -1,0 +1,26 @@
+﻿@page "/"
+@page "/{productId}"
+@inherits MainLayout
+if(Product!=null){
+<div> @Product.Name and @Product.Id</div>
+}
+
+@code {
+
+
+    ProductModel Product { get; set; }
+    public static string TempString = ProductsList.Where()
+    [Parameter]
+    public string productId { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        foreach (var prod in ProductsList)
+        {
+            var name = prod.Id.ToString() + prod.Name;
+            if (name == productId)
+                Product = prod;
+        }
+    }
+
+}

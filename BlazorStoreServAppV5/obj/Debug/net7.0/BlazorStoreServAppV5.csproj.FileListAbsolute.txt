@@ -218,3 +218,5 @@ C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\ne
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Lucene.Net.Misc.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Lucene.Net.Suggest.dll
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\bin\Debug\net7.0\Lucene.Net.Misc.dll
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\bin\Debug\net7.0\Lucene.Net.Suggest.dll
