@@ -91,7 +91,9 @@
     {
         UploadFile();
         NewProduct.CategoryModels = ProductCategories;
-        NewProduct.ImgSrcString = UploadService.filePath;
+        int i = UploadService.filePath.IndexOf('\\');
+        if (i >= 0) NewProduct.ImgSrcString = UploadService.filePath.Substring(i + 1);
+        
         await ProductRepository.InsertProductAsync(NewProduct);
         StateHasChanged();
     }

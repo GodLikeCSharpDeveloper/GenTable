@@ -92,7 +92,7 @@
     public void RedirectToProdPage(ProductModel product)
     {
         SearchService.Dispose();
-        NavigationManager.NavigateTo($"{product.Id.ToString()+product.Name}");
+        NavigationManager.NavigateTo($"{product.Name + product.Id.ToString()}");
         
     }
     #region "SearchLogic"
