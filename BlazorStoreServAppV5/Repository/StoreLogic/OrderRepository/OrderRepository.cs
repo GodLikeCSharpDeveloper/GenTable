@@ -1,4 +1,4 @@
-﻿using BlazorStoreServAppV5.Models.AuthModel;
+﻿
 using BlazorStoreServAppV5.Models.BLogicModel;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +14,7 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository
         }
         public async Task<List<OrderModel>> GetAllOrdersAsync()
         {
-            return await _StoreContext.Orders.ToListAsync();
+            return await _StoreContext.Orders.Include(x=>x.Products).ToListAsync();
         }
         public async Task<List<OrderModel>> GetOrderByName(string user)
         {

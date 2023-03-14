@@ -1,17 +1,14 @@
 ﻿@page "/AdminPanel"
-@using BlazorStoreServAppV5.Repository.ThemeRepository
-
 @inherits MainLayout
 @inject NavigationManager NavigationManager
-@inject IThemeLogic ThemesLogic
 @attribute [Authorize(Roles = "Admin")]
 <component type="typeof(MainLayout)" param-InitialState="@Id" render-mode="ServerPrerendered" />
 <div class="row g-0">
     <div class="col-12 col-md-3 col-sm-12 col-lg-4 d-flex btnClass justify-content-center">
         <div class="Mygroup">
-            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminOrders))">Select a value</button>
-            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminUsers))">Rocket Lab</button>
-            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminAddProd))">Select a value</button>
+            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminOrders))">All orders</button>
+            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminUsers))">All users</button>
+            <button class="groupbtn" @onclick="()=>OnDropdownChange(typeof(AdminAddProd))">Add new product</button>
             @* <button class="@ThemesLogic.CurrentTheme" @onclick="()=>OnDropdownChange(typeof(UserOrders))">Rocket Lab</button>*@
         </div>
     </div>
@@ -32,7 +29,6 @@
     protected override async Task OnInitializedAsync()
     {
         SelectedType = typeof(AdminOrders);
-
         if (IsAuth)
         {
             var User = CurrentUser;
@@ -42,17 +38,8 @@
             NavigationManager.NavigateTo("/identity/account/login");
         }
     }
-
     public void OnDropdownChange(Type type)
     {
         SelectedType = type;
     }
-
-    protected override Task OnParametersSetAsync()
-    {
-
-        return Task.CompletedTask;
-
-    }
-
 }

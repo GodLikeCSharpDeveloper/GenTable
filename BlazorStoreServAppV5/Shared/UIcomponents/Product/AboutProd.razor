@@ -1,20 +1,35 @@
-﻿<div class="row">
-    <div class="col-6">
-        <img class="MainImg"src="@Product.ImgSrcString"/>
+﻿@using BlazorAnimate
+@if (test)
+{
+    <Animate Animation="Animations.FadeIn" Duration="TimeSpan.FromSeconds(0.5)">
+
+        <div class="FullScreenImg" >
+
+            <FullscreenImg ImgSource="@Product.ImgSrcString" Close="ShowFullscreenImg"></FullscreenImg>
+
+        </div>
+
+    </Animate>
+}
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+        <img @onclick="ShowFullscreenImg"class="MainImg"src="@Product.ImgSrcString"/>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
         <div class="row d-flex">
             <div class="col-12 ">
                 <label>@Product.Price</label>
                 <button class="bi-cart btn btn-outline-primary">Buy</button>
             </div>
-            @foreach (var descr in Product.DescriptionModels)
-            {
-                <div class="col-12 Descr d-flex">
-                    <label class="">@descr.Name</label>
-                    <label class="">@descr.Description</label>
-                </div>
-            }
+            <div class="col-12 ">
+                <article id="DescriptionClass">@Test</article>
+            </div>
+            <div class="col-12">s</div>
+            <div class="col-12">s</div>
+            <div class="col-12">s</div>
+            <div class="col-12">s</div>
+            <div class="col-12">s</div>
+            <div class="col-12">s</div>
             <div class="col-12">s</div>
             <div class="col-12">s</div>
             <div class="col-12">s</div>
@@ -26,5 +41,22 @@
 
     [Parameter]
     public ProductModel Product { get; set; }
+
+    public bool test { get; set; } = new();
+    public string ShowOrHide { get; set; } = "Hide";
+    public string Test { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        var name = Faker.Lorem.Paragraph(40);
+        Test = name;
+    }
+
+    void ShowFullscreenImg()
+    {
+        test = !test;
+    }
+
+
 
 }

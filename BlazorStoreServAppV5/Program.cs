@@ -8,16 +8,9 @@ using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
-using BlazorStoreServAppV5.Repository.ThemeRepository;
-using Lucene.Net.Search;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -32,7 +25,6 @@ builder.Services.AddScoped<FileUploadService>();
 builder.Services.AddTransient<ISearchLucene, SearchLucene>(_ => new SearchLucene("Data"));
 builder.Services.AddScoped<IAccountLogic, AccountLogic>();
 builder.Services.AddScoped<ICategoryLogic, CategoryLogic>();
-builder.Services.AddSingleton<IThemeLogic,ThemeLogic>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

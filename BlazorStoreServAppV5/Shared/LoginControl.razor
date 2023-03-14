@@ -1,7 +1,6 @@
 ﻿@using System.Security.Claims
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor _httpContextAccessor
-@inject HttpClient Http
 @if (User.Identity.Name != null)
 {
     <img src="@Avatar" />
@@ -17,10 +16,10 @@ else
        target="_top"><img src="/images.png"/>Login</a>
 }
 @code {
-    private ClaimsPrincipal User;
-    private string GivenName;
-    private string Surname;
-    private string Avatar;
+    private ClaimsPrincipal? User { get; set; }
+    private string? GivenName { get; set; }
+    private string? Surname { get; set; }
+    private string? Avatar { get; set; }
     protected override void OnInitialized()
     {
         base.OnInitialized();

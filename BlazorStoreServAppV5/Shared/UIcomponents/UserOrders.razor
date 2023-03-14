@@ -110,6 +110,22 @@
         wrapper.OrderBool = !wrapper.OrderBool;
     }
 
+    protected override void OnParametersSet()
+    {
+        foreach (var order in CurrentUser.Orders)
+        {
+            var wrap = new Wrapper<OrderModel>(order);
+            WrapperForOrdersList.Add(wrap);
+        }
+    }
 
-
+    int FullPrices(List<ProductModel> prods)
+    {
+        var full = 0;
+        foreach (var item in prods)
+        {
+            full += item.Price;
+        }
+        return full;
+    }
 }

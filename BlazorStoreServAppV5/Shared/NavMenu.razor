@@ -3,7 +3,6 @@
 @using BlazorStoreServAppV5.Models.CssModels
 @using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository
 @using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
-@using BlazorStoreServAppV5.Repository.ThemeRepository
 @using Lucene.Net.Analysis.Standard
 @using Lucene.Net.Documents
 @using Lucene.Net.QueryParsers
@@ -13,7 +12,6 @@
 @using System.Text
 @inject IUserRepositoryService UserRepository
 @inject TokenProvider _TokenProvider
-@inject IThemeLogic ThemesLogic
 @inject NavigationManager NavManager
 @inject HttpClient http
 @inject ISearchLucene SearchService
@@ -39,10 +37,6 @@
                             <span class="option-text">@prod</span>
                         </li>
                     }
-                }
-                else
-                {
-                    
                 }
             </ul>
         }

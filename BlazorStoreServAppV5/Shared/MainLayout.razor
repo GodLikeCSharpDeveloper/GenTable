@@ -1,14 +1,9 @@
-﻿@using BlazorStoreServAppV5.Pages
-@using BlazorStoreServAppV5.Models.CssModels
-@using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
-@using BlazorStoreServAppV5.Repository.ThemeRepository
+﻿@using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
 @using System.Reflection
 @inherits LayoutComponentBase
-@inject IDescriptionRepositoryService Description
 @inject IUserRepositoryService User
 @inject IProductRepositoryService Product
 @inject IOrderRepositoryServise Order
-@inject IThemeLogic Themes
 @inject ICategoryLogic Category
 <PageTitle>GenericTableAppV5</PageTitle>
 
@@ -23,24 +18,20 @@
 {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
-
-    public static List<Users> UsersList { get; set; }
-    public static List<ProductModel> ProductsList { get; set; }
-    public static List<OrderModel> OrdersList { get; set; }
-    public static List<CategoryModel> CategoriesList { get; set; }
+    public static List<Users>? UsersList { get; set; }
+    public static List<ProductModel>? ProductsList { get; set; }
+    public static List<OrderModel>? OrdersList { get; set; }
+    public static List<CategoryModel>? CategoriesList { get; set; }
     public static Users? CurrentUser { get; set; }
     public static bool IsAuth { get; set; }
     public static List<ProductModel> CartList { get; set; } = new();
-
-    [Parameter]
-    public int Id { get; set; }
-
-    public static List<PropertyInfo> OrderPropertyInfos { get; set; }
-    public static List<PropertyInfo> UsersPropertyInfos { get; set; }
-    public bool[] ShowItems { get; set; } 
-    public Dictionary<OrderModel,bool> UserDictionary { get; set; } = new();
+    public static List<PropertyInfo>? OrderPropertyInfos { get; set; }
+    public static List<PropertyInfo>? UsersPropertyInfos { get; set; }
+    public Dictionary<OrderModel, bool> UserDictionary { get; set; } = new();
     public List<Wrapper<OrderModel>> WrapperForOrdersList { get; set; } = new();
     public List<Wrapper<Users>> WrapperForUsersList { get; set; } = new();
+    [Parameter]
+    public int Id { get; set; }
     protected override async Task OnInitializedAsync()
     {
         CategoriesList = await Category.GetAllCategoriesAsync();
@@ -48,43 +39,8 @@
         UsersList = await User.GetAllUsersAsync();
         OrdersList = await Order.GetAllOrdersAsync();
         CurrentUser = await User.GetCurrentUser(authenticationStateTask);
-        var user = (await authenticationStateTask).User;
-        IsAuth = user.Identity.IsAuthenticated;
-        FullOrderPrice();
+        IsAuth = (await authenticationStateTask).User.Identity.IsAuthenticated;
         OrderPropertyInfos = typeof(OrderModel).GetProperties().ToList();
         UsersPropertyInfos = typeof(Users).GetProperties().ToList();
-        if(CurrentUser!=null){
-        ShowItems = new bool[CurrentUser.Orders.Count];
-        foreach (var order in CurrentUser.Orders)
-        {
-            var wrap = new Wrapper<OrderModel>(order);
-            WrapperForOrdersList.Add(wrap);
-        }
-        }
-        foreach (var _user in UsersList)
-        {
-            var wrap = new Wrapper<Users>(_user);
-            WrapperForUsersList.Add(wrap);
-        }
     }
-
-    public int FullPrice { get; set; } = 0;
-
-    public int FullPrices(List<ProductModel> prods)
-    {
-        foreach (var order in prods)
-        {
-            FullPrice = +order.Price;
-        }
-        return FullPrice;
-    }
-
-    void FullOrderPrice()
-    {
-        foreach (var price in OrdersList)
-        {
-            price.FullPrice = FullPrices(price.Products);
-        }
-    }
-
 }

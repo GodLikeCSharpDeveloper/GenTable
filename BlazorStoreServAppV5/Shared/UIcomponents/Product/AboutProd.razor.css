@@ -1,7 +1,30 @@
 ﻿.MainImg {
-    width: 50%;
+    width: 100%;
     height: auto;
+    margin: 0 0 5px 0;
 }
 .Descr label {
     margin: 0 20% 0 0;
+}
+#DescriptionClass {
+    
+    margin: 5px 5px 0 0;
+    padding: 5px 5px 5px 5px;
+}
+.FullScreenImg {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    left: 0;
+    top: 0;
+    
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+.Hide {
+    display: none;
+    transition: 0.5ms;
 }

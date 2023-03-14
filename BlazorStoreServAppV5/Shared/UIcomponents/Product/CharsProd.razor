@@ -1,6 +1,19 @@
-﻿<h3>CharsProd</h3>
-@Product.Name
+﻿<div class="row">
+    <div class="col-12 d-flex flex-column justify-content-start">
+        @foreach (var item in Product.DescriptionModels)
+        {
+            <div class="d-flex justify-content-start" style="width: 100%">
+                <label>.Name</label>
+                <area style="width: 10%"/>
+                <label>.Description</label>
+            </div>
+        }
+    </div>
+</div>
+
 @code {
+
     [Parameter]
     public ProductModel Product { get; set; }
+
 }

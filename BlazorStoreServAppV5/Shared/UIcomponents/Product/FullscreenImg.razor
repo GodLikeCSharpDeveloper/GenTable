@@ -1,0 +1,9 @@
+﻿<img @onclick="Close" style="width: 90%; position: fixed; height: auto;"src="@ImgSource"/>
+
+@code {
+
+    [Parameter]
+    public string ImgSource { get; set; }
+    [Parameter]
+    public EventCallback Close { get; set; }
+}

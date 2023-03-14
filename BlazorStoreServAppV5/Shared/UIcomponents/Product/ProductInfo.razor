@@ -4,12 +4,12 @@
     <div class="col-12">
         <h3>@Product.Name</h3>
     </div>
-    <div class="col-12 d-flex">
+    <div class="col-12 d-flex NavPanel">
         <button class="btn btn-outline-info" @onclick="() => TypeChanger(typeof(AboutProd))">About product</button>
         <button class="btn btn-outline-info" @onclick="() => TypeChanger(typeof(CharsProd))">Characteristics</button>
         <button class="btn btn-outline-info" @onclick="() => TypeChanger(typeof(ReviewsProd))">Reviews</button>
     </div>
-    <div class="col-12">
+    <div class="col-12" style="overflow: hidden; height: 200%;">
         <DynamicComponent Type="DynType" Parameters="@components["AboutProd"].Parameters"></DynamicComponent>
     </div>
 

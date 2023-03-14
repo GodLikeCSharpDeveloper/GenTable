@@ -12,7 +12,7 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
         }
         public async Task<List<ProductModel>> GetAllProductsAsync()
         {
-            return await _StoreContext.Products.Include(o=>o.CategoryModels).ToListAsync();
+            return await _StoreContext.Products.Include(o=>o.CategoryModels).Include(p=>p.DescriptionModels).ToListAsync();
         }
        
         public async Task<List<ProductModel>> GetOrderByName(string name)
@@ -39,11 +39,11 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository
             await _StoreContext.SaveChangesAsync();
             return true;
         }
-        //public async Task<List<OrderModel>> GetProductByOrder()
-        //{
-        //    var products = await _StoreContext.Orders.Include(o=>o.Products).ToListAsync();
-        //    return products;
-        //}
+        public async Task<List<OrderModel>> GetProductByOrder()
+        {
+            var products = await _StoreContext.Orders.Include(o => o.Products).ToListAsync();
+            return products;
+        }
 
     }
 }
