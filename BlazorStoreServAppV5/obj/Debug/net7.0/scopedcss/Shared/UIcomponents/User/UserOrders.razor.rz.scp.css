@@ -1,0 +1,29 @@
+.card[b-3ddop8tbw0] {
+    background-color: #15171e;
+}
+.cont[b-3ddop8tbw0] {
+    border-color: white;
+    border-width: 1px !important;
+    border: solid;
+    width: 98%;
+    margin: 0 0 10px 10px;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    transition: all 1s ease-out;
+}
+.expandButton[b-3ddop8tbw0] {
+    color: white;
+    background: none;
+    border: none;
+    height: 100%;
+}
+.allinform[b-3ddop8tbw0] {
+    color: #a29894;
+    padding: 0px 5px 0px 5px;
+    text-align-all: center;
+}
+th[b-3ddop8tbw0],td[b-3ddop8tbw0] {
+    text-align: center;
+    padding: 0px 5px 0px 5px;
+}
+

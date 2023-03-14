@@ -1,0 +1,28 @@
+.btnNav[b-r8m62qrzgg] {
+    color: white;
+    background: none;
+    margin: 0 0px 0 0;
+    padding: 0px 5px 0px 5px;
+    border: none;
+}
+
+a.btnNav[b-r8m62qrzgg] {
+    background: black;
+    top: 50%;
+    text-decoration: none;
+    padding-top: 13px;
+}
+
+img[b-r8m62qrzgg] {
+    max-width: 50px;
+}
+.formbtn[b-r8m62qrzgg] {
+    min-height: 100%;
+}
+
+button:hover[b-r8m62qrzgg], a:hover[b-r8m62qrzgg] {
+    background: fixed;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+}

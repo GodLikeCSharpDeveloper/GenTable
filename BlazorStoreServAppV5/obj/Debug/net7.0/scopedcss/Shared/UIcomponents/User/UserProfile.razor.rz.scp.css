@@ -1,0 +1,41 @@
+
+.colorWhite[b-8f8o1t7nq3] {
+    background-color: white; /* Green background */
+    border: 1px solid black;
+    color: black;
+}
+.colorBlack[b-8f8o1t7nq3] {
+    background-color: black; /* Green background */
+    border: 1px solid green;
+    color: white;
+}
+.colorGreen[b-8f8o1t7nq3] {
+    background-color: green; /* Green background */
+    border: 1px solid black;
+    color: white;
+}
+.groupbtn[b-8f8o1t7nq3] {
+    display: block;
+    background: none;
+    color: #a29894;
+    border-color: #a29894;
+    border-width: 1px;
+    padding: 5px 5px 5px 15px;
+    min-width: 100%;
+    box-sizing: border-box;
+    margin-top: 3px;
+    
+}
+.Mygroup[b-8f8o1t7nq3] {
+    background-color: #15171e;
+    
+    border: white;
+    border-width:5px;
+    width: 95%;
+    height: 95%;
+}
+.component[b-8f8o1t7nq3] {
+    margin: 10px 0 0 0;
+}
+
+

@@ -1,0 +1,231 @@
+.NavBar[b-mbrop61ily] {
+    background: #061e36;
+    color: white;
+    min-height: 50px;
+    
+   }
+
+.formbtn[b-mbrop61ily] { min-height: 50px; }
+
+.btnNav[b-mbrop61ily] {
+    color: white;
+    background: none;
+    margin: 0 0px 0 0;
+    padding: 0 5px 0 5px;
+    border: none;
+    height: 100%;
+    
+}
+.formA[b-mbrop61ily]{
+    justify-self: start !important;
+    align-self: start !important;
+}
+a.btnNav[b-mbrop61ily] {
+    background: none;
+    height: 100%;
+    text-decoration: none;
+    text-align: center;
+    text-align-all: center;
+    justify-self: center;
+    padding: 13px 5px 0 0;
+    
+}
+.navheight[b-mbrop61ily] {
+    height: 50px;
+    align-items: center;
+   
+}
+button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
+    background: fixed;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+}
+
+.NavInput[b-mbrop61ily] {
+    background-color: white;
+    border-color: black;
+    display: inline;
+    min-height: 35px;
+    align-self: center;
+    border-radius: 5px;
+    padding: 0 0 0 5px;
+    margin: 0 0 0 0;
+}
+
+.NavInputButton[b-mbrop61ily] {
+    padding: 0 0 0 0 !important;
+    margin: 0 0 0 0 !important;
+    min-height: 35px;
+}
+
+.NavInputButton:hover[b-mbrop61ily] {
+    padding: 0 0 0 0 !important;
+    margin: 0 0 0 0 !important;
+    background: none;
+    color: white;
+}
+
+.NavInputButton:active[b-mbrop61ily] {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+}
+
+.NavInput:focus-visible[b-mbrop61ily] { outline: 0; }
+
+.MenuClass[b-mbrop61ily] {
+    
+    border: none;
+    display: none;
+    background: none;
+    color: white;
+}
+
+.RightSide[b-mbrop61ily] {
+    visibility: hidden;
+    margin: 0 0 0 0;
+    display: flow;
+}
+
+@media screen and (max-width: 992px) {
+    .toHide[b-mbrop61ily] { display: none !important; }
+
+    .Show[b-mbrop61ily] { width: 25%; }
+
+    .MenuClass[b-mbrop61ily] { display: inline; }
+}
+
+@media screen and (max-width: 2000px) { 
+    .Show[b-mbrop61ily] { width: 25%; } 
+}
+
+@media screen and (max-width: 600px) {
+    .Show[b-mbrop61ily] { width: 50%; }
+}
+
+@media screen and (max-width: 400px) {
+    .Show[b-mbrop61ily] { width: 100%; }
+}
+
+.Hide[b-mbrop61ily] { width: 0%; }
+
+.sidepanel[b-mbrop61ily] {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #061e36;
+    overflow-x: hidden;
+    transition: 0.35s;
+    padding: 60px 0 0 0;
+}
+
+.sidepanel *[b-mbrop61ily] { padding: 5px 5px 0px 5px; }
+
+.sidepanel input[b-mbrop61ily], a[b-mbrop61ily] {
+    margin-left: 5px;
+    padding: 0 0 0 5px;
+}
+
+.form[b-mbrop61ily] {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.sidepanel *[b-mbrop61ily] {
+    margin: 0 0 0 0;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: start;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.5s;
+}
+
+.sidepanel button:hover[b-mbrop61ily] {
+    color: #111;
+    background-color: white;
+}
+
+.sidepanel .closebtn[b-mbrop61ily] {
+    position: absolute;
+    top: 0;
+    left: 85%;
+    max-width: 15%;
+    text-align: center;
+}
+
+.openbtn[b-mbrop61ily] {
+    font-size: 20px;
+    cursor: pointer;
+    background: none;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover[b-mbrop61ily] { background-color: #444; }
+
+.sidepanelSearch[b-mbrop61ily] {
+    border: none;
+    border-radius: 2px;
+    background: none;
+    outline-color: #a29894;
+    color: #a29894;
+}
+
+.sidepanelSearch:focus[b-mbrop61ily] {
+    outline: solid;
+    outline-width: 1px;
+}
+.autocomplete[b-mbrop61ily] {
+    position: relative;
+}
+
+.autocomplete .options[b-mbrop61ily]{
+    color: black;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: white;
+    width: 100%;
+    padding: 0;
+    z-index: 10;
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+    box-shadow: 0 30px 25px 8px rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete .option[b-mbrop61ily] {
+    display: block;
+    padding: 0.25rem;
+}
+
+.autocomplete .option .option-text[b-mbrop61ily] {
+    padding: 0.25rem 0.5rem;
+}
+
+.autocomplete .option:hover[b-mbrop61ily] {
+    background: #1E90FF;
+    color: black;
+}
+
+    .autocomplete .option.disabled:focus[b-mbrop61ily] {
+        background-color: lightgrey;
+        cursor: not-allowed;
+    }
+.autocomplete .option.disabled:active[b-mbrop61ily] {
+    background-color: lightgrey;
+    cursor: not-allowed;
+}
+
+.autocomplete .option.disabled:hover[b-mbrop61ily] {
+    background: lightgrey;
+    color: var(--bs-body);
+}

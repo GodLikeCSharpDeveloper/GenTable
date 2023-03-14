@@ -1,0 +1,26 @@
+.groupbtn[b-ag3sa00bth] {
+    display: block;
+    background: none;
+    color: #a29894;
+    border-color: #a29894;
+    border-width: 1px;
+    padding: 5px 5px 5px 15px;
+    min-width: 100%;
+    box-sizing: border-box;
+    margin-top: 3px;
+}
+
+.Mygroup[b-ag3sa00bth] {
+    background-color: #15171e;
+    border: white;
+    border-width: 5px;
+    width: 95%;
+    height: 95%;
+}
+
+.component[b-ag3sa00bth] {
+    margin: 10px 0 0 0;
+}
+.btnClass[b-ag3sa00bth] {
+    margin: 10px 0 0 0;
+}

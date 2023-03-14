@@ -1,0 +1,35 @@
+.cont[b-399f8ktukx] { width: 99%; }
+
+.addPanel[b-399f8ktukx] { margin: 0 0 5px 0; }
+
+input[b-399f8ktukx] {
+    margin: 0 0 5px 0;
+    border-radius: 5px;
+}
+
+label[b-399f8ktukx] { margin: 0 0 9px 0; }
+
+.checkboxes[b-399f8ktukx] {
+    margin: 0 0 0 0 !important;
+    border-width: 2px;
+    border-color: #a29894 !important;
+    border-style: solid;
+    padding: 5px 0 5px 5px;
+}
+
+.labelcheckbox[b-399f8ktukx] { display: inline; }
+
+.checkboxstyle[b-399f8ktukx] {
+    padding: 0 0 0 0 !important;
+    border-radius: 5px
+}
+
+.preview[b-399f8ktukx] {
+    width: 100%;
+    height: 100%;
+    padding: 5px 0 0 0;
+}
+
+.mainAdd[b-399f8ktukx] { width: 100% }
+
+.input[b-399f8ktukx] { padding: 5px 0 0 0 }
