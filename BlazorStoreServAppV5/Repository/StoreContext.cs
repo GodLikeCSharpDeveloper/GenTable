@@ -22,6 +22,8 @@ namespace BlazorStoreServAppV5.Repository
         public DbSet<ProductOrderModel> ProductsOrder { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<ProductCategoryModel> ProductCategoryModel { get; set; }
+        public DbSet<TagModel> TagModels { get; set; }
+        public DbSet<TagCategoryModel> TagCategoryModel { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,7 +43,7 @@ namespace BlazorStoreServAppV5.Repository
             j =>
             {
                 j.HasKey(pt => new { pt.ProductModelId, pt.OrderModelId });
-                    j.ToTable("Test");
+                    j.ToTable("ProductOrder");
             });
             modelBuilder.Entity<Users>()
                         .HasMany(s => s.Roles)
@@ -75,7 +77,23 @@ namespace BlazorStoreServAppV5.Repository
                     {
                         j.HasKey(pt => new { pt.CategoryModelsId, pt.ProductModelsId });
                     });
-          
+            modelBuilder.Entity<CategoryModel>()
+                .HasMany(s => s.Tags)
+                .WithMany(c => c.Categories).
+                UsingEntity<TagCategoryModel>(
+                    j => j
+                        .HasOne(pt => pt.TagModel)
+                        .WithMany(o => o.TagCategoryModels)
+                        .HasForeignKey(pt => pt.TagModelId),
+                    j => j
+                        .HasOne(pt => pt.CategoryModel)
+                        .WithMany(p => p.TagCategoryModels)
+                        .HasForeignKey(pt => pt.CategoryModelsId),
+                    j =>
+                    {
+                        j.HasKey(pt => new { pt.CategoryModelsId, pt.TagModelId });
+                    });
+
         }
     }
 

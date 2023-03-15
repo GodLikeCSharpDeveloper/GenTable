@@ -1,7 +1,5 @@
 ﻿using BlazorStoreServAppV5.Models.AuthModel;
-using BlazorStoreServAppV5.Models.BLogicModel;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace BlazorStoreServAppV5.Repository.StoreLogic.UserRepository
 {

@@ -1,5 +1,5 @@
 ﻿@inject TokenProvider _TokenProvider
-@using BlazorStoreServAppV5.Models.AuthModel
+
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
@@ -16,7 +16,7 @@
 </CascadingAuthenticationState>
 @code{
     [Parameter]
-    public AppInitialState InitialState { get; set; }
+    public AppInitialState? InitialState { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

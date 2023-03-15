@@ -1,4 +1,4 @@
-﻿@inherits MainLayout
+﻿@inherits AdminPanel
 @if (MyUser != null)
 {
     <section >
@@ -119,15 +119,6 @@
 }
 
 @code {
-
-    [Parameter]
-    public string Visible { get; set; }
-
     [Parameter]
     public Users MyUser { get; set; }
-
-    [Parameter]
-    public Type MyType { get; set; }
-
-
 }

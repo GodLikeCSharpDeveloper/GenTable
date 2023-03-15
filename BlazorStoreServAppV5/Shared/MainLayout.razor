@@ -38,8 +38,11 @@
         ProductsList = await Product.GetAllProductsAsync();
         UsersList = await User.GetAllUsersAsync();
         OrdersList = await Order.GetAllOrdersAsync();
+        if (User.GetCurrentUser(authenticationStateTask)!=null)
+        {
         CurrentUser = await User.GetCurrentUser(authenticationStateTask);
         IsAuth = (await authenticationStateTask).User.Identity.IsAuthenticated;
+        }
         OrderPropertyInfos = typeof(OrderModel).GetProperties().ToList();
         UsersPropertyInfos = typeof(Users).GetProperties().ToList();
     }

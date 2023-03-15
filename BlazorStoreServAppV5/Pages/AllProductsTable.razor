@@ -14,6 +14,7 @@
                 <div class="">
                     <ul class="list-group">
                         <li class="list-group-item CheckboxListStyle">
+                            @if(CategoriesList!=null){
                             @foreach (var category in CategoriesList)
                             {
                                 <div class="form-check ">
@@ -22,6 +23,11 @@
                                         @category.Name
                                     </label>
                                 </div>
+                            }
+                            }
+                            else
+                            {
+                                <div>Nothing here</div>
                             }
                         </li>
                     </ul>
@@ -70,17 +76,17 @@
 
 
 @code {
-    public List<Users> UsersList { get; set; }
-    public List<OrderModel> OrdersList { get; set; }
-    public List<ProductModel> tempProds;
+    
 
     protected override async Task OnInitializedAsync()
     {
         SearchService.IndexWriterCreating();
+        if(ProductsList!=null)
         foreach (var item in ProductsList)
         {
-            Products = tempProds = ProductsList.ToList();
+            Products = TempProds = ProductsList.ToList();
         }
+        SearchService.Dispose();
     }
 
     public void RedirectToProdPage(ProductModel product)
@@ -94,17 +100,18 @@
     public List<int> CatIds { get; set; } = new();
     public List<ProductModel> Prods { get; set; }
     public List<ProductModel> Products { get; set; } = new();
-
-    public List<ProductModel> CategoryAddRemove(int Id, ChangeEventArgs e)
+    public List<ProductModel>? TempProds { get; set; }
+    public string? Request { get; set; }
+    public List<ProductModel> CategoryAddRemove(int id, ChangeEventArgs e)
     {
         Products = new List<ProductModel>();
         if ((bool)e.Value)
         {
-            CatIds.Add(Id);
+            CatIds.Add(id);
         }
         else
         {
-            CatIds.Remove(Id);
+            CatIds.Remove(id);
         }
         foreach (var item in ProductsList.ToList())
         {
@@ -121,21 +128,17 @@
         {
             Products = ProductsList.ToList();
         }
-
         if (Request != null)
             Searcher(Request);
         StateHasChanged();
         Products = Products.Distinct().ToList();
-        tempProds = Products;
+        TempProds = Products;
         return Products;
     }
 
-    [Parameter]
-    public string Request { get; set; }
-
     protected void Searcher(string value)
     {
-        if (string.IsNullOrEmpty(value)) Products = tempProds;
+        if (string.IsNullOrEmpty(value)) Products = TempProds;
         if (CatIds.Count.Equals(0))
             Products = ProductsList.ToList();
         var names = SearchService.Search(value);
@@ -151,7 +154,6 @@
         }
         Products = Products.Distinct().ToList();
     }
-
     #endregion
 
     public void AddToCart(ProductModel product)

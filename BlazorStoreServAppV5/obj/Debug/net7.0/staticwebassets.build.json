@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pWjKFAJutcCSXJn3nTHDFZYK+tV8j1GOiHsdNyGkkNQ=",
+  "Hash": "ZmfGRosX205h9OboWJa5JUJGHme4xv6e/tLEUuxMSqI=",
   "Source": "BlazorStoreServAppV5",
   "BasePath": "_content/BlazorStoreServAppV5",
   "Mode": "Default",
@@ -510,6 +510,23 @@
       "OriginalItemSpec": "wwwroot\\PictUploads\\fc5wvwk4.stv.png"
     },
     {
+      "Identity": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\wwwroot\\PictUploads\\fqe50r0y.nfl.png",
+      "SourceId": "BlazorStoreServAppV5",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\wwwroot\\",
+      "BasePath": "_content/BlazorStoreServAppV5",
+      "RelativePath": "PictUploads/fqe50r0y.nfl.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\PictUploads\\fqe50r0y.nfl.png"
+    },
+    {
       "Identity": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\wwwroot\\PictUploads\\g4fhqwun.0lg.png",
       "SourceId": "BlazorStoreServAppV5",
       "SourceType": "Discovered",
@@ -576,6 +593,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\PictUploads\\mmdgtlnh.51h.png"
+    },
+    {
+      "Identity": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\wwwroot\\PictUploads\\n4ylln32.kah.png",
+      "SourceId": "BlazorStoreServAppV5",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\wwwroot\\",
+      "BasePath": "_content/BlazorStoreServAppV5",
+      "RelativePath": "PictUploads/n4ylln32.kah.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\PictUploads\\n4ylln32.kah.png"
     },
     {
       "Identity": "C:\\Users\\KAYAYASHA\\Desktop\\New folder\\GenTable\\BlazorStoreServAppV5\\wwwroot\\PictUploads\\tbw5rdo0.oyi.png",

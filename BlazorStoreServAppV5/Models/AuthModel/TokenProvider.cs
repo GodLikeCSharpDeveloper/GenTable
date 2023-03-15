@@ -2,6 +2,6 @@
 {
     public class TokenProvider
     {
-        public string AntiForgeryToken { get; set; }
+        public string? AntiForgeryToken { get; set; }
     }
 }

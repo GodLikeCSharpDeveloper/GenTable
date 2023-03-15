@@ -1,8 +1,5 @@
 using BlazorStoreServAppV5.Models.AuthModel;
 using BlazorStoreServAppV5.Repository.AccountLogic;
-using BlazorStoreServAppV5.Shared;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

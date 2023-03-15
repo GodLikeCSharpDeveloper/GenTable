@@ -1,6 +1,4 @@
-﻿@inherits MainLayout
-@inject IOrderRepositoryServise OrderRepository
-@inject IUserRepositoryService UserRepository
+﻿@inherits AdminPanel
 
 <div class="row cont">
     <div class="col">
@@ -69,26 +67,20 @@
 @code {
     private string Space = " ";
 
-    [Parameter]
-    public List<OrderModel> AdminsUsersList { get; set; }
     public List<string> NamesForHtml { get; set; } = new()
     {
         "FirstName", "Address", "Phone", "Email", "Roles"
     };
 
-    [Parameter]
-    public bool[] PropBool { get; set; } = new bool[UsersPropertyInfos.Count];
-
     void Change(string prop)
     {
-        IQueryable<Users> AllUsers = UsersList.AsQueryable();
+        var AllUsers = UsersList.AsQueryable();
         if (UsersList.SequenceEqual(AllUsers.OrderBy(prop, true).ToList()))
         {
             UsersList = AllUsers.OrderBy(prop, false).ToList();
         }
         else
             UsersList = AllUsers.OrderBy(prop, true).ToList();
-
     }
 
     [Parameter]
@@ -98,16 +90,4 @@
     public string CssClass { get; set; } = "nonvisible";
 
     public Users CurUsers;
-
-    void changer(Users user)
-    {
-        if (CssClass == "nonvisible")
-            CssClass = "visible";
-        else
-            CssClass = "nonvisible";
-        CurUsers = user;
-        StateHasChanged();
-    }
-
-
-}
+} 
