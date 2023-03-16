@@ -13,9 +13,6 @@
 /BlazorStoreServAppV5/Data/*.pos
 /BlazorStoreServAppV5/Data/*.tim
 /BlazorStoreServAppV5/Data/*.tip
-/BlazorStoreServAppV5/Migrations/*.cs
-/BlazorStoreServAppV5/Models/BLogicModel/*.cs
-/BlazorStoreServAppV5/Repository/StoreLogic/TagRepository/*.cs
 /BlazorStoreServAppV5/*.db-shm
 /BlazorStoreServAppV5/*.db-wal
 /BlazorStoreServAppV5/wwwroot/*.torrent
