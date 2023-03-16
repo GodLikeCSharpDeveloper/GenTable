@@ -1,5 +1,8 @@
 ﻿@page "/{ProductId}"
+@using BlazorStoreServAppV5.Repository.StoreLogic.LiqPay
 @inherits MainLayout
+@inject LiqPayService LiqPayService
+@inject NavigationManager NavigationManager
 <div class="row">
     <div class="col-12">
         <h3>@Product.Name</h3>
@@ -12,7 +15,7 @@
     <div class="col-12" style="overflow: hidden; height: 200%;">
         <DynamicComponent Type="DynType" Parameters="@components["AboutProd"].Parameters"></DynamicComponent>
     </div>
-
+    <button class="btn btn-outline-info" @onclick="() => ConfirmPayment()">Reviews</button>
 </div>
 
 
@@ -49,4 +52,9 @@
         DynType = type;
     }
 
+    private async Task ConfirmPayment()
+    {
+        var checkoutUrl = await LiqPayService.GetCheckoutUrl(10.00m, "Test Payment");
+        NavigationManager.NavigateTo(checkoutUrl);
+    }
 }

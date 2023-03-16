@@ -1,12 +1,15 @@
 ﻿<div class="row">
     <div class="col-12 d-flex flex-column justify-content-start">
-        @foreach (var item in Product.DescriptionModels)
+        @if (Product.Tags != null)
         {
-            <div class="d-flex justify-content-start" style="width: 100%">
-                <label>.Name</label>
-                <area style="width: 10%"/>
-                <label>.Description</label>
-            </div>
+            @foreach (var item in Product.Tags)
+            {
+                <div class="d-flex justify-content-start" style="width: 100%">
+                    <label>@item.Name</label>
+                    <area style="width: 10%"/>
+                    <label>@item.Value</label>
+                </div>
+            }
         }
     </div>
 </div>

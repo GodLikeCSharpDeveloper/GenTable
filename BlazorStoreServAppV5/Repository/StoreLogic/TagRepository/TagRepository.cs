@@ -13,7 +13,7 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.TagRepository
         }
         public async Task<List<TagModel>> GetAllTagsAsync()
         {
-            return await _storeContext.TagModels.Include(x => x.Categories).ThenInclude(x=>x.ProductModels).ToListAsync();
+            return await _storeContext.TagModels.Include(x => x.Categories).Include(x=>x.ProductModels).ToListAsync();
         }
 
         public async Task<TagModel> AddNewTagAsync(TagModel tagModel)

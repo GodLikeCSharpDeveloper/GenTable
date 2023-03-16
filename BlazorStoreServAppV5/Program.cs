@@ -4,6 +4,7 @@ using BlazorStoreServAppV5.Repository.AccountLogic;
 using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.DescriptionRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.FileOploading;
+using BlazorStoreServAppV5.Repository.StoreLogic.LiqPay;
 using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository;
@@ -12,6 +13,7 @@ using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -27,13 +29,11 @@ builder.Services.AddTransient<ISearchLucene, SearchLucene>(_ => new SearchLucene
 builder.Services.AddScoped<IAccountLogic, AccountLogic>();
 builder.Services.AddScoped<ICategoryLogic, CategoryLogic>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
+builder.Services.AddScoped<LiqPayService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.ExpireTimeSpan = TimeSpan.FromDays(20); 
-    });
+    .AddCookie(options => { options.ExpireTimeSpan = TimeSpan.FromDays(20); });
 builder.Services.AddAuthentication().AddGoogle(options =>
 {
     var clientId = builder.Configuration["Authentication:Google:ClientId"];
@@ -47,8 +47,8 @@ builder.Services.AddScoped<HttpClient>();
 builder.Services.AddLogging();
 builder.Services.AddDbContext<StoreContext>(option =>
     option.EnableSensitiveDataLogging().UseSqlite(builder.Configuration.GetConnectionString("myconn")));
-   
-    var app = builder.Build();
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
