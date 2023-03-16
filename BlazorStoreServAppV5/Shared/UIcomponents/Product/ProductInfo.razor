@@ -24,7 +24,7 @@
     public Type DynType { get; set; } = typeof(AboutProd);
     public ProductModel Product { get; set; } = new();
     private Dictionary<string, ComponentMetaData> components { get; set; }
-    protected override async Task OnInitializedAsync()
+    protected override void OnParametersSet()
     {
         foreach (var prod in ProductsList)
         {

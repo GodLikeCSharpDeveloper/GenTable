@@ -1,5 +1,6 @@
 ﻿@page "/Products"
 @using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository
+@using Lucene.Net.Documents
 @inherits MainLayout
 @inject ISearchLucene SearchService
 @inject NavigationManager NavigationManager
@@ -81,6 +82,20 @@
     protected override async Task OnInitializedAsync()
     {
         SearchService.IndexWriterCreating();
+        foreach (var item in ProductsList)
+        {
+            Document doc = new();
+            doc.Add(new TextField("name", item.Name, Field.Store.YES));
+            foreach (var cat in item.CategoryModels)
+            {
+               
+                doc.Add(new StringField("cat", cat.Name, Field.Store.YES));
+                
+            }
+            SearchService.AddDocument(doc);
+        }
+        
+        SearchService.Dispose();
         if(ProductsList!=null)
         foreach (var item in ProductsList)
         {
@@ -98,7 +113,6 @@
     #region "SearchLogic"
 
     public List<int> CatIds { get; set; } = new();
-    public List<ProductModel> Prods { get; set; }
     public List<ProductModel> Products { get; set; } = new();
     public List<ProductModel>? TempProds { get; set; }
     public string? Request { get; set; }

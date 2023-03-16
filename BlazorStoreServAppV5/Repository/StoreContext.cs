@@ -24,6 +24,7 @@ namespace BlazorStoreServAppV5.Repository
         public DbSet<ProductCategoryModel> ProductCategoryModel { get; set; }
         public DbSet<TagModel> TagModels { get; set; }
         public DbSet<TagCategoryModel> TagCategoryModel { get; set; }
+        public DbSet<ProductTagModel> ProductTagModel { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -93,6 +94,22 @@ namespace BlazorStoreServAppV5.Repository
                     {
                         j.HasKey(pt => new { pt.CategoryModelsId, pt.TagModelId });
                     });
+            modelBuilder.Entity<ProductModel>()
+                        .HasMany(s => s.Tags)
+                        .WithMany(c => c.ProductModels).
+                        UsingEntity<ProductTagModel>(
+                            j => j
+                                 .HasOne(pt => pt.TagModel)
+                                 .WithMany(o => o.ProductTagModels)
+                                 .HasForeignKey(pt => pt.TagModelId),
+                            j => j
+                                 .HasOne(pt => pt.Product)
+                                 .WithMany(p => p.ProductTagModels)
+                                 .HasForeignKey(pt => pt.ProductModelsId),
+                            j =>
+                            {
+                                j.HasKey(pt => new { pt.ProductModelsId, pt.TagModelId });
+                            });
 
         }
     }

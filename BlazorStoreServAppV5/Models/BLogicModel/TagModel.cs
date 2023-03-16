@@ -8,5 +8,7 @@
         public string? Description { get; set; }
         public List<CategoryModel>? Categories { get; set; }
         public List<TagCategoryModel>? TagCategoryModels { get; set; }
+        public List<ProductModel>? ProductModels { get; set; }
+        public List<ProductTagModel>? ProductTagModels { get; set; }
     }
 }

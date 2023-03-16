@@ -7,6 +7,7 @@ using BlazorStoreServAppV5.Repository.StoreLogic.FileOploading;
 using BlazorStoreServAppV5.Repository.StoreLogic.OrderRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.ProductRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository;
+using BlazorStoreServAppV5.Repository.StoreLogic.TagRepository;
 using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -25,6 +26,7 @@ builder.Services.AddScoped<FileUploadService>();
 builder.Services.AddTransient<ISearchLucene, SearchLucene>(_ => new SearchLucene("Data"));
 builder.Services.AddScoped<IAccountLogic, AccountLogic>();
 builder.Services.AddScoped<ICategoryLogic, CategoryLogic>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

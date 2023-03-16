@@ -1,10 +1,13 @@
 ﻿@using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
 @using BlazorStoreServAppV5.Repository.StoreLogic.FileOploading
-@inherits MainLayout
+@using BlazorStoreServAppV5.Repository.StoreLogic.TagRepository
+@using Faker
+@inherits AdminPanel
 @inject ICategoryLogic CategoryLogic
 @inject IProductRepositoryService ProductRepository
 @inject NavigationManager NavManager
 @inject FileUploadService UploadService
+@inject ITagRepository TagRepository
 <div class="row align-items-lg-start cont ">
     <div class="col-lg-6 d-flex flex-column ">
         <label>Enter a name:</label>
@@ -12,12 +15,12 @@
         <label>Enter a price:</label>
         <input placeholder="Name of prod" @bind-value="NewProduct.Price"/>
         <label>Enter a Description:</label>
-        <input placeholder="Name of prod" @bind-value="NewProduct.Price" />
+        <input placeholder="Name of prod" @bind-value="NewProduct.Price"/>
         <label>Enter a charact:</label>
-        <input placeholder="make the model for characteristics" />
+        <input placeholder="make the model for characteristics"/>
         <label>Enter a charValue:</label>
         <input placeholder="model for charvalue"/>
-        <label>Is cashback:<input class="align-self-center" type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback" /></label>
+        <label>Is cashback:<input class="align-self-center" type="checkbox" placeholder="Is cashback" @bind-value="NewProduct.IsCashback"/></label>
         <div class="addPanel">
             <div class="checkboxes">
                 <label>Add categories</label>
@@ -29,38 +32,69 @@
                     </div>
                 }
             </div>
-    </div>
+        </div>
         <div class="col d-flex flex-column justify-content-between ">
             <label>Enter category name</label>
-            <input placeholder="Enter new category" @bind-value="NewCategory.Name" />
+            <input placeholder="Enter new category" @bind-value="NewCategory.Name"/>
             <label>Enter category description</label>
-            <input placeholder="CategoryDescr" @bind-value="NewCategory.Description" />
+            <input placeholder="CategoryDescr" @bind-value="NewCategory.Description"/>
             <label>Enter category smth</label>
-            <input placeholder="WIll be Desctiption, but not know" />
+            <input placeholder="WIll be Desctiption, but not know"/>
             <button type="button" class="btn btn-outline-light" @onclick="SubmitCategory">Add new category</button>
         </div>
     </div>
     <div class="col-sm-12 col-lg-6">
-        <img class="preview" src="@ImgUri" />
-        <InputFile class="input" id="file" OnChange="((e) =>{HandleSelection(e); LoadImage(e);})" accept=".jpg,.jpeg,.png,.gif"/>
+        <img class="preview" src="@ImgUri"/>
+        <InputFile class="input" id="file" OnChange="(e) => { HandleSelection(e);LoadImage(e); }" accept=".jpg,.jpeg,.png,.gif"/>
+        <div class="col d-flex flex-column justify-content-between ">
+            @foreach(var item in wrapper)
+            {
+                <span>
+                    <input placeholder="Enter new category" @bind="item.WrapperParameter1"/>
+                    <input placeholder="Enter new category" @bind="item.WrapperParameter2"/>
+                    <button class="btn btn-outline-danger">X</button>
+                </span>
+            }
+            <button type="button" class="btn btn-outline-light mainAdd" @onclick="IncrementingTags">Add new characteristics</button>
+            <button type="button" class="btn btn-outline-light mainAdd" @onclick="ConfirmNewTags">Confirm characteristics</button>
+        </div>
         <button type="button" class="btn btn-outline-light mainAdd" @onclick="SubmitNewProduct">Add Prod</button>
     </div>
 </div>
 
 
 @code {
-    [Parameter]
-    public string smth { get; set; }
-    public string ImgUri { get; set; }
+
+    private string ImgUri { get; set; }
     public ProductModel NewProduct { get; set; } = new();
     public CategoryModel NewCategory { get; set; } = new();
     public List<CategoryModel> ProductCategories { get; set; } = new();
     private IBrowserFile selectedFile;
+    private List<TagModel> tempTags = new();
+
+    void IncrementingTags()
+    {
+        wrapper.Add(new Wrapper<TagModel>(new TagModel()));
+        StateHasChanged();
+    }
+
+    async Task ConfirmNewTags()
+    {
+        NewProduct.Tags = new List<TagModel>();
+        foreach (var tag in wrapper)
+        {
+            tag.t.Name = tag.WrapperParameter1;
+            tag.t.Value = tag.WrapperParameter2;
+            tag.t.Categories = ProductCategories;
+            NewProduct.Tags.Add(tag.t);
+        }
+       
+    }
 
     public async Task LoadImage(InputFileChangeEventArgs inputFileChangeEventArgs)
     {
         var image = await inputFileChangeEventArgs.File.RequestImageFileAsync("image/png", 600, 600);
-        using Stream imageStream = image.OpenReadStream(1024 * 1024 * 10);
+        using var imageStream = image.OpenReadStream(1024 * 1024 * 10);
         using MemoryStream ms = new();
     //copy imageStream to Memory stream
         await imageStream.CopyToAsync(ms);
@@ -97,9 +131,9 @@
     {
         UploadFile();
         NewProduct.CategoryModels = ProductCategories;
-        int i = UploadService.filePath.IndexOf('\\');
+        var i = UploadService.filePath.IndexOf('\\');
         if (i >= 0) NewProduct.ImgSrcString = UploadService.filePath.Substring(i);
-        
+        ConfirmNewTags();
         await ProductRepository.InsertProductAsync(NewProduct);
         StateHasChanged();
     }

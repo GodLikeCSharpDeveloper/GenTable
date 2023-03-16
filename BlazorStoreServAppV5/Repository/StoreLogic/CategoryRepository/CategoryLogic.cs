@@ -13,7 +13,7 @@ namespace BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
         }
         public async Task<List<CategoryModel>> GetAllCategoriesAsync()
         {
-            return await _storeContext.Categories.ToListAsync();
+            return await _storeContext.Categories.Include(x=>x.Tags).ToListAsync();
         }
 
         public async Task<bool> AddCategoryAsync(CategoryModel category)

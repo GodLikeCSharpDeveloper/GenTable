@@ -30,6 +30,9 @@ label[b-399f8ktukx] { margin: 0 0 9px 0; }
     padding: 5px 0 0 0;
 }
 
-.mainAdd[b-399f8ktukx] { width: 100% }
+.mainAdd[b-399f8ktukx] {
+    width: 100%;
+    margin: 5px 0 5px 0;
+}
 
 .input[b-399f8ktukx] { padding: 5px 0 0 0 }

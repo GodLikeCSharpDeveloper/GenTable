@@ -98,11 +98,9 @@ namespace BlazorStoreServAppV5.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -217,6 +215,21 @@ namespace BlazorStoreServAppV5.Migrations
                     b.HasIndex("OrderModelId");
 
                     b.ToTable("ProductOrder", (string)null);
+                });
+
+            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductTagModel", b =>
+                {
+                    b.Property<int>("ProductModelsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TagModelId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ProductModelsId", "TagModelId");
+
+                    b.HasIndex("TagModelId");
+
+                    b.ToTable("ProductTagModel");
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.TagCategoryModel", b =>
@@ -337,6 +350,25 @@ namespace BlazorStoreServAppV5.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.ProductTagModel", b =>
+                {
+                    b.HasOne("BlazorStoreServAppV5.Models.BLogicModel.ProductModel", "Product")
+                        .WithMany("ProductTagModels")
+                        .HasForeignKey("ProductModelsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlazorStoreServAppV5.Models.BLogicModel.TagModel", "TagModel")
+                        .WithMany("ProductTagModels")
+                        .HasForeignKey("TagModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("TagModel");
+                });
+
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.TagCategoryModel", b =>
                 {
                     b.HasOne("BlazorStoreServAppV5.Models.BLogicModel.CategoryModel", "CategoryModel")
@@ -399,11 +431,15 @@ namespace BlazorStoreServAppV5.Migrations
                 {
                     b.Navigation("ProductCategoryModels");
 
+                    b.Navigation("ProductTagModels");
+
                     b.Navigation("ProductsOrder");
                 });
 
             modelBuilder.Entity("BlazorStoreServAppV5.Models.BLogicModel.TagModel", b =>
                 {
+                    b.Navigation("ProductTagModels");
+
                     b.Navigation("TagCategoryModels");
                 });
 #pragma warning restore 612, 618

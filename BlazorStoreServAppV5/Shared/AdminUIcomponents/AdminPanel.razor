@@ -24,17 +24,21 @@
 
 @code {
     public Type? SelectedType { get; set; }
+    public List<Wrapper<TagModel>> wrapper = new();
+    public TagModel tagModel = new();
     protected override async Task OnInitializedAsync()
     {
+        wrapper.Add(new Wrapper<TagModel>(tagModel){WrapperParameter2 = string.Empty, WrapperParameter1 = string.Empty});
         SelectedType = typeof(AdminOrders);
         if (IsAuth)
         {
-            var User = CurrentUser;
+            var user = CurrentUser;
         }
         else
         {
             NavigationManager.NavigateTo("/identity/account/login");
         }
+        
     }
     public void OnDropdownChange(Type type)
     {

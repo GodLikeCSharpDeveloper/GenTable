@@ -12,6 +12,8 @@
         public List<ProductOrderModel>? ProductsOrder { get; set; }
         public List<ProductCategoryModel>? ProductCategoryModels { get; set; }
         public List<CategoryModel>? CategoryModels { get; set; }
+        public List<ProductTagModel>? ProductTagModels { get; set; }
+        public List<TagModel>? Tags { get; set; }
         public string? ImgSrcString { get; set; }
     }
 }
