@@ -226,3 +226,5 @@ C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\o
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\BlazorStoreServAppV5.pdb
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\BlazorStoreServAppV5.genruntimeconfig.cache
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\ref\BlazorStoreServAppV5.dll
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\bin\Debug\net7.0\Stripe.net.dll

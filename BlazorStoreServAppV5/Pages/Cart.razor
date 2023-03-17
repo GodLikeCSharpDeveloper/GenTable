@@ -1,7 +1,10 @@
 ﻿@page "/cart"
+@using Stripe
+@using BlazorStoreServAppV5.Repository.StoreLogic.LiqPay
 @inherits MainLayout
 @inject IUserRepositoryService UserRepository
 @inject IOrderRepositoryServise OrderRepository
+@inject NavigationManager NavigationManager
 <div class="container-fluid">
     <div class="row">
 
@@ -11,8 +14,12 @@
 
                 <div class="card">
                     <div class="row">
-                        <div class="col"><img src="favicon.png" /></div>
-                        <div class="col "><label>Name:</label> @item.Name</div>
+                        <div class="col">
+                            <img src="favicon.png"/>
+                        </div>
+                        <div class="col ">
+                            <label>Name:</label> @item.Name
+                        </div>
 
                     </div>
                     <div class="row">
@@ -22,10 +29,16 @@
                                 <label>In stock</label>
                             }
                         </div>
-                        <div class="col"><label>Price:</label> @item.Price</div>
+                        <div class="col">
+                            <label>Price:</label> @item.Price
+                        </div>
                         <div class="row">
-                            <div class="col"><button class="btn btn-danger" @onclick="() => DeleteFromCart(item)"><i class="bi-trash"></i>Delete</button></div>
-                            <div class="col"><a href=""></a></div>
+                            <div class="col">
+                                <button class="btn btn-danger" @onclick="() => DeleteFromCart(item)"><i class="bi-trash"></i>Delete</button>
+                            </div>
+                            <div class="col">
+                                <a href=""></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -39,16 +52,28 @@
                     <NotAuthorized>
                         <div class="card">
                             <div class="row align-items-lg-start ">
-                                <div class="col-lg-3"><input placeholder="Firse name" @bind-value="TempUser.FirstName" /></div>
-                                <div class="col-lg-3"><input placeholder="Last name" @bind-value="TempUser.LastName" /></div>
+                                <div class="col-lg-3">
+                                    <input placeholder="Firse name" @bind-value="TempUser.FirstName"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input placeholder="Last name" @bind-value="TempUser.LastName"/>
+                                </div>
                             </div>
                             <div class="row align-items-lg-start ">
-                                <div class="col-lg-3"><input placeholder="Email(optional)" @bind-value="TempUser.Email" /></div>
-                                <div class="col-lg-3"><input placeholder="Phone" @bind-value="TempUser.Phone" /></div>
+                                <div class="col-lg-3">
+                                    <input placeholder="Email(optional)" @bind-value="TempUser.Email"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input placeholder="Phone" @bind-value="TempUser.Phone"/>
+                                </div>
                             </div>
                             <div class="row align-items-lg-start ">
-                                <div class="col-lg-3"><input placeholder="Adress" @bind-value="TempUser.Address" /></div>
-                                <div class="col-lg-3"><input placeholder="WIll be Desctiption, but not know" /></div>
+                                <div class="col-lg-3">
+                                    <input placeholder="Adress" @bind-value="TempUser.Address"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input placeholder="WIll be Desctiption, but not know"/>
+                                </div>
                             </div>
                         </div>
                     </NotAuthorized>
@@ -56,8 +81,6 @@
                 <button href="" class="btn btn-success" @onclick="() => ConfirmOrder()">Buy</button>
             </div>
         </div>
-        
-
 
 
     </div>
@@ -72,12 +95,17 @@
 
     int fullprice(List<ProductModel> products)
     {
-        int price = 0;
+        var price = 0;
         foreach (var product in products)
         {
             price = +product.Price;
         }
         return price;
+    }
+
+    protected override void OnInitialized()
+    {
+        StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
     }
 
     [Parameter]
@@ -86,38 +114,43 @@
     [Parameter]
     public Users TempUser { get; set; } = new();
 
+    public OrderModel Order = new();
+
     public async void ConfirmOrder()
     {
         if (CurrentUser == null)
         {
+            var a = AuthenticationState.
             CurrentUser = TempUser;
             UserRepository.InsertUserAsync(CurrentUser);
         }
-        var order = new OrderModel()
+        if (CartList.Count < 1 || CartList == null)
         {
-            CreateOrderDate = DateTime.Now.ToString("yyyy MMMM dd HH:mm"),
-            Products = CartList,
-            CloseOrderDate = string.Empty,
-            FullPrice = fullprice(CartList),
-            User = CurrentUser ?? TempUser
-        };
-        var curOrder = await OrderRepository.InsertOrderAsync(order);
-        if (CurrentUser != null)
-        {
-            CurrentUser.Orders.Add(curOrder);
-        }
-        else
-        {
-            UserInputInfoBool = !UserInputInfoBool;
-            TempUser.Orders.Add(curOrder);
-        }
-        await UserRepository.UpdateUserAsync(CurrentUser);
+            Order = new OrderModel()
+            {
+                CreateOrderDate = DateTime.Now.ToString("yyyy MMMM dd HH:mm"),
+                Products = CartList,
+                CloseOrderDate = string.Empty,
+                FullPrice = fullprice(CartList),
+                User = CurrentUser ?? TempUser
+            };
 
-        void ChangeOrder()
-        {
-            
-        }
+            StripeService stripe = new();
+            await stripe.CreateCheckoutSession(Order.Products, NavigationManager);
 
+            var curOrder = await OrderRepository.InsertOrderAsync(Order);
+            if (CurrentUser != null)
+            {
+                CurrentUser.Orders.Add(curOrder);
+            }
+            else
+            {
+                UserInputInfoBool = !UserInputInfoBool;
+                TempUser.Orders.Add(curOrder);
+            }
+            await UserRepository.UpdateUserAsync(CurrentUser);
+    //TODO HOW TO CHECK STRIPE PAYMENT STATUS
+        }
     }
 
 }

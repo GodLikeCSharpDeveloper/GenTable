@@ -40,9 +40,9 @@
                 @foreach (var prod in Products)
                 {
                     <div class="col-lg-3 col-sm-12 col-md-6 CardList" >
-                        <div class="card" @onclick="() => RedirectToProdPage(prod)">
+                        <div class="card" >
                             <div class="">
-                                <img class="" src="/Untitled.png" alt="Card image cap">
+                                <img class="" src="/Untitled.png" alt="Card image cap" @onclick="() => RedirectToProdPage(prod)">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">@prod.Name</h5>

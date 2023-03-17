@@ -13,6 +13,7 @@ using BlazorStoreServAppV5.Repository.StoreLogic.UserRepository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,11 +30,10 @@ builder.Services.AddTransient<ISearchLucene, SearchLucene>(_ => new SearchLucene
 builder.Services.AddScoped<IAccountLogic, AccountLogic>();
 builder.Services.AddScoped<ICategoryLogic, CategoryLogic>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
-builder.Services.AddScoped<LiqPayService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => { options.ExpireTimeSpan = TimeSpan.FromDays(20); });
+       .AddCookie(options => { options.ExpireTimeSpan = TimeSpan.FromDays(20); });
 builder.Services.AddAuthentication().AddGoogle(options =>
 {
     var clientId = builder.Configuration["Authentication:Google:ClientId"];

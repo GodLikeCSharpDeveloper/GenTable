@@ -20,6 +20,7 @@
           "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.4",
+          "Stripe.net": "41.10.0",
           "System.Configuration.ConfigurationManager": "7.0.0"
         },
         "runtime": {
@@ -451,6 +452,14 @@
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        }
+      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.4": {
         "dependencies": {
           "SQLitePCLRaw.lib.e_sqlite3": "2.1.4",
@@ -601,6 +610,18 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {
             "assemblyVersion": "2.1.4.1835",
             "fileVersion": "2.1.4.1835"
+          }
+        }
+      },
+      "Stripe.net/41.10.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "assemblyVersion": "41.10.0.0",
+            "fileVersion": "41.10.0.0"
           }
         }
       },
@@ -1050,6 +1071,13 @@
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.4": {
       "type": "package",
       "serviceable": true,
@@ -1077,6 +1105,13 @@
       "sha512": "sha512-CSlb5dUp1FMIkez9Iv5EXzpeq7rHryVNqwJMWnpq87j9zWZexaEMdisDktMsnnrzKM6ahNrsTkjqNodTBPBxtQ==",
       "path": "sqlitepclraw.provider.e_sqlite3/2.1.4",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.2.1.4.nupkg.sha512"
+    },
+    "Stripe.net/41.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xF2kxNh2ELIKjA/NJhNC89FW7PdTqQG2kL3fKGKaqMxsN5DFZBDhF8orfqFqTkBvMHFXcsZLnhJZZIpzBXW3eQ==",
+      "path": "stripe.net/41.10.0",
+      "hashPath": "stripe.net.41.10.0.nupkg.sha512"
     },
     "System.CodeDom/4.4.0": {
       "type": "package",

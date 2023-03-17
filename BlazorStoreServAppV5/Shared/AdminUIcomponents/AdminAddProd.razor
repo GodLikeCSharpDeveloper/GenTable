@@ -52,7 +52,7 @@
                 <span>
                     <input placeholder="Enter new category" @bind="item.WrapperParameter1"/>
                     <input placeholder="Enter new category" @bind="item.WrapperParameter2"/>
-                    <button class="btn btn-outline-danger">X</button>
+                    <button class="btn btn-outline-danger" @onclick="()=>wrapper.Remove(item)">X</button>
                 </span>
             }
             <button type="button" class="btn btn-outline-light mainAdd" @onclick="IncrementingTags">Add new characteristics</button>
