@@ -61,6 +61,25 @@
 img[b-6v7gdwkhox] {
     width: 100%;
 }
+/* _content/BlazorStoreServAppV5/Pages/Cart.razor.rz.scp.css */
+.inputstyle[b-ff8dt3ozyy] {
+    background: none;
+}
+input[b-ff8dt3ozyy] {
+    background: none;
+    margin: 5px 5px 5px 0;
+}
+.ImgClass[b-ff8dt3ozyy] {
+    max-width: 50px;
+    max-height: 100%;
+}
+.box[b-ff8dt3ozyy] {
+    border-width: 1px;
+    border-style: inset;
+}
+.tableAddCss[b-ff8dt3ozyy] {
+    color: white;
+}
 /* _content/BlazorStoreServAppV5/Shared/AdminUIcomponents/AdminAddProd.razor.rz.scp.css */
 .cont[b-399f8ktukx] { width: 99%; }
 

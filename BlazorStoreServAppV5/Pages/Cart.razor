@@ -1,87 +1,66 @@
 ﻿@page "/cart"
 @using Stripe
 @using BlazorStoreServAppV5.Repository.StoreLogic.LiqPay
+@using System.Security.Claims
 @inherits MainLayout
 @inject IUserRepositoryService UserRepository
 @inject IOrderRepositoryServise OrderRepository
 @inject NavigationManager NavigationManager
+@inject IHttpContextAccessor HttpContextAccessor
 <div class="container-fluid">
     <div class="row">
-
-        @foreach (var item in CartList)
-        {
-            <div class="col-lg-2">
-
-                <div class="card">
-                    <div class="row">
-                        <div class="col">
-                            <img src="favicon.png"/>
-                        </div>
-                        <div class="col ">
-                            <label>Name:</label> @item.Name
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            @if (item.InStock)
-                            {
-                                <label>In stock</label>
-                            }
-                        </div>
-                        <div class="col">
-                            <label>Price:</label> @item.Price
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <button class="btn btn-danger" @onclick="() => DeleteFromCart(item)"><i class="bi-trash"></i>Delete</button>
-                            </div>
-                            <div class="col">
-                                <a href=""></a>
-                            </div>
-                        </div>
+        <div class="col-12 col-lg-6 col-sm-12 col-md-6">
+            <table class="table tableAddCss">
+                <thead>
+                <tr>
+                    <th>
+                        Names
+                    </th>
+                    <th>
+                        Prices
+                    </th>
+                    <th>
+                        
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in CartList)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+                        <td>
+                            <img class="ImgClass" src="@item.ImgSrcString"/>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <AuthorizeView>
+            <Authorized>
+                <button href="" class="btn btn-success" @onclick="() => ConfirmOrder()">Buy</button>
+            </Authorized>
+            <NotAuthorized>
+                <div class="col-12 col-sm-12 col-lg-6 col-md-8 inputstyle">
+                    <input placeholder="Firse name" @bind-value="TempUser.FirstName"/>
+                    <input placeholder="Last name" @bind-value="TempUser.LastName"/>
+                    <input placeholder="Email(optional)" @bind-value="TempUser.Email"/>
+                    <input placeholder="Phone" @bind-value="TempUser.Phone"/>
+                    <input placeholder="Adress" @bind-value="TempUser.Address"/>
+                    <input placeholder="WIll be Desctiption, but not know"/>
+                    <div>
+                        <button href="" class="btn btn-outline-primary btnConfirm" @onclick="() => ConfirmOrder()">Buy</button>
                     </div>
                 </div>
-            </div>
-        }
-        <div class="row">
-            <div class="col">
-                <AuthorizeView>
-                    <Authorized>
-                    </Authorized>
-                    <NotAuthorized>
-                        <div class="card">
-                            <div class="row align-items-lg-start ">
-                                <div class="col-lg-3">
-                                    <input placeholder="Firse name" @bind-value="TempUser.FirstName"/>
-                                </div>
-                                <div class="col-lg-3">
-                                    <input placeholder="Last name" @bind-value="TempUser.LastName"/>
-                                </div>
-                            </div>
-                            <div class="row align-items-lg-start ">
-                                <div class="col-lg-3">
-                                    <input placeholder="Email(optional)" @bind-value="TempUser.Email"/>
-                                </div>
-                                <div class="col-lg-3">
-                                    <input placeholder="Phone" @bind-value="TempUser.Phone"/>
-                                </div>
-                            </div>
-                            <div class="row align-items-lg-start ">
-                                <div class="col-lg-3">
-                                    <input placeholder="Adress" @bind-value="TempUser.Address"/>
-                                </div>
-                                <div class="col-lg-3">
-                                    <input placeholder="WIll be Desctiption, but not know"/>
-                                </div>
-                            </div>
-                        </div>
-                    </NotAuthorized>
-                </AuthorizeView>
-                <button href="" class="btn btn-success" @onclick="() => ConfirmOrder()">Buy</button>
-            </div>
-        </div>
 
+            </NotAuthorized>
+        </AuthorizeView>
 
     </div>
 </div>
@@ -118,13 +97,36 @@
 
     public async void ConfirmOrder()
     {
-        if (CurrentUser == null)
+        if (HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.GivenName) != null && CurrentUser == null)
         {
-            var a = AuthenticationState.
-            CurrentUser = TempUser;
-            UserRepository.InsertUserAsync(CurrentUser);
+            foreach (var item in UsersList)
+            {
+                if (HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value == item.Email)
+                    CurrentUser = item;
+            }
+            if (CurrentUser == null)
+            {
+                CurrentUser.FirstName = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.GivenName).Value;
+                CurrentUser.FirstName = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Surname).Value;
+                CurrentUser.Phone = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.MobilePhone).Value;
+                CurrentUser.Address = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.StreetAddress).Value;
+                CurrentUser.Email = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value;
+            }
         }
-        if (CartList.Count < 1 || CartList == null)
+        else
+        {
+            foreach (var item in UsersList)
+            {
+                if (TempUser.Email.Equals(item.Email))
+                    CurrentUser = item;
+            }
+            if (CurrentUser == null)
+            {
+                CurrentUser = TempUser;
+                await UserRepository.InsertUserAsync(CurrentUser);
+            }
+        }
+        if (CartList.Count > 1 || CartList != null)
         {
             Order = new OrderModel()
             {
