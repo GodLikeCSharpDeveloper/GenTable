@@ -231,3 +231,4 @@ C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\b
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Stripe.net.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Pages\Cart.razor.rz.scp.css
+C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\Product\CharsProd.razor.rz.scp.css

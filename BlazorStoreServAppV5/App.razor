@@ -18,7 +18,7 @@
     [Parameter]
     public AppInitialState? InitialState { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         _TokenProvider.AntiForgeryToken = InitialState.AntiForgeryToken;
     }

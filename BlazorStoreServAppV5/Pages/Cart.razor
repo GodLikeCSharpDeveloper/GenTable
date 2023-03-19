@@ -20,7 +20,7 @@
                         Prices
                     </th>
                     <th>
-                        
+
                     </th>
                 </tr>
                 </thead>
@@ -47,18 +47,23 @@
                 <button href="" class="btn btn-success" @onclick="() => ConfirmOrder()">Buy</button>
             </Authorized>
             <NotAuthorized>
-                <div class="col-12 col-sm-12 col-lg-6 col-md-8 inputstyle">
-                    <input placeholder="Firse name" @bind-value="TempUser.FirstName"/>
-                    <input placeholder="Last name" @bind-value="TempUser.LastName"/>
-                    <input placeholder="Email(optional)" @bind-value="TempUser.Email"/>
-                    <input placeholder="Phone" @bind-value="TempUser.Phone"/>
-                    <input placeholder="Adress" @bind-value="TempUser.Address"/>
-                    <input placeholder="WIll be Desctiption, but not know"/>
-                    <div>
-                        <button href="" class="btn btn-outline-primary btnConfirm" @onclick="() => ConfirmOrder()">Buy</button>
+                @if (CartList.Count > 0 && CartList != null)
+                {
+                    <div class="col-12 col-sm-12 col-lg-6 col-md-8 inputstyle @NotVal">
+                        <input placeholder="Firse name" @bind-value="TempUser.FirstName"/>
+                        <input placeholder="Last name" @bind-value="TempUser.LastName"/>
+                        <input placeholder="Email(optional)" @bind-value="TempUser.Email"/>
+                        <input placeholder="Phone" @bind-value="TempUser.Phone"/>
+                        <input placeholder="Adress" @bind-value="TempUser.Address"/>
+                        <input placeholder="WIll be Desctiption, but not know"/>
+                        <div>
+                            <label class="errorMessage">@ErrorMessage</label>
+                        </div>
+                        <div>
+                            <button href="" class="btn btn-outline-primary btnConfirm" @onclick="() => ConfirmOrder()">Buy</button>
+                        </div>
                     </div>
-                </div>
-
+                }
             </NotAuthorized>
         </AuthorizeView>
 
@@ -82,10 +87,14 @@
         return price;
     }
 
+    private string NotVal { get; set; } = "";
+
     protected override void OnInitialized()
     {
         StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
     }
+
+    private string ErrorMessage;
 
     [Parameter]
     public bool UserInputInfoBool { get; set; } = false;
@@ -115,18 +124,33 @@
         }
         else
         {
-            foreach (var item in UsersList)
-            {
-                if (TempUser.Email.Equals(item.Email))
-                    CurrentUser = item;
-            }
             if (CurrentUser == null)
             {
-                CurrentUser = TempUser;
-                await UserRepository.InsertUserAsync(CurrentUser);
+                if (!string.IsNullOrEmpty(TempUser.Email)
+                    || !string.IsNullOrEmpty(TempUser.FirstName)
+                    || !string.IsNullOrEmpty(TempUser.LastName)
+                    || !string.IsNullOrEmpty(TempUser.Address))
+                {
+                    foreach (var item in UsersList)
+                    {
+                        if (TempUser.Email.Equals(item.Email))
+                            CurrentUser = item;
+                        else
+                        {
+                            CurrentUser = TempUser;
+                            await UserRepository.InsertUserAsync(CurrentUser);
+                        }
+                    }
+                }
+                else
+                {
+                    NotVal = "NotVal";
+                    ErrorMessage = "These fields cannot be empty";
+                }
             }
         }
-        if (CartList.Count > 1 || CartList != null)
+
+        if ((CartList.Count > 1 || CartList != null) && CurrentUser != null)
         {
             Order = new OrderModel()
             {
@@ -150,6 +174,7 @@
                 UserInputInfoBool = !UserInputInfoBool;
                 TempUser.Orders.Add(curOrder);
             }
+            NotVal = "";
             await UserRepository.UpdateUserAsync(CurrentUser);
     //TODO HOW TO CHECK STRIPE PAYMENT STATUS
         }

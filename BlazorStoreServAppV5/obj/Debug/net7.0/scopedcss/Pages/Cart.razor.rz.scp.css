@@ -16,3 +16,10 @@ input[b-ff8dt3ozyy] {
 .tableAddCss[b-ff8dt3ozyy] {
     color: white;
 }
+.errorMessage[b-ff8dt3ozyy] {
+    color: coral;
+}
+.NotVal input[b-ff8dt3ozyy] {
+    border: 2px solid coral;
+    transition:0.5ms
+}

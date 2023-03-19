@@ -1,15 +1,24 @@
 ﻿<div class="row">
-    <div class="col-12 d-flex flex-column justify-content-start">
+    <div class="col-5 d-flex flex-column justify-content-start">
         @if (Product.Tags != null)
         {
-            @foreach (var item in Product.Tags)
-            {
-                <div class="d-flex justify-content-start" style="width: 100%">
-                    <label>@item.Name</label>
-                    <area style="width: 10%"/>
-                    <label>@item.Value</label>
-                </div>
-            }
+            <table class="table">
+                <tr></tr>
+                <tbody>
+                @foreach (var item in Product.Tags)
+                {
+                    <tr>
+                        <th>
+                            <label>@item.Name</label>
+                        </th>
+                        <th class="sss">
+                            <label>@item.Value</label>
+                        </th>
+                    </tr>
+                   
+                }
+                </tbody>
+            </table>
         }
     </div>
 </div>

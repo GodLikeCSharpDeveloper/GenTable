@@ -16,3 +16,10 @@ input {
 .tableAddCss {
     color: white;
 }
+.errorMessage {
+    color: coral;
+}
+.NotVal input {
+    border: 2px solid coral;
+    transition:0.5ms
+}

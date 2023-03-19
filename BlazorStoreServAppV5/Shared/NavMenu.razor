@@ -45,13 +45,13 @@
     <div class="col-4 col-lg-5 col-md-6 justify-content-end navheight d-flex toHide">
         <button class="btnNav toHide">Flex item</button>
         <a href="/Cart" class="btnNav toHide">Cart</a>
-        <a href="/AdminPanel"class="btnNav toHide">Admin Panel</a>
         <AuthorizeView>
             <NotAuthorized>
                 <a href="Identity/Account/Login" class="btnNav toHide">Login</a>
                 <a href="Identity/Account/Register" class="btnNav toHide">Register</a>
             </NotAuthorized>
             <Authorized>
+                <a href="/AdminPanel" class="btnNav toHide">Admin Panel</a>
                 <a href="/Account" unselectable="on" class="btnNav toHide">Hello, @context.User.Identity?.Name!</a>
                 <form class="formclass toHide" method="post" action="/identity/account/logout">
                     <input type="hidden" name="__RequestVerificationToken" value="@_TokenProvider.AntiForgeryToken"/>

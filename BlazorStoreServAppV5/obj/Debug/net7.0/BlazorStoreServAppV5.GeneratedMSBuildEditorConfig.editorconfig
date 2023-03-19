@@ -24,10 +24,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEFkbWluVUljb21wb25lbnRzXFBheW1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/UIcomponents/Product/CharsProd.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVJY29tcG9uZW50c1xQcm9kdWN0XENoYXJzUHJvZC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/UIcomponents/Product/FullscreenImg.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVJY29tcG9uZW50c1xQcm9kdWN0XEZ1bGxzY3JlZW5JbWcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -87,6 +83,10 @@ build_metadata.AdditionalFiles.CssScope = b-mbrop61ily
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/UIcomponents/Product/AboutProd.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVJY29tcG9uZW50c1xQcm9kdWN0XEFib3V0UHJvZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-gybu57iiqi
+
+[C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/UIcomponents/Product/CharsProd.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVJY29tcG9uZW50c1xQcm9kdWN0XENoYXJzUHJvZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ksmrnhsa93
 
 [C:/Users/KAYAYASHA/Desktop/New folder/GenTable/BlazorStoreServAppV5/Shared/UIcomponents/Product/ProductInfo.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVJY29tcG9uZW50c1xQcm9kdWN0XFByb2R1Y3RJbmZvLnJhem9y

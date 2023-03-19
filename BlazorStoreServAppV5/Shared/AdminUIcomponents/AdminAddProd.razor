@@ -43,8 +43,8 @@
             <button type="button" class="btn btn-outline-light" @onclick="SubmitCategory">Add new category</button>
         </div>
     </div>
-    <div class="col-sm-12 col-lg-6">
-        <img class="preview" src="@ImgUri"/>
+    <div class="col-sm-12 col-lg-6 d-flex flex-column">
+        <img class="align-self-center preview" src="@ImgUri"/>
         <InputFile class="input" id="file" OnChange="(e) => { HandleSelection(e);LoadImage(e); }" accept=".jpg,.jpeg,.png,.gif"/>
         <div class="col d-flex flex-column justify-content-between ">
             @foreach(var item in wrapper)
@@ -94,7 +94,7 @@
     public async Task LoadImage(InputFileChangeEventArgs inputFileChangeEventArgs)
     {
         var image = await inputFileChangeEventArgs.File.RequestImageFileAsync("image/png", 600, 600);
-        using var imageStream = image.OpenReadStream(1024 * 1024 * 10);
+        await using var imageStream = image.OpenReadStream(1024 * 1024 * 10);
         using MemoryStream ms = new();
     //copy imageStream to Memory stream
         await imageStream.CopyToAsync(ms);
@@ -103,7 +103,7 @@
         StateHasChanged();
     }
 
-    private async Task HandleSelection(InputFileChangeEventArgs e)
+    private void HandleSelection(InputFileChangeEventArgs e)
     {
         selectedFile = e.File;
     }
@@ -122,18 +122,18 @@
         StateHasChanged();
     }
 
-    async Task CategoriesAdding(int Id)
+    void CategoriesAdding(int Id)
     {
         ProductCategories.Add(CategoriesList.Where(x => x.Id == Id).FirstOrDefault());
     }
 
     async Task SubmitNewProduct()
     {
-        UploadFile();
+        await UploadFile();
         NewProduct.CategoryModels = ProductCategories;
         var i = UploadService.filePath.IndexOf('\\');
         if (i >= 0) NewProduct.ImgSrcString = UploadService.filePath.Substring(i);
-        ConfirmNewTags();
+        await ConfirmNewTags();
         await ProductRepository.InsertProductAsync(NewProduct);
         StateHasChanged();
     }

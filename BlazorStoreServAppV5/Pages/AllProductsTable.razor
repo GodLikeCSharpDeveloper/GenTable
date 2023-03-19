@@ -15,16 +15,17 @@
                 <div class="">
                     <ul class="list-group">
                         <li class="list-group-item CheckboxListStyle">
-                            @if(CategoriesList!=null){
-                            @foreach (var category in CategoriesList)
+                            @if (CategoriesList != null)
                             {
-                                <div class="form-check ">
-                                    <input class="form-check-input " type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoryAddRemove(category.Id, e)">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        @category.Name
-                                    </label>
-                                </div>
-                            }
+                                @foreach (var category in CategoriesList)
+                                {
+                                    <div class="form-check ">
+                                        <input class="form-check-input " type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoryAddRemove(category.Id, e)">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            @category.Name
+                                        </label>
+                                    </div>
+                                }
                             }
                             else
                             {
@@ -39,34 +40,14 @@
             <div class="row">
                 @foreach (var prod in Products)
                 {
-                    <div class="col-lg-3 col-sm-12 col-md-6 CardList" >
-                        <div class="card" >
-                            <div class="">
-                                <img class="" src="/Untitled.png" alt="Card image cap" @onclick="() => RedirectToProdPage(prod)">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12 d-flex flex-column contMain">
+                        <div class="everProdCont">
+                            <div class="align-self-center imgContainer d-flex">
+                                <img class="img align-self-center" src="@prod.ImgSrcString"/>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">@prod.Name</h5>
-                            </div>
-                            <ul class="list-group ">
-
-                                <li class="list-group-item cardList">
-                                    @foreach (var cat in prod.CategoryModels)
-                                    {
-                                        if (prod.CategoryModels.Last() != cat)
-                                        {
-                                            <a>@cat.Name, </a>
-                                        }
-                                        else
-                                        {
-                                            <a> @cat.Name</a>
-                                        }
-                                    }
-                                </li>
-
-                            </ul>
-                            <div class="card-footer align-self-start">
-                                <button class="btn btn-dark btn-outline-light bi-cart " @onclick="() => AddToCart(prod)"></button>
-                            </div>
+                            <div class="line"></div>
+                            <div class="">@prod.Name</div>
+                            <div class="">@prod.Price</div>
                         </div>
                     </div>
                 }
@@ -77,9 +58,8 @@
 
 
 @code {
-    
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         SearchService.IndexWriterCreating();
         foreach (var item in ProductsList)
@@ -88,19 +68,14 @@
             doc.Add(new TextField("name", item.Name, Field.Store.YES));
             foreach (var cat in item.CategoryModels)
             {
-               
                 doc.Add(new StringField("cat", cat.Name, Field.Store.YES));
-                
             }
             SearchService.AddDocument(doc);
         }
-        
-        SearchService.Dispose();
-        if(ProductsList!=null)
-        foreach (var item in ProductsList)
-        {
+
+
+        if (ProductsList != null)
             Products = TempProds = ProductsList.ToList();
-        }
         SearchService.Dispose();
     }
 
@@ -108,14 +83,15 @@
     {
         SearchService.Dispose();
         NavigationManager.NavigateTo($"{product.Name + product.Id.ToString()}");
-        
     }
+
     #region "SearchLogic"
 
     public List<int> CatIds { get; set; } = new();
     public List<ProductModel> Products { get; set; } = new();
     public List<ProductModel>? TempProds { get; set; }
     public string? Request { get; set; }
+
     public List<ProductModel> CategoryAddRemove(int id, ChangeEventArgs e)
     {
         Products = new List<ProductModel>();
@@ -142,32 +118,45 @@
         {
             Products = ProductsList.ToList();
         }
-        if (Request != null)
+        if (!string.IsNullOrEmpty(Request))
             Searcher(Request);
         StateHasChanged();
         Products = Products.Distinct().ToList();
-        TempProds = Products;
+        if(Products.Count>1)
+        TempProds = Products.ToList();
         return Products;
     }
 
     protected void Searcher(string value)
     {
-        if (string.IsNullOrEmpty(value)) Products = TempProds;
-        if (CatIds.Count.Equals(0))
-            Products = ProductsList.ToList();
-        var names = SearchService.Search(value);
-        foreach (var name in names)
+        if (string.IsNullOrEmpty(value)) Products = TempProds.ToList();
+        else
         {
-            foreach (var prod in Products.ToList())
+            if (CatIds.Count.Equals(0))
+                Products = ProductsList.ToList();
+            else
+                Products.Clear();
+            var names = SearchService.Search(value);
+            if (names.Count < 1 && !string.IsNullOrEmpty(value) && CatIds.Count.Equals(0))
+                Products.Clear();
+            else
             {
-                if (prod.Name.Equals(name))
-                    Products.Add(prod);
-                else
-                    Products.Remove(prod);
+                foreach (var name in names)
+                {
+                    foreach (var prod in ProductsList.ToList())
+                    {
+                        if (prod.Name.Equals(name))
+                            Products.Add(prod);
+                        else
+                            Products.Remove(prod);
+                    }
+                }
+
+                Products = Products.Distinct().ToList();
             }
         }
-        Products = Products.Distinct().ToList();
     }
+
     #endregion
 
     public void AddToCart(ProductModel product)
