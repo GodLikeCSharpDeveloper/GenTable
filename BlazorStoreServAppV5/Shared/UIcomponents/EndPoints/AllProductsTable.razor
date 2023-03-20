@@ -1,0 +1,167 @@
+﻿@page "/Products"
+@using BlazorStoreServAppV5.Repository.StoreLogic.SearchRepository
+@using Lucene.Net.Documents
+@inherits MainLayout
+@inject ISearchLucene SearchService
+@inject NavigationManager NavigationManager
+<div class="container-fluid" style="margin-top: 10px;">
+    <div class="row flex-row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+            <div class="">
+                <div class="input-group mb-3">
+                    <input type="search" class="form-control srch" placeholder="Type to search" @bind-value="Request">
+                    <button class="input-group-text srchbutton" @onclick="() => Searcher(Request)">Search</button>
+                </div>
+                <div class="">
+                    <ul class="list-group">
+                        <li class="list-group-item CheckboxListStyle">
+                            @if (CategoriesList != null)
+                            {
+                                @foreach (var category in CategoriesList)
+                                {
+                                    <div class="form-check ">
+                                        <input class="form-check-input " type="checkbox" id="flexCheckDefault" value="@category.Id" @oninput="e => CategoryAddRemove(category.Id, e)">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            @category.Name
+                                        </label>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div>Nothing here</div>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-8">
+            <div class="row">
+                @foreach (var prod in Products)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12 d-flex flex-column contMain">
+                        <div class="everProdCont">
+                            <div class="align-self-center imgContainer d-flex">
+                                <img class="img align-self-center" src="@prod.ImgSrcString"/>
+                            </div>
+                            <div class="line"></div>
+                            <div class="">@prod.Name</div>
+                            <div class="">@prod.Price</div>
+                        </div>
+                    </div>
+                }
+            </div >
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        SearchService.IndexWriterCreating();
+        foreach (var item in ProductsList)
+        {
+            Document doc = new();
+            doc.Add(new TextField("name", item.Name, Field.Store.YES));
+            foreach (var cat in item.CategoryModels)
+            {
+                doc.Add(new StringField("cat", cat.Name, Field.Store.YES));
+            }
+            SearchService.AddDocument(doc);
+        }
+
+
+        if (ProductsList != null)
+            Products = TempProds = ProductsList.ToList();
+        SearchService.Dispose();
+    }
+
+    public void RedirectToProdPage(ProductModel product)
+    {
+        SearchService.Dispose();
+        NavigationManager.NavigateTo($"{product.Name + product.Id.ToString()}");
+    }
+
+    #region "SearchLogic"
+
+    public List<int> CatIds { get; set; } = new();
+    public List<ProductModel> Products { get; set; } = new();
+    public List<ProductModel>? TempProds { get; set; }
+    public string? Request { get; set; }
+
+    public List<ProductModel> CategoryAddRemove(int id, ChangeEventArgs e)
+    {
+        Products = new List<ProductModel>();
+        if ((bool)e.Value)
+        {
+            CatIds.Add(id);
+        }
+        else
+        {
+            CatIds.Remove(id);
+        }
+        foreach (var item in ProductsList.ToList())
+        {
+            foreach (var cat in item.CategoryModels)
+            {
+                foreach (var a in CatIds)
+                {
+                    if (a.Equals(cat.Id))
+                        Products.Add(item);
+                }
+            }
+        }
+        if (Products.Count == 0 && (bool)e.Value == false)
+        {
+            Products = ProductsList.ToList();
+        }
+        if (!string.IsNullOrEmpty(Request))
+            Searcher(Request);
+        StateHasChanged();
+        Products = Products.Distinct().ToList();
+        if(Products.Count>1)
+        TempProds = Products.ToList();
+        return Products;
+    }
+
+    protected void Searcher(string value)
+    {
+        if (string.IsNullOrEmpty(value)) Products = TempProds.ToList();
+        else
+        {
+            if (CatIds.Count.Equals(0))
+                Products = ProductsList.ToList();
+            else
+                Products.Clear();
+            var names = SearchService.Search(value);
+            if (names.Count < 1 && !string.IsNullOrEmpty(value) && CatIds.Count.Equals(0))
+                Products.Clear();
+            else
+            {
+                foreach (var name in names)
+                {
+                    foreach (var prod in ProductsList.ToList())
+                    {
+                        if (prod.Name.Equals(name))
+                            Products.Add(prod);
+                        else
+                            Products.Remove(prod);
+                    }
+                }
+
+                Products = Products.Distinct().ToList();
+            }
+        }
+    }
+
+    #endregion
+
+    public void AddToCart(ProductModel product)
+    {
+        CartList.Add(product);
+    }
+
+}

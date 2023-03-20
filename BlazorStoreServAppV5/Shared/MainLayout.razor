@@ -1,14 +1,10 @@
 ﻿@using BlazorStoreServAppV5.Repository.StoreLogic.CategoryRepository
 @using System.Reflection
-@using System.Security.Claims
-@using BlazorStoreServAppV5.Repository.AccountLogic
 @inherits LayoutComponentBase
 @inject IUserRepositoryService User
 @inject IProductRepositoryService Product
 @inject IOrderRepositoryServise Order
 @inject ICategoryLogic Category
-@inject IHttpContextAccessor HttpContextAccessor
-@inject IAccountLogic AccountLogic
 <PageTitle>GenericTableAppV5</PageTitle>
 
 <main style="overflow-x: hidden;">

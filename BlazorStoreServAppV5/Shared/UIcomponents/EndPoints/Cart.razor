@@ -1,0 +1,183 @@
+﻿@page "/cart"
+@using Stripe
+@using BlazorStoreServAppV5.Repository.StoreLogic.LiqPay
+@using System.Security.Claims
+@inherits MainLayout
+@inject IUserRepositoryService UserRepository
+@inject IOrderRepositoryServise OrderRepository
+@inject NavigationManager NavigationManager
+@inject IHttpContextAccessor HttpContextAccessor
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-6 col-sm-12 col-md-6">
+            <table class="table tableAddCss">
+                <thead>
+                <tr>
+                    <th>
+                        Names
+                    </th>
+                    <th>
+                        Prices
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in CartList)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+                        <td>
+                            <img class="ImgClass" src="@item.ImgSrcString"/>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <AuthorizeView>
+            <Authorized>
+                <button href="" class="btn btn-success" @onclick="() => ConfirmOrder()">Buy</button>
+            </Authorized>
+            <NotAuthorized>
+                @if (CartList.Count > 0 && CartList != null)
+                {
+                    <div class="col-12 col-sm-12 col-lg-6 col-md-8 inputstyle @NotVal">
+                        <input placeholder="Firse name" @bind-value="TempUser.FirstName"/>
+                        <input placeholder="Last name" @bind-value="TempUser.LastName"/>
+                        <input placeholder="Email(optional)" @bind-value="TempUser.Email"/>
+                        <input placeholder="Phone" @bind-value="TempUser.Phone"/>
+                        <input placeholder="Adress" @bind-value="TempUser.Address"/>
+                        <input placeholder="WIll be Desctiption, but not know"/>
+                        <div>
+                            <label class="errorMessage">@ErrorMessage</label>
+                        </div>
+                        <div>
+                            <button href="" class="btn btn-outline-primary btnConfirm" @onclick="() => ConfirmOrder()">Buy</button>
+                        </div>
+                    </div>
+                }
+            </NotAuthorized>
+        </AuthorizeView>
+
+    </div>
+</div>
+
+@code {
+
+    public void DeleteFromCart(ProductModel product)
+    {
+        CartList.Remove(product);
+    }
+
+    int fullprice(List<ProductModel> products)
+    {
+        var price = 0;
+        foreach (var product in products)
+        {
+            price = +product.Price;
+        }
+        return price;
+    }
+
+    private string NotVal { get; set; } = "";
+
+    protected override void OnInitialized()
+    {
+        StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+    }
+
+    private string ErrorMessage;
+
+    [Parameter]
+    public bool UserInputInfoBool { get; set; } = false;
+
+    [Parameter]
+    public Users TempUser { get; set; } = new();
+
+    public OrderModel Order = new();
+
+    public async void ConfirmOrder()
+    {
+        if (HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.GivenName) != null && CurrentUser == null)
+        {
+            foreach (var item in UsersList)
+            {
+                if (HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value == item.Email)
+                    CurrentUser = item;
+            }
+            if (CurrentUser == null)
+            {
+                CurrentUser.FirstName = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.GivenName).Value;
+                CurrentUser.FirstName = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Surname).Value;
+                CurrentUser.Phone = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.MobilePhone).Value;
+                CurrentUser.Address = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.StreetAddress).Value;
+                CurrentUser.Email = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value;
+            }
+        }
+        else
+        {
+            if (CurrentUser == null)
+            {
+                if (!string.IsNullOrEmpty(TempUser.Email)
+                    || !string.IsNullOrEmpty(TempUser.FirstName)
+                    || !string.IsNullOrEmpty(TempUser.LastName)
+                    || !string.IsNullOrEmpty(TempUser.Address))
+                {
+                    foreach (var item in UsersList)
+                    {
+                        if (TempUser.Email.Equals(item.Email))
+                            CurrentUser = item;
+                        else
+                        {
+                            CurrentUser = TempUser;
+                            await UserRepository.InsertUserAsync(CurrentUser);
+                        }
+                    }
+                }
+                else
+                {
+                    NotVal = "NotVal";
+                    ErrorMessage = "These fields cannot be empty";
+                }
+            }
+        }
+
+        if ((CartList.Count > 1 || CartList != null) && CurrentUser != null)
+        {
+            Order = new OrderModel()
+            {
+                CreateOrderDate = DateTime.Now.ToString("yyyy MMMM dd HH:mm"),
+                Products = CartList,
+                CloseOrderDate = string.Empty,
+                FullPrice = fullprice(CartList),
+                User = CurrentUser ?? TempUser
+            };
+
+            StripeService stripe = new();
+            await stripe.CreateCheckoutSession(Order.Products, NavigationManager);
+
+            var curOrder = await OrderRepository.InsertOrderAsync(Order);
+            if (CurrentUser != null)
+            {
+                CurrentUser.Orders.Add(curOrder);
+            }
+            else
+            {
+                UserInputInfoBool = !UserInputInfoBool;
+                TempUser.Orders.Add(curOrder);
+            }
+            NotVal = "";
+            await UserRepository.UpdateUserAsync(CurrentUser);
+    //TODO HOW TO CHECK STRIPE PAYMENT STATUS
+        }
+    }
+
+}

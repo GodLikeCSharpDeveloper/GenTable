@@ -1,0 +1,25 @@
+﻿.inputstyle {
+    background: none;
+}
+input {
+    background: none;
+    margin: 5px 5px 5px 0;
+}
+.ImgClass {
+    max-width: 50px;
+    max-height: 100%;
+}
+.box {
+    border-width: 1px;
+    border-style: inset;
+}
+.tableAddCss {
+    color: white;
+}
+.errorMessage {
+    color: coral;
+}
+.NotVal input {
+    border: 2px solid coral;
+    transition:0.5ms
+}
