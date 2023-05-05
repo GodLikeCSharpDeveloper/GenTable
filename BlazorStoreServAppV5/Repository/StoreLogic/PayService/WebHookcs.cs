@@ -1,18 +1,18 @@
-﻿//using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-//namespace BlazorStoreServAppV5.Repository.StoreLogic.PayService;
+namespace BlazorStoreServAppV5.Repository.StoreLogic.PayService;
 
-//[Route("api/[controller]")]
-//public class StripeWebHook : Controller
-//{
-//    [HttpPost]
-//    public async Task<IActionResult> Index()
-//    {
-//        var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
+[Route("api/[controller]")]
+public class StripeWebHook : Controller
+{
+    [HttpPost]
+    public async Task<IActionResult> Index()
+    {
+        var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
 
-//        Console.WriteLine(json);
+        Console.WriteLine(json);
 
-//        return Ok();
-//    }
-//}
+        return Ok();
+    }
+}
 //TODO figure it out wtf

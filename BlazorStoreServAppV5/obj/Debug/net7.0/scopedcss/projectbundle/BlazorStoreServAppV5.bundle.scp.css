@@ -6,107 +6,6 @@
 .container[b-gqcblfg5ld] {
     min-height: 100%;
 }
-/* _content/BlazorStoreServAppV5/Pages/AllProductsTable.razor.rz.scp.css */
-.searcher[b-6v7gdwkhox] {
-    margin-bottom: 5px;
-    border-style: solid;
-    border-radius: 5px;
-    outline: none;
-}
-
-.panel[b-6v7gdwkhox] { height: 100%; }
-
-
-.CheckboxListStyle[b-6v7gdwkhox] {
-    margin-bottom: 5px;
-    color: #a29894;
-    background-color: #15171e;
-    border-color: #a29894;
-}
-
-.srchbutton[b-6v7gdwkhox] {
-    background-color: #061e36;
-    border-color: #061e36;
-    color: #a29894;
-    margin-top: 5px;
-}
-
-.srch[b-6v7gdwkhox] { margin-top: 5px; }
-
-@include media-breakpoint-down(md) { .hided[b-6v7gdwkhox] { display: none; } }
-
-.CardList[b-6v7gdwkhox] {
-    margin: 0 0 0 0;
-    padding: 5px 6px 0px 6px;
-    color: black;    
-}
-
-.card[b-6v7gdwkhox] {
-    background-color: #15171e;
-    color: #a29894;
-    border-color: white;
-}
-
-.cardList[b-6v7gdwkhox] {
-    background-color: #15171e;
-    color: #a29894;
-}
-
-.btn-outline-light[b-6v7gdwkhox] { border-color: #a29894; }
-.AllprodsPreview[b-6v7gdwkhox] {
-    min-width: 100%;
-    min-height: 100%;
-    
-}
-
-.everProdCont[b-6v7gdwkhox] {
-    border: 1px solid;
-    color: white;
-    padding: 2px 0px 2px 0px;
-    margin: 1px 1px 0 1px;
-    height: 240px;
-}
-
-.contMain[b-6v7gdwkhox] { 
-    padding: 0 0 0 0;
-    min-height: 15%;
-}
-.imgContainer[b-6v7gdwkhox] {
-    width: 100%;
-    height: 80%;
-}
-.img[b-6v7gdwkhox] {
-    width: 100%;
-    height: 70%;
-    object-fit: contain;
-    
-}
-/* _content/BlazorStoreServAppV5/Pages/Cart.razor.rz.scp.css */
-.inputstyle[b-ff8dt3ozyy] {
-    background: none;
-}
-input[b-ff8dt3ozyy] {
-    background: none;
-    margin: 5px 5px 5px 0;
-}
-.ImgClass[b-ff8dt3ozyy] {
-    max-width: 50px;
-    max-height: 100%;
-}
-.box[b-ff8dt3ozyy] {
-    border-width: 1px;
-    border-style: inset;
-}
-.tableAddCss[b-ff8dt3ozyy] {
-    color: white;
-}
-.errorMessage[b-ff8dt3ozyy] {
-    color: coral;
-}
-.NotVal input[b-ff8dt3ozyy] {
-    border: 2px solid coral;
-    transition:0.5ms
-}
 /* _content/BlazorStoreServAppV5/Shared/AdminUIcomponents/AdminAddProd.razor.rz.scp.css */
 .cont[b-399f8ktukx] { width: 99%; }
 
@@ -594,6 +493,107 @@ button:hover[b-mbrop61ily], a:hover[b-mbrop61ily] {
 .autocomplete .option.disabled:hover[b-mbrop61ily] {
     background: lightgrey;
     color: var(--bs-body);
+}
+/* _content/BlazorStoreServAppV5/Shared/UIcomponents/EndPoints/AllProductsTable.razor.rz.scp.css */
+.searcher[b-hg4auyisc9] {
+    margin-bottom: 5px;
+    border-style: solid;
+    border-radius: 5px;
+    outline: none;
+}
+
+.panel[b-hg4auyisc9] { height: 100%; }
+
+
+.CheckboxListStyle[b-hg4auyisc9] {
+    margin-bottom: 5px;
+    color: #a29894;
+    background-color: #15171e;
+    border-color: #a29894;
+}
+
+.srchbutton[b-hg4auyisc9] {
+    background-color: #061e36;
+    border-color: #061e36;
+    color: #a29894;
+    margin-top: 5px;
+}
+
+.srch[b-hg4auyisc9] { margin-top: 5px; }
+
+@include media-breakpoint-down(md) { .hided[b-hg4auyisc9] { display: none; } }
+
+.CardList[b-hg4auyisc9] {
+    margin: 0 0 0 0;
+    padding: 5px 6px 0px 6px;
+    color: black;    
+}
+
+.card[b-hg4auyisc9] {
+    background-color: #15171e;
+    color: #a29894;
+    border-color: white;
+}
+
+.cardList[b-hg4auyisc9] {
+    background-color: #15171e;
+    color: #a29894;
+}
+
+.btn-outline-light[b-hg4auyisc9] { border-color: #a29894; }
+.AllprodsPreview[b-hg4auyisc9] {
+    min-width: 100%;
+    min-height: 100%;
+    
+}
+
+.everProdCont[b-hg4auyisc9] {
+    border: 1px solid;
+    color: white;
+    padding: 2px 0px 2px 0px;
+    margin: 1px 1px 0 1px;
+    height: 240px;
+}
+
+.contMain[b-hg4auyisc9] { 
+    padding: 0 0 0 0;
+    min-height: 15%;
+}
+.imgContainer[b-hg4auyisc9] {
+    width: 100%;
+    height: 80%;
+}
+.img[b-hg4auyisc9] {
+    width: 100%;
+    height: 70%;
+    object-fit: contain;
+    
+}
+/* _content/BlazorStoreServAppV5/Shared/UIcomponents/EndPoints/Cart.razor.rz.scp.css */
+.inputstyle[b-3bm3rtmget] {
+    background: none;
+}
+input[b-3bm3rtmget] {
+    background: none;
+    margin: 5px 5px 5px 0;
+}
+.ImgClass[b-3bm3rtmget] {
+    max-width: 50px;
+    max-height: 100%;
+}
+.box[b-3bm3rtmget] {
+    border-width: 1px;
+    border-style: inset;
+}
+.tableAddCss[b-3bm3rtmget] {
+    color: white;
+}
+.errorMessage[b-3bm3rtmget] {
+    color: coral;
+}
+.NotVal input[b-3bm3rtmget] {
+    border: 2px solid coral;
+    transition:0.5ms
 }
 /* _content/BlazorStoreServAppV5/Shared/UIcomponents/Product/AboutProd.razor.rz.scp.css */
 .MainImg[b-gybu57iiqi] {

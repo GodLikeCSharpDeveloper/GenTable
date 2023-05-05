@@ -204,7 +204,6 @@ C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\o
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Areas\Identity\Pages\Account\Login.cshtml.rz.scp.css
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Areas\Identity\Pages\Account\Register.cshtml.rz.scp.css
-C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Pages\AllProductsTable.razor.rz.scp.css
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminAddProd.razor.rz.scp.css
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminOrders.razor.rz.scp.css
 C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\AdminUIcomponents\AdminPanel.razor.rz.scp.css
@@ -232,3 +231,6 @@ C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\ne
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\bin\Debug\net7.0\Stripe.net.dll
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Pages\Cart.razor.rz.scp.css
 C:\Users\KAYAYASHA\Desktop\New folder\GenTable\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\Product\CharsProd.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\EndPoints\AllProductsTable.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\EndPoints\Cart.razor.rz.scp.css
+C:\Users\DaunV5.0\Desktop\New folder\BlazorStoreServAppV5\BlazorStoreServAppV5\obj\Debug\net7.0\scopedcss\Shared\UIcomponents\Product\CharsProd.razor.rz.scp.css
